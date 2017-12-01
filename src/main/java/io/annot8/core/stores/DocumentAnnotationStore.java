@@ -5,6 +5,14 @@ import java.util.Set;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.documents.Document;
 
+/**
+ * Helper class to reduce the amount of code required to retrieve annotations
+ * from an {@link AnnotationStore} where the same {@link Document} is to be
+ * used each time.
+ * 
+ * @param <T>
+ * 		The type of {@link Annotation} stored by this store
+ */
 public class DocumentAnnotationStore<T extends Annotation> {
 	private final AnnotationStore<T> annotationStore;
 	private final Document document;

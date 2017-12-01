@@ -5,6 +5,11 @@ import java.util.Set;
 
 import io.annot8.core.annotations.Mention;
 
+/**
+ * A Relation groups together two or more {@link Entity} objects,
+ * and zero or more {@link Mention} objects, where a relationship
+ * of any kind exists between the entities.
+ */
 public interface Relation {
 	public String getType();
 	public void setType(String type);

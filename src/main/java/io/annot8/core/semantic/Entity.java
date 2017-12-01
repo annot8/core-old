@@ -5,6 +5,10 @@ import java.util.Set;
 
 import io.annot8.core.annotations.Mention;
 
+/**
+ * An Entity groups together one or more {@link Mention} that refer
+ * to the same physical (or conceptual) item, for example a Person.
+ */
 public interface Entity {
 	public String getType();
 	public void setType(String type);
