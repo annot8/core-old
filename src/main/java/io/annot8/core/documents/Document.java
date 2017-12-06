@@ -1,5 +1,6 @@
 package io.annot8.core.documents;
 
+import java.util.Collection;
 import java.util.Set;
 
 import io.annot8.core.exceptions.UnmodifiableDocumentException;
@@ -28,4 +29,12 @@ public interface Document {
 	public Document getView(String name);
 	public void setView(String name, Document view);
 	public Document removeView(String name);
+	
+	public boolean hasTag(String tag);
+	public Set<String> getTags();
+	public void setTags(Set<String> tags);
+	public boolean addTag(String tag);
+	public void addAllTags(Collection<String> tags);
+	public boolean removeTag(String tag);
+	public void removeAllTags(Collection<String> tags);
 }
