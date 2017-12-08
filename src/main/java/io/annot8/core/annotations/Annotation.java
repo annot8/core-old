@@ -1,5 +1,7 @@
 package io.annot8.core.annotations;
 
+import java.util.UUID;
+
 /**
  * Base annotation interface from which all other annotations extend.
  * 
@@ -8,5 +10,5 @@ package io.annot8.core.annotations;
  * ones modified it, etc.)
  */
 public interface Annotation {
-
+	public UUID getId();
 }
