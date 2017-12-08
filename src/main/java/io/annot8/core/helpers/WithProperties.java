@@ -20,5 +20,5 @@ public interface WithProperties {
 	public Map<String, Object> getProperties();
 	public void setProperties(Map<String, Object> properties);
 	public void addProperties(Map<String, Object> properties);
-	public void removeProperties(Map<String, Object> properties);
+	public void removeProperties(Set<String> keys);
 }
