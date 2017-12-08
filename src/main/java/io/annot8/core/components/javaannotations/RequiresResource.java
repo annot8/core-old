@@ -7,6 +7,9 @@ import java.lang.annotation.RetentionPolicy;
 
 import io.annot8.core.components.Resource;
 
+/**
+ * Declares a resource that a component requires
+ */
 @Documented
 @Repeatable(RequiresResources.class)
 @Retention(RetentionPolicy.RUNTIME)
