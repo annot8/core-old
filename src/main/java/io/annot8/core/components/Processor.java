@@ -17,7 +17,4 @@ import io.annot8.core.stores.AnnotationStore;
 public interface Processor {
 	public void configure(Map<String, Object> configuration, Map<String, Resource> resources, AnnotationStore<? extends Annotation> annotationStore) throws BadConfigurationException, MissingResourceException;
 	public void process(Document document) throws ProcessingException;
-	
-	//TODO: Need a way of declaring processor capabilities and dependencies
-	//TODO: Need a way of declaring processor configuration and resources
 }

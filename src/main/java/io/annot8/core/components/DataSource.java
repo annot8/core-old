@@ -20,6 +20,4 @@ import io.annot8.core.stores.AnnotationStore;
  */
 public interface DataSource extends AutoCloseable, Iterator<Document>{
 	public void configure(Map<String, Object> configuration, Map<String, Resource> resources, AnnotationStore<? extends Annotation> annotationStore) throws BadConfigurationException, MissingResourceException;
-	
-	//TODO: Need a way of declaring data source configuration and resources
 }
