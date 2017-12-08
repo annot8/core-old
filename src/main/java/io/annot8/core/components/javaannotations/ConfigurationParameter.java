@@ -15,5 +15,5 @@ public @interface ConfigurationParameter {
 	String key();
 	String defaultValue();
 	String description();
-	boolean required();
+	boolean required() default false;
 }
