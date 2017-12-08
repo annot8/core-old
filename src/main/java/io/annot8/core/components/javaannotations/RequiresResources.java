@@ -6,6 +6,6 @@ import java.lang.annotation.RetentionPolicy;
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-public @interface InputAnnotations {
-	InputAnnotation[] value();
+public @interface RequiresResources {
+	RequiresResource[] value();
 }
