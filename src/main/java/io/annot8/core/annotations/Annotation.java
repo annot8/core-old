@@ -8,5 +8,5 @@ package io.annot8.core.annotations;
  * ones modified it, etc.)
  */
 public interface Annotation {
-	//TODO: Add functions to track history of annotation
+
 }
