@@ -15,9 +15,11 @@ import io.annot8.core.documents.Document;
  */
 public interface AnnotationStore<T extends Annotation> {
 	public void addAnnotation(Document document, T annotation);
+	public void updateAnnotation(Document document, T annotation);
 	public void removeAnnotation(Document document, T annotation);
 
 	public void addAnnotations(Document document, Set<T> annotations);
+	public void updateAnnotations(Document document, Set<T> annotations);
 	public void removeAnnotations(Document document, Set<T> annotations);
 	public void removeAnnotations(Document document);
 	
