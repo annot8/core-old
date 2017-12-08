@@ -1,8 +1,7 @@
 package io.annot8.core.components;
 
-import java.util.Map;
-
-import io.annot8.core.annotations.Annotation;
+import io.annot8.core.context.Context;
+import io.annot8.core.context.ProcessingContext;
 import io.annot8.core.documents.Document;
 import io.annot8.core.exceptions.BadConfigurationException;
 import io.annot8.core.exceptions.MissingResourceException;
@@ -15,6 +14,6 @@ import io.annot8.core.stores.AnnotationStore;
  * processors out to an external database.
  */
 public interface Processor {
-	public void configure(Map<String, Object> configuration, Map<String, Resource> resources, AnnotationStore<? extends Annotation> annotationStore) throws BadConfigurationException, MissingResourceException;
-	public void process(Document document) throws ProcessingException;
+	public void configure(Context context) throws BadConfigurationException, MissingResourceException;
+	public void process(Document document, ProcessingContext context) throws ProcessingException;
 }
