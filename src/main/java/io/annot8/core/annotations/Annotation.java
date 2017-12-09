@@ -1,5 +1,6 @@
 package io.annot8.core.annotations;
 
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -15,4 +16,14 @@ public interface Annotation {
 	 * Return the ID assigned to this annotation
 	 */
 	String getId();
+
+	/**
+	 * Return the Annotation type, if it has been set
+	 */
+	Optional<String> getType();
+
+	/**
+	 * Set the Span type (use null to unset)
+	 */
+	void setType(String type);
 }

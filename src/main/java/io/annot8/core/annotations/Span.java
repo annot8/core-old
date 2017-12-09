@@ -15,15 +15,6 @@ import io.annot8.core.helpers.WithProperties;
  */
 public interface Span extends Annotation, WithProperties {
 	
-	/**
-	 * Return the Span type, if it has been set
-	 */
-  Optional<String> getType();
-	
-	/**
-	 * Set the Span type (use null to unset)
-	 */
-  void setType(String type);
 	
 	/**
 	 * Return the begin offset
