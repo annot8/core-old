@@ -14,5 +14,5 @@ public interface Annotation {
 	/**
 	 * Return the ID assigned to this annotation
 	 */
-	public UUID getId();
+	String getId();
 }
