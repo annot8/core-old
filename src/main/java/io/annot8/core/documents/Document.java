@@ -22,12 +22,4 @@ public interface Document {
 	Optional<String> getLanguage();
 	void setLanguage(String language);
 
-	
-	boolean hasTag(String tag);
-	Set<String> getTags();
-	void setTags(Set<String> tags);
-	boolean addTag(String tag);
-	void addAllTags(Collection<String> tags);
-	boolean removeTag(String tag);
-	void removeAllTags(Collection<String> tags);
 }
