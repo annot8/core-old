@@ -13,7 +13,7 @@ import io.annot8.core.stores.AnnotationStore;
  * (via the {@link AnnotationStore}) or persisting the results of other
  * processors out to an external database.
  */
-public interface Processor {
-	void configure(Context context) throws BadConfigurationException, MissingResourceException;
+@FunctionalInterface
+public interface Processor extends Annot8Component {
 	void process(Document document, ProcessingContext context) throws ProcessingException;
 }

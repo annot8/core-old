@@ -17,6 +17,5 @@ import io.annot8.core.stores.AnnotationStore;
  * If appropriate, it may also add annotations to the Document
  * (for example, file metadata) via the {@link AnnotationStore}.
  */
-public interface DataSource extends AutoCloseable, Iterator<Document>{
-	void configure(Context context) throws BadConfigurationException, MissingResourceException;
+public interface DataSource extends AutoCloseable, Iterator<Document>, Annot8Component{
 }
