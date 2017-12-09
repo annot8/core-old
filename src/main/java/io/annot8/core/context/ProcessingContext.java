@@ -2,10 +2,7 @@ package io.annot8.core.context;
 
 import java.util.Optional;
 
-import io.annot8.core.annotations.Annotation;
 import io.annot8.core.documents.Document;
-import io.annot8.core.stores.AnnotationStore;
-import io.annot8.core.stores.DocumentAnnotationStore;
 import java.util.Set;
 
 /**
@@ -17,7 +14,10 @@ public interface ProcessingContext extends Context {
 
 	ViewContext getDefaultView();
 
-	boolean hasView(String name);
+	default boolean hasView(String name) {
+		return listViews().contains(name);
+	}
+
 	Set<String> listViews();
 	Optional<ViewContext> getView(String name);
 	ViewContext createView(String name, Document document);

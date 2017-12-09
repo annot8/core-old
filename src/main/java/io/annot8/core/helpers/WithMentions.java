@@ -14,7 +14,14 @@ public interface WithMentions {
 	void addMention(Mention mention);
 	boolean removeMention(Mention mention);
 	Set<Mention> getMentions();
-	void setMentions(Set<Mention> mentions);
-	void addMentions(Collection<Mention> mentions);
-	void removeMentions(Collection<Mention> mentions);
+	default void setMentions(Set<Mention> mentions) {
+		removeMentions(getMentions());
+		addMentions(mentions);
+	}
+	default void addMentions(Collection<Mention> mentions) {
+		mentions.forEach(this::addMention);
+	}
+	default void removeMentions(Collection<Mention> mentions) {
+		mentions.forEach(this::removeMention);
+	}
 }

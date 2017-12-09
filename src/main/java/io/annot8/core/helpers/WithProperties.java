@@ -15,17 +15,23 @@ public interface WithProperties {
 	/**
 	 * Returns true if a property with the given exists
 	 */
-  boolean hasProperty(String key);
+  default boolean hasProperty(String key) {
+  	return listPropertyKeys().contains(key);
+	}
 	
 	/**
 	 * Return the property value for the specified key, if it exists
 	 */
-  Optional<Object> getProperty(String key);
+  default Optional<Object> getProperty(String key) {
+  	return Optional.ofNullable( getProperties().get(key) );
+	}
 	
 	/**
 	 * Return the property value for the specified key, or a default value if the key doesn't exist
 	 */
-  Object getPropertyOrDefault(String key, Object defaultValue);
+  default Object getPropertyOrDefault(String key, Object defaultValue) {
+  	return getProperty(key).orElse(defaultValue);
+	}
 	
 	/**
 	 * Set the property value for the specified key
@@ -40,7 +46,9 @@ public interface WithProperties {
 	/**
 	 * List the currently set property keys
 	 */
-  Set<String> listPropertyKeys();
+  default Set<String> listPropertyKeys() {
+  	return getProperties().keySet();
+	}
 	
 	/**
 	 * Return a map of all properties

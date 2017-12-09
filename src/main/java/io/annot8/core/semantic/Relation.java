@@ -18,7 +18,15 @@ public interface Relation extends WithMentions, WithProperties {
 	void addEntity(Entity entity);
 	boolean removeEntity(Entity entity);
 	Set<Entity> getEntities();
-	void setEntities(Set<Entity> entity);
-	void addEntities(Set<Entity> entity);
-	void removeEntities(Set<Entity> entity);
+	default void setEntities(Set<Entity> entities) {
+		removeEntities(getEntities());
+		addEntities(entities);
+	}
+	default void addEntities(Set<Entity> entities) {
+		entities.forEach(this::addEntity);
+
+	}
+	default void removeEntities(Set<Entity> entities) {
+		entities.forEach(this::removeEntity);
+	}
 }

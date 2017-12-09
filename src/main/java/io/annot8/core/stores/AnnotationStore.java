@@ -1,5 +1,6 @@
 package io.annot8.core.stores;
 
+import io.annot8.core.components.Resource;
 import java.util.Set;
 
 import io.annot8.core.annotations.Annotation;
@@ -16,18 +17,25 @@ import io.annot8.core.exceptions.MissingResourceException;
  * @param <T>
  * 		The type of {@link Annotation} stored by this store
  */
-public interface AnnotationStore<T extends Annotation> extends AutoCloseable{
-	void configure(Context context) throws BadConfigurationException, MissingResourceException;
-	
+public interface AnnotationStore<T extends Annotation> extends Resource {
+
 	void addAnnotation(T annotation);
 	void updateAnnotation(T annotation);
 	void removeAnnotation(T annotation);
 
-	void addAnnotations(Set<T> annotations);
-	void updateAnnotations(Set<T> annotations);
-	void removeAnnotations(Set<T> annotations);
+	default void addAnnotations(Set<T> annotations) {
+		annotations.forEach(this::addAnnotation);
+	}
+	default void updateAnnotations(Set<T> annotations)  {
+		annotations.forEach(this::updateAnnotation);
+	}
+	default void removeAnnotations(Set<T> annotations)  {
+		annotations.forEach(this::removeAnnotation);
+	}
 
-	void removeAllAnnotations();
+	default void removeAllAnnotations() {
+		removeAnnotations(getAnnotations());
+	}
 
 	Set<T> getAnnotations();
 	<U extends T> Set<U> getAnnotations(Class<U> annotationClass);

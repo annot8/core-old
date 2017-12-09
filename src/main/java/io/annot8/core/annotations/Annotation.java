@@ -18,6 +18,8 @@ public interface Annotation {
 	/**
 	 * Return the Annotation type, if it has been set
 	 */
-	String getType();
+	default String getType() {
+		return this.getClass().getSimpleName();
+	}
 
 }

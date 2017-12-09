@@ -8,11 +8,20 @@ public interface ViewContext extends Context {
 
   Document getDocument();
 
-  boolean hasTag(String tag);
+  default boolean hasTag(String tag) {
+    return getTags().contains(tag);
+  }
   Set<String> getTags();
-  void setTags(Set<String> tags);
+  default  void setTags(Set<String> tags) {
+    removeAllTags(getTags());
+    addAllTags(tags);
+  }
   boolean addTag(String tag);
-  void addAllTags(Collection<String> tags);
+  default void addAllTags(Collection<String> tags) {
+    tags.stream().forEach(this::addTag);
+  }
   boolean removeTag(String tag);
-  void removeAllTags(Collection<String> tags);
+  default void removeAllTags(Collection<String> tags) {
+    tags.stream().forEach(this::removeTag);
+  }
 }
