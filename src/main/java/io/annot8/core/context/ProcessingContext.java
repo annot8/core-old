@@ -13,15 +13,5 @@ import io.annot8.core.stores.DocumentAnnotationStore;
  * additional runtime information.
  */
 public interface ProcessingContext extends Context {
-	AnnotationStore<Annotation> getAnnotationStore();
-	<T extends Annotation> Optional<AnnotationStore<T>> getAnnotationStore(
-			Class<? extends Annotation> T);
-	
-	default DocumentAnnotationStore<Annotation> getDocumentAnnotationStore(Document document){
-		return new DocumentAnnotationStore<>(getAnnotationStore(), document);
-	}
-	default <T extends Annotation> Optional<DocumentAnnotationStore<T>> getDocumentAnnotationStore(Document document, Class<? extends Annotation> T){
-		Optional<AnnotationStore<T>> store = getAnnotationStore(T);
-		return store.map(s -> new DocumentAnnotationStore<>(s, document));
-	}
+
 }
