@@ -21,12 +21,7 @@ public interface Document {
 	
 	Optional<String> getLanguage();
 	void setLanguage(String language);
-	
-	boolean hasView(String name);
-	Set<String> listViews();
-	Optional<Document> getView(String name);
-	void setView(String name, Document view);
-	Optional<Document> removeView(String name);
+
 	
 	boolean hasTag(String tag);
 	Set<String> getTags();

@@ -6,6 +6,7 @@ import io.annot8.core.annotations.Annotation;
 import io.annot8.core.documents.Document;
 import io.annot8.core.stores.AnnotationStore;
 import io.annot8.core.stores.DocumentAnnotationStore;
+import java.util.Set;
 
 /**
  * An extended version of {@link Context} which is passed to processors in the
@@ -13,5 +14,11 @@ import io.annot8.core.stores.DocumentAnnotationStore;
  * additional runtime information.
  */
 public interface ProcessingContext extends Context {
+
+	boolean hasView(String name);
+	Set<String> listViews();
+	Optional<ViewContext> getView(String name);
+	ViewContext createView(String name, Document document);
+	Optional<ViewContext> removeView(String name);
 
 }
