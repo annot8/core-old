@@ -1,6 +1,7 @@
 package io.annot8.core.stores;
 
 import io.annot8.core.components.Resource;
+import java.util.Collection;
 import java.util.Set;
 
 import io.annot8.core.annotations.Annotation;
@@ -8,6 +9,8 @@ import io.annot8.core.context.Context;
 import io.annot8.core.documents.Document;
 import io.annot8.core.exceptions.BadConfigurationException;
 import io.annot8.core.exceptions.MissingResourceException;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Stores {@link Annotation} objects against {@link Document}s,
@@ -23,20 +26,24 @@ public interface AnnotationStore<T extends Annotation> extends Resource {
 	void updateAnnotation(T annotation);
 	void removeAnnotation(T annotation);
 
-	default void addAnnotations(Set<T> annotations) {
+	default void addAnnotations(Collection<T> annotations) {
 		annotations.forEach(this::addAnnotation);
 	}
-	default void updateAnnotations(Set<T> annotations)  {
+	default void updateAnnotations(Collection<T> annotations)  {
 		annotations.forEach(this::updateAnnotation);
 	}
-	default void removeAnnotations(Set<T> annotations)  {
+	default void removeAnnotations(Collection<T> annotations)  {
 		annotations.forEach(this::removeAnnotation);
 	}
 
 	default void removeAllAnnotations() {
-		removeAnnotations(getAnnotations());
+		removeAnnotations(getAnnotations().collect(Collectors.toList()));
 	}
 
-	Set<T> getAnnotations();
-	<U extends T> Set<U> getAnnotations(Class<U> annotationClass);
+	Stream<T> getAnnotations();
+	default  <U extends T> Stream<U> getAnnotations(Class<U> annotationClass) {
+		return getAnnotations()
+				.filter(a -> annotationClass.isInstance(a))
+				.map(annotationClass::cast);
+	}
 }

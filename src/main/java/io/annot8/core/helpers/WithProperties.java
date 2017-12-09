@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Stream;
 
 /**
  * Indicates that an object stores a collection of properties (key-value pairs)
@@ -16,7 +17,7 @@ public interface WithProperties {
 	 * Returns true if a property with the given exists
 	 */
   default boolean hasProperty(String key) {
-  	return listPropertyKeys().contains(key);
+  	return listPropertyKeys().anyMatch(s -> key.equals(s));
 	}
 	
 	/**
@@ -46,24 +47,36 @@ public interface WithProperties {
 	/**
 	 * List the currently set property keys
 	 */
-  default Set<String> listPropertyKeys() {
-  	return getProperties().keySet();
+  default Stream<String> listPropertyKeys() {
+  	return getProperties().keySet().stream();
 	}
 	
 	/**
 	 * Return a map of all properties
 	 */
   Map<String, Object> getProperties();
+
+	/**
+	 * Return a map of all properties
+	 */
+	default void clear() {
+		listPropertyKeys().forEach(this::removeProperty);
+	}
 	
 	/**
 	 * Set the current properties to be equal to the map
 	 */
-  void setProperties(Map<String, Object> properties);
+  default void setProperties(Map<String, Object> properties) {
+  	clear();
+  	addProperties(properties);
+	}
 	
 	/**
 	 * Add all properties from the given map, overwriting values where they already exist
 	 */
-  void addProperties(Map<String, Object> properties);
+  default void addProperties(Map<String, Object> properties) {
+  	properties.entrySet().forEach(e -> this.setProperty(e.getKey(), e.getValue()));
+	}
 	
 	/**
 	 * Remove all properties that match the given keys

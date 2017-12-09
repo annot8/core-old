@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Set;
 
 import io.annot8.core.annotations.Mention;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Indicates that an object stores a collection of {@link Mention} objects.
@@ -13,9 +15,9 @@ import io.annot8.core.annotations.Mention;
 public interface WithMentions {
 	void addMention(Mention mention);
 	boolean removeMention(Mention mention);
-	Set<Mention> getMentions();
-	default void setMentions(Set<Mention> mentions) {
-		removeMentions(getMentions());
+	Stream<Mention> getMentions();
+	default void setMentions(Collection<Mention> mentions) {
+		removeMentions(getMentions().collect(Collectors.toList()));
 		addMentions(mentions);
 	}
 	default void addMentions(Collection<Mention> mentions) {

@@ -1,10 +1,13 @@
 package io.annot8.core.semantic;
 
+import java.util.Collection;
 import java.util.Set;
 
 import io.annot8.core.annotations.Mention;
 import io.annot8.core.helpers.WithMentions;
 import io.annot8.core.helpers.WithProperties;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A Relation groups together two or more {@link Entity} objects,
@@ -17,16 +20,16 @@ public interface Relation extends WithMentions, WithProperties {
 	
 	void addEntity(Entity entity);
 	boolean removeEntity(Entity entity);
-	Set<Entity> getEntities();
-	default void setEntities(Set<Entity> entities) {
-		removeEntities(getEntities());
+	Stream<Entity> getEntities();
+	default void setEntities(Collection<Entity> entities) {
+		removeEntities(getEntities().collect(Collectors.toList()));
 		addEntities(entities);
 	}
-	default void addEntities(Set<Entity> entities) {
+	default void addEntities(Collection<Entity> entities) {
 		entities.forEach(this::addEntity);
 
 	}
-	default void removeEntities(Set<Entity> entities) {
+	default void removeEntities(Collection<Entity> entities) {
 		entities.forEach(this::removeEntity);
 	}
 }
