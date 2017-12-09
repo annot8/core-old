@@ -1,6 +1,6 @@
 package io.annot8.core.annotations.bounds;
 
-public interface IntegerLineBound {
+public interface IntegerLineBound extends Bound {
 
   /**
    * Return the begin offset
