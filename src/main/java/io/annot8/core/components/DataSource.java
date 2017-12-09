@@ -18,5 +18,5 @@ import io.annot8.core.stores.AnnotationStore;
  * (for example, file metadata) via the {@link AnnotationStore}.
  */
 public interface DataSource extends AutoCloseable, Iterator<Document>{
-	public void configure(Context context) throws BadConfigurationException, MissingResourceException;
+	void configure(Context context) throws BadConfigurationException, MissingResourceException;
 }

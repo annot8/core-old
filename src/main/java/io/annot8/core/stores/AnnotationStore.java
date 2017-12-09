@@ -17,21 +17,21 @@ import io.annot8.core.exceptions.MissingResourceException;
  * 		The type of {@link Annotation} stored by this store
  */
 public interface AnnotationStore<T extends Annotation> extends AutoCloseable{
-	public void configure(Context context) throws BadConfigurationException, MissingResourceException;
+	void configure(Context context) throws BadConfigurationException, MissingResourceException;
 	
-	public void addAnnotation(Document document, T annotation);
-	public void updateAnnotation(Document document, T annotation);
-	public void removeAnnotation(Document document, T annotation);
+	void addAnnotation(Document document, T annotation);
+	void updateAnnotation(Document document, T annotation);
+	void removeAnnotation(Document document, T annotation);
 
-	public void addAnnotations(Document document, Set<T> annotations);
-	public void updateAnnotations(Document document, Set<T> annotations);
-	public void removeAnnotations(Document document, Set<T> annotations);
-	public void removeAnnotations(Document document);
+	void addAnnotations(Document document, Set<T> annotations);
+	void updateAnnotations(Document document, Set<T> annotations);
+	void removeAnnotations(Document document, Set<T> annotations);
+	void removeAnnotations(Document document);
 	
-	public void clear();
+	void clear();
 	
-	public Set<Document> getDocuments();
+	Set<Document> getDocuments();
 	
-	public Set<T> getAnnotations(Document document);
-	public <U extends T> Set<U> getAnnotations(Document document, Class<U> annotationClass);
+	Set<T> getAnnotations(Document document);
+	<U extends T> Set<U> getAnnotations(Document document, Class<U> annotationClass);
 }

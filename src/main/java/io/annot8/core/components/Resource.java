@@ -9,5 +9,5 @@ import io.annot8.core.exceptions.MissingResourceException;
  * dataset) that can be used by other components.
  */
 public interface Resource extends AutoCloseable {
-	public void configure(Context context) throws BadConfigurationException, MissingResourceException;
+	void configure(Context context) throws BadConfigurationException, MissingResourceException;
 }

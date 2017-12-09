@@ -11,10 +11,10 @@ import io.annot8.core.annotations.Mention;
  * Helper interface to reduce duplicate code.
  */
 public interface WithMentions {
-	public void addMention(Mention mention);
-	public boolean removeMention(Mention mention);
-	public Set<Mention> getMentions();
-	public void setMentions(Set<Mention> mentions);
-	public void addMentions(Collection<Mention> mentions);
-	public void removeMentions(Collection<Mention> mentions);
+	void addMention(Mention mention);
+	boolean removeMention(Mention mention);
+	Set<Mention> getMentions();
+	void setMentions(Set<Mention> mentions);
+	void addMentions(Collection<Mention> mentions);
+	void removeMentions(Collection<Mention> mentions);
 }

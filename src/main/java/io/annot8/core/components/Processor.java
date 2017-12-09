@@ -14,6 +14,6 @@ import io.annot8.core.stores.AnnotationStore;
  * processors out to an external database.
  */
 public interface Processor {
-	public void configure(Context context) throws BadConfigurationException, MissingResourceException;
-	public void process(Document document, ProcessingContext context) throws ProcessingException;
+	void configure(Context context) throws BadConfigurationException, MissingResourceException;
+	void process(Document document, ProcessingContext context) throws ProcessingException;
 }

@@ -15,20 +15,20 @@ public interface Entity extends WithMentions, WithProperties {
 	/**
 	 * Get the value for this entity, if it has been set
 	 */
-	public Optional<String> getType();
+  Optional<String> getType();
 	
 	/**
 	 * Set the type for this entity (use null to unset)
 	 */
-	public void setType(String type);
+  void setType(String type);
 	
 	/**
 	 * Get the value for this entity, if it has been set
 	 */
-	public Optional<Object> getValue();
+  Optional<Object> getValue();
 	
 	/**
 	 * Set the value for this entity (use null to unset)
 	 */
-	public void setValue(Object value);
+  void setValue(Object value);
 }

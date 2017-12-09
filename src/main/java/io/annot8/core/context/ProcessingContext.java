@@ -13,18 +13,15 @@ import io.annot8.core.stores.DocumentAnnotationStore;
  * additional runtime information.
  */
 public interface ProcessingContext extends Context {
-	public AnnotationStore<Annotation> getAnnotationStore();
-	public <T extends Annotation> Optional<AnnotationStore<T>> getAnnotationStore(Class<? extends Annotation> T);
+	AnnotationStore<Annotation> getAnnotationStore();
+	<T extends Annotation> Optional<AnnotationStore<T>> getAnnotationStore(
+			Class<? extends Annotation> T);
 	
 	default DocumentAnnotationStore<Annotation> getDocumentAnnotationStore(Document document){
 		return new DocumentAnnotationStore<>(getAnnotationStore(), document);
 	}
 	default <T extends Annotation> Optional<DocumentAnnotationStore<T>> getDocumentAnnotationStore(Document document, Class<? extends Annotation> T){
 		Optional<AnnotationStore<T>> store = getAnnotationStore(T);
-		if(store.isPresent()) {
-			return Optional.of(new DocumentAnnotationStore<>(store.get(), document));
-		}else {
-			return Optional.empty();
-		}
+		return store.map(s -> new DocumentAnnotationStore<>(s, document));
 	}
 }

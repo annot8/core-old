@@ -15,24 +15,24 @@ import io.annot8.core.exceptions.UnmodifiableDocumentException;
  * is expected to be an unusual use case.
  */
 public interface Document {
-	public Optional<String> getContent();
-	public void setContent(String content) throws UnmodifiableDocumentException;
-	public boolean canModifyContent();
+	Optional<String> getContent();
+	void setContent(String content) throws UnmodifiableDocumentException;
+	boolean canModifyContent();
 	
-	public Optional<String> getLanguage();
-	public void setLanguage(String language);
+	Optional<String> getLanguage();
+	void setLanguage(String language);
 	
-	public boolean hasView(String name);
-	public Set<String> listViews();
-	public Optional<Document> getView(String name);
-	public void setView(String name, Document view);
-	public Optional<Document> removeView(String name);
+	boolean hasView(String name);
+	Set<String> listViews();
+	Optional<Document> getView(String name);
+	void setView(String name, Document view);
+	Optional<Document> removeView(String name);
 	
-	public boolean hasTag(String tag);
-	public Set<String> getTags();
-	public void setTags(Set<String> tags);
-	public boolean addTag(String tag);
-	public void addAllTags(Collection<String> tags);
-	public boolean removeTag(String tag);
-	public void removeAllTags(Collection<String> tags);
+	boolean hasTag(String tag);
+	Set<String> getTags();
+	void setTags(Set<String> tags);
+	boolean addTag(String tag);
+	void addAllTags(Collection<String> tags);
+	boolean removeTag(String tag);
+	void removeAllTags(Collection<String> tags);
 }

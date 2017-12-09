@@ -12,13 +12,13 @@ import io.annot8.core.helpers.WithProperties;
  * of any kind exists between the entities.
  */
 public interface Relation extends WithMentions, WithProperties {
-	public String getType();
-	public void setType(String type);
+	String getType();
+	void setType(String type);
 	
-	public void addEntity(Entity entity);
-	public boolean removeEntity(Entity entity);
-	public Set<Entity> getEntities();
-	public void setEntities(Set<Entity> entity);
-	public void addEntities(Set<Entity> entity);
-	public void removeEntities(Set<Entity> entity);
+	void addEntity(Entity entity);
+	boolean removeEntity(Entity entity);
+	Set<Entity> getEntities();
+	void setEntities(Set<Entity> entity);
+	void addEntities(Set<Entity> entity);
+	void removeEntities(Set<Entity> entity);
 }

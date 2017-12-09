@@ -9,8 +9,8 @@ import io.annot8.core.components.Resource;
  * usually at creation time.
  */
 public interface Context {
-	public Optional<Object> getConfiguration(String key);
-	public <T> Optional<T> getConfiguration(String key, Class<?> T);
+	Optional<Object> getConfiguration(String key);
+	<T> Optional<T> getConfiguration(String key, Class<?> T);
 	
-	public <T extends Resource> Optional<T> getResource(String key, Class<? extends Resource> T);
+	<T extends Resource> Optional<T> getResource(String key, Class<? extends Resource> T);
 }

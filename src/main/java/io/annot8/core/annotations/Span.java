@@ -18,30 +18,30 @@ public interface Span extends Annotation, WithProperties {
 	/**
 	 * Return the Span type, if it has been set
 	 */
-	public Optional<String> getType();
+  Optional<String> getType();
 	
 	/**
 	 * Set the Span type (use null to unset)
 	 */
-	public void setType(String type);
+  void setType(String type);
 	
 	/**
 	 * Return the begin offset
 	 */
-	public int getBegin();
+  int getBegin();
 	
 	/**
 	 * Set the begin offset
 	 */
-	public void setBegin(int begin);
+  void setBegin(int begin);
 	
 	/**
 	 * Return the end offset
 	 */
-	public int getEnd();
+  int getEnd();
 	
 	/**
 	 * Set the end offset
 	 */
-	public void setEnd(int end);
+  void setEnd(int end);
 }
