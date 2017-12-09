@@ -14,7 +14,7 @@ import io.annot8.core.helpers.WithProperties;
  * {@link io.annot8.core.semantic.Relation} should be referenced with
  * the {@link Mention} class, rather than this one.
  */
-public interface Span extends Annotation, WithProperties, IntegerLineBound {
+public interface TextSpan extends Annotation, WithProperties, IntegerLineBound {
 
 	
 
