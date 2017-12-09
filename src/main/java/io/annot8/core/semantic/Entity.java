@@ -1,5 +1,7 @@
 package io.annot8.core.semantic;
 
+import java.util.Optional;
+
 import io.annot8.core.annotations.Mention;
 import io.annot8.core.helpers.WithMentions;
 import io.annot8.core.helpers.WithProperties;
@@ -9,9 +11,24 @@ import io.annot8.core.helpers.WithProperties;
  * to the same physical (or conceptual) item, for example a Person.
  */
 public interface Entity extends WithMentions, WithProperties {
-	public String getType();
+	
+	/**
+	 * Get the value for this entity, if it has been set
+	 */
+	public Optional<String> getType();
+	
+	/**
+	 * Set the type for this entity (use null to unset)
+	 */
 	public void setType(String type);
 	
-	public String getValue();
-	public void setValue(String value);
+	/**
+	 * Get the value for this entity, if it has been set
+	 */
+	public Optional<Object> getValue();
+	
+	/**
+	 * Set the value for this entity (use null to unset)
+	 */
+	public void setValue(Object value);
 }

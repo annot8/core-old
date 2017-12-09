@@ -14,13 +14,34 @@ import io.annot8.core.helpers.WithProperties;
  * the {@link Mention} class, rather than this one.
  */
 public interface Span extends Annotation, WithProperties {
+	
+	/**
+	 * Return the Span type, if it has been set
+	 */
 	public Optional<String> getType();
+	
+	/**
+	 * Set the Span type (use null to unset)
+	 */
 	public void setType(String type);
 	
+	/**
+	 * Return the begin offset
+	 */
 	public int getBegin();
-	public void setBegin(int begin);
-	public int getEnd();
-	public void setEnd(int end);
 	
-	//TODO: Add a builder?
+	/**
+	 * Set the begin offset
+	 */
+	public void setBegin(int begin);
+	
+	/**
+	 * Return the end offset
+	 */
+	public int getEnd();
+	
+	/**
+	 * Set the end offset
+	 */
+	public void setEnd(int end);
 }

@@ -10,5 +10,9 @@ import java.util.UUID;
  * ones modified it, etc.)
  */
 public interface Annotation {
+	
+	/**
+	 * Return the ID assigned to this annotation
+	 */
 	public UUID getId();
 }
