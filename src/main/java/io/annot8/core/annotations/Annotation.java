@@ -1,7 +1,5 @@
 package io.annot8.core.annotations;
 
-import java.util.Optional;
-import java.util.UUID;
 
 /**
  * Base annotation interface from which all other annotations extend.
@@ -20,10 +18,10 @@ public interface Annotation {
 	/**
 	 * Return the Annotation type, if it has been set
 	 */
-	Optional<String> getType();
+	String getType();
 
 	/**
-	 * Set the Span type (use null to unset)
+	 * Set the TextSpan type (use null to unset)
 	 */
 	void setType(String type);
 }
