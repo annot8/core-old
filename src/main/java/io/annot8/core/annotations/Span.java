@@ -1,5 +1,6 @@
 package io.annot8.core.annotations;
 
+import io.annot8.core.annotations.bounds.IntegerLineBound;
 import java.util.Optional;
 
 import io.annot8.core.helpers.WithProperties;
@@ -13,26 +14,8 @@ import io.annot8.core.helpers.WithProperties;
  * {@link io.annot8.core.semantic.Relation} should be referenced with
  * the {@link Mention} class, rather than this one.
  */
-public interface Span extends Annotation, WithProperties {
+public interface Span extends Annotation, WithProperties, IntegerLineBound {
+
 	
-	
-	/**
-	 * Return the begin offset
-	 */
-  int getBegin();
-	
-	/**
-	 * Set the begin offset
-	 */
-  void setBegin(int begin);
-	
-	/**
-	 * Return the end offset
-	 */
-  int getEnd();
-	
-	/**
-	 * Set the end offset
-	 */
-  void setEnd(int end);
+
 }
