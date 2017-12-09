@@ -15,6 +15,8 @@ import java.util.Set;
  */
 public interface ProcessingContext extends Context {
 
+	ViewContext getDefaultView();
+
 	boolean hasView(String name);
 	Set<String> listViews();
 	Optional<ViewContext> getView(String name);
