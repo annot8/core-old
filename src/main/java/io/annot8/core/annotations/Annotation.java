@@ -20,8 +20,4 @@ public interface Annotation {
 	 */
 	String getType();
 
-	/**
-	 * Set the TextSpan type (use null to unset)
-	 */
-	void setType(String type);
 }
