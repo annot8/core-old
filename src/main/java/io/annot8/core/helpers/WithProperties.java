@@ -1,6 +1,7 @@
 package io.annot8.core.helpers;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -10,10 +11,10 @@ import java.util.Set;
  */
 public interface WithProperties {
 	public boolean hasProperty(String key);
-	public Object getProperty(String key);
+	public Optional<Object> getProperty(String key);
 	public Object getPropertyOrDefault(String key, Object defaultValue);
 	public void setProperty(String key, Object value);
-	public Object removeProperty(String key);
+	public Optional<Object> removeProperty(String key);
 	
 	public Set<String> listPropertyKeys();
 	

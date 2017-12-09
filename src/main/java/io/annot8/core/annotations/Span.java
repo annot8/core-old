@@ -1,5 +1,7 @@
 package io.annot8.core.annotations;
 
+import java.util.Optional;
+
 import io.annot8.core.helpers.WithProperties;
 
 /**
@@ -12,7 +14,7 @@ import io.annot8.core.helpers.WithProperties;
  * the {@link Mention} class, rather than this one.
  */
 public interface Span extends Annotation, WithProperties {
-	public String getType();
+	public Optional<String> getType();
 	public void setType(String type);
 	
 	public int getBegin();
