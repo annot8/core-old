@@ -19,19 +19,16 @@ import io.annot8.core.exceptions.MissingResourceException;
 public interface AnnotationStore<T extends Annotation> extends AutoCloseable{
 	void configure(Context context) throws BadConfigurationException, MissingResourceException;
 	
-	void addAnnotation(Document document, T annotation);
-	void updateAnnotation(Document document, T annotation);
-	void removeAnnotation(Document document, T annotation);
+	void addAnnotation(T annotation);
+	void updateAnnotation(T annotation);
+	void removeAnnotation(T annotation);
 
-	void addAnnotations(Document document, Set<T> annotations);
-	void updateAnnotations(Document document, Set<T> annotations);
-	void removeAnnotations(Document document, Set<T> annotations);
-	void removeAnnotations(Document document);
-	
-	void clear();
-	
-	Set<Document> getDocuments();
-	
-	Set<T> getAnnotations(Document document);
-	<U extends T> Set<U> getAnnotations(Document document, Class<U> annotationClass);
+	void addAnnotations(Set<T> annotations);
+	void updateAnnotations(Set<T> annotations);
+	void removeAnnotations(Set<T> annotations);
+
+	void removeAllAnnotations();
+
+	Set<T> getAnnotations();
+	<U extends T> Set<U> getAnnotations(Class<U> annotationClass);
 }
