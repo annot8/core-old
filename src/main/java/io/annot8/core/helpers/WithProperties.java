@@ -1,5 +1,6 @@
 package io.annot8.core.helpers;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -21,5 +22,5 @@ public interface WithProperties {
 	public Map<String, Object> getProperties();
 	public void setProperties(Map<String, Object> properties);
 	public void addProperties(Map<String, Object> properties);
-	public void removeProperties(Set<String> keys);
+	public void removeProperties(Collection<String> keys);
 }

@@ -1,5 +1,6 @@
 package io.annot8.core.helpers;
 
+import java.util.Collection;
 import java.util.Set;
 
 import io.annot8.core.annotations.Mention;
@@ -14,6 +15,6 @@ public interface WithMentions {
 	public boolean removeMention(Mention mention);
 	public Set<Mention> getMentions();
 	public void setMentions(Set<Mention> mentions);
-	public void addMentions(Set<Mention> mentions);
-	public void removeMentions(Set<Mention> mentions);
+	public void addMentions(Collection<Mention> mentions);
+	public void removeMentions(Collection<Mention> mentions);
 }
