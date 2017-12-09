@@ -1,5 +1,6 @@
 package io.annot8.core.semantic;
 
+import io.annot8.core.helpers.WithType;
 import java.util.Collection;
 import java.util.Set;
 
@@ -14,8 +15,7 @@ import java.util.stream.Stream;
  * and zero or more {@link Mention} objects, where a relationship
  * of any kind exists between the entities.
  */
-public interface Relation extends WithMentions, WithProperties {
-	String getType();
+public interface Relation extends WithType, WithMentions, WithProperties {
 	void setType(String type);
 	
 	void addEntity(Entity entity);
