@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * A Relation groups together two or more {@link Entity} objects, and zero or more {@link Mention}
+ * A Association groups together two or more {@link Entity} objects, and zero or more {@link Mention}
  * objects, where a relationship of any kind exists between the entities.
  */
-public interface Relation extends WithType, WithMentions, WithProperties {
+public interface Association extends WithType, WithMentions, WithProperties {
 
 	void setType(String type);
 

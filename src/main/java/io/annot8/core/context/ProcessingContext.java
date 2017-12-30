@@ -1,6 +1,6 @@
 package io.annot8.core.context;
 
-import io.annot8.core.documents.Document;
+import io.annot8.core.documents.Content;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -20,7 +20,7 @@ public interface ProcessingContext extends Context {
 
 	Optional<ViewContext> getView(String name);
 
-	ViewContext createView(String name, Document document);
+	ViewContext createView(String name, Content content);
 
 	Optional<ViewContext> removeView(String name);
 
