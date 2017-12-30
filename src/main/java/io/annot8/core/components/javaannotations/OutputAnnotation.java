@@ -12,5 +12,6 @@ import java.lang.annotation.RetentionPolicy;
 @Repeatable(OutputAnnotations.class)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface OutputAnnotation {
-	String value();
+
+  String value();
 }

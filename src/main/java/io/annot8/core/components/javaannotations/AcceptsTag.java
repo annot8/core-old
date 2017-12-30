@@ -12,5 +12,6 @@ import java.lang.annotation.RetentionPolicy;
 @Repeatable(AcceptsTags.class)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AcceptsTag {
-	String value();
+
+  String value();
 }

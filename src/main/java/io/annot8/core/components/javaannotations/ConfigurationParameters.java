@@ -10,5 +10,6 @@ import java.lang.annotation.RetentionPolicy;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ConfigurationParameters {
-	ConfigurationParameter[] value();
+
+  ConfigurationParameter[] value();
 }

@@ -10,5 +10,6 @@ import java.lang.annotation.RetentionPolicy;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequiresResources {
-	RequiresResource[] value();
+
+  RequiresResource[] value();
 }

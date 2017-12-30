@@ -1,7 +1,5 @@
 package io.annot8.core.helpers;
 
-import java.util.Optional;
-
 public interface WithType {
 
   /**

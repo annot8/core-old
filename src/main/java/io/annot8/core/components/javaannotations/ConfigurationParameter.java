@@ -12,8 +12,12 @@ import java.lang.annotation.RetentionPolicy;
 @Repeatable(ConfigurationParameters.class)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ConfigurationParameter {
-	String key();
-	String defaultValue();
-	String description();
-	boolean required() default false;
+
+  String key();
+
+  String defaultValue();
+
+  String description();
+
+  boolean required() default false;
 }
