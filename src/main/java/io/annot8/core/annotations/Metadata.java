@@ -1,5 +1,7 @@
 package io.annot8.core.annotations;
 
+import io.annot8.core.annotations.bounds.Bounds;
+import io.annot8.core.annotations.bounds.NoBounds;
 import io.annot8.core.helpers.WithValue;
 
 /**
@@ -19,4 +21,8 @@ public interface Metadata extends Annotation, WithValue {
 	 */
   void setKey(String key);
 
+  @Override
+  default Bounds getBounds() {
+    return NoBounds.NO_BOUNDS;
+  }
 }

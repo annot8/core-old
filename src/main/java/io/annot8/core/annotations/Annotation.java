@@ -1,6 +1,7 @@
 package io.annot8.core.annotations;
 
 
+import io.annot8.core.annotations.bounds.Bounds;
 import io.annot8.core.helpers.WithBounds;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithType;
@@ -12,6 +13,6 @@ import io.annot8.core.helpers.WithType;
  * history of an annotation (i.e. which processor created it, which
  * ones modified it, etc.)
  */
-public interface Annotation extends WithId, WithType, WithBounds {
+public interface Annotation<B extends Bounds> extends WithId, WithType, WithBounds<B> {
 
 }

@@ -1,9 +1,8 @@
 package io.annot8.core.annotations;
 
-import io.annot8.core.annotations.bounds.IntegerLineBound;
-import java.util.Optional;
-
+import io.annot8.core.annotations.bounds.IntLineBounds;
 import io.annot8.core.helpers.WithProperties;
+import io.annot8.core.helpers.text.WithTextBounds;
 
 /**
  * Annotation to hold information about a specific part of the
@@ -14,8 +13,10 @@ import io.annot8.core.helpers.WithProperties;
  * {@link io.annot8.core.semantic.Relation} should be referenced with
  * the {@link Mention} class, rather than this one.
  */
-public interface TextSpan extends Annotation, WithProperties, IntegerLineBound {
+public interface TextSpan extends Annotation<IntLineBounds>, WithProperties, WithTextBounds {
 
-	
+
+
+
 
 }

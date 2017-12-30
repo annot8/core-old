@@ -1,14 +1,9 @@
 package io.annot8.core.stores;
 
-import io.annot8.core.components.Resource;
-import java.util.Collection;
-import java.util.Set;
-
 import io.annot8.core.annotations.Annotation;
-import io.annot8.core.context.Context;
+import io.annot8.core.components.Resource;
 import io.annot8.core.documents.Document;
-import io.annot8.core.exceptions.BadConfigurationException;
-import io.annot8.core.exceptions.MissingResourceException;
+import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -41,9 +36,10 @@ public interface AnnotationStore<T extends Annotation> extends Resource {
 	}
 
 	Stream<T> getAnnotations();
+
 	default  <U extends T> Stream<U> getAnnotations(Class<U> annotationClass) {
 		return getAnnotations()
-				.filter(a -> annotationClass.isInstance(a))
+				.filter(annotationClass::isInstance)
 				.map(annotationClass::cast);
 	}
 }

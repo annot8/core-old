@@ -13,6 +13,7 @@ import java.util.Optional;
 public interface Document extends Content<String> {
 
 	Optional<String> getLanguage();
-	void setLanguage(String language);
+
+  void setLanguage(String language);
 
 }
