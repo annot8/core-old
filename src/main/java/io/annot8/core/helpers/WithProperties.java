@@ -74,7 +74,7 @@ public interface WithProperties {
    * Add all properties from the given map, overwriting values where they already exist
    */
   default void addProperties(Map<String, Object> properties) {
-    properties.forEach((key, value) -> this.setProperty(key, value));
+    properties.forEach(this::setProperty);
   }
 
   /**

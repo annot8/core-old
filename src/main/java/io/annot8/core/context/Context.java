@@ -12,6 +12,7 @@ public interface Context {
 
 	Optional<Object> getConfiguration(String key);
 
+	@SuppressWarnings("unchecked")
 	default <T> Optional<T> getConfiguration(String key, Class<?> clazz) {
 		Optional<Object> o = getConfiguration(key);
 		if (o.isPresent()) {
