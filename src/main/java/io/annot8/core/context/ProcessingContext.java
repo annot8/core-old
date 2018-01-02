@@ -10,7 +10,7 @@ import java.util.stream.Stream;
  */
 public interface ProcessingContext extends Context {
 
-	ViewContext getDefaultView();
+	View getDefaultView();
 
 	default boolean hasView(String name) {
 		return listViews().anyMatch(name::equals);
@@ -18,10 +18,10 @@ public interface ProcessingContext extends Context {
 
 	Stream<String> listViews();
 
-	Optional<ViewContext> getView(String name);
+	Optional<View> getView(String name);
 
-	ViewContext createView(String name, Content content);
+	View createView(String name, Content content);
 
-	Optional<ViewContext> removeView(String name);
+	Optional<View> removeView(String name);
 
 }
