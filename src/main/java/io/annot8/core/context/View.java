@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public interface ViewContext extends Context {
+public interface View extends Context {
 
   Content getContent();
 
