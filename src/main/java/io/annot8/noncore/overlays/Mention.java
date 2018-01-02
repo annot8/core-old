@@ -1,5 +1,6 @@
 package io.annot8.noncore.overlays;
 
+import io.annot8.core.annotations.Annotation;
 import io.annot8.noncore.semantic.Association;
 
 /**
@@ -10,6 +11,9 @@ import io.annot8.noncore.semantic.Association;
  * The separate interface is useful for querying just these, and not other types of TextSpan that
  * might be used for, as an example, grammatical properties.
  */
-public interface Mention extends TextSpan {
+public class Mention extends TextSpan {
 
+  public Mention(Annotation annotation) {
+    super(annotation);
+  }
 }
