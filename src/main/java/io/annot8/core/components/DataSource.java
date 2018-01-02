@@ -1,8 +1,10 @@
 package io.annot8.core.components;
 
+import java.util.stream.Stream;
+
+import io.annot8.core.documents.Content;
 import io.annot8.core.documents.Document;
 import io.annot8.core.stores.AnnotationStore;
-import java.util.concurrent.Flow.Publisher;
 
 /**
  * Provides documents for processing from a given data source, for example a folder of files on
@@ -12,6 +14,8 @@ import java.util.concurrent.Flow.Publisher;
  * ready for processing by processors. If appropriate, it may also add annotations to the Document
  * (for example, file metadata) via the {@link AnnotationStore}.
  */
-public interface DataSource extends Publisher<Document>, Annot8Component {
+public interface DataSource extends Annot8Component {
 
+
+  Stream<Content<?>> getContent();
 }
