@@ -1,9 +1,7 @@
 package io.annot8.noncore.overlays;
 
 import io.annot8.core.annotations.Annotation;
-import io.annot8.core.bounds.IntLineBounds;
-import io.annot8.core.helpers.WithProperties;
-import io.annot8.noncore.helpers.WithTextBounds;
+import io.annot8.core.annotations.Overlay;
 import io.annot8.noncore.semantic.Association;
 
 /**
@@ -13,7 +11,9 @@ import io.annot8.noncore.semantic.Association;
  * Mentions of an {@link io.annot8.noncore.semantic.Entity} or {@link Association}
  * should be referenced with the {@link Mention} class, rather than this one.
  */
-public interface TextSpan extends Annotation<IntLineBounds>, WithProperties, WithTextBounds {
+public class TextSpan extends Overlay {
 
-
+  public TextSpan(Annotation annotation) {
+    super(annotation);
+  }
 }

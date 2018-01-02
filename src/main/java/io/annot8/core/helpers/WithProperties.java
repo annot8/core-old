@@ -12,6 +12,8 @@ import java.util.stream.Stream;
  */
 public interface WithProperties {
 
+  // TODO: CF I belive this should have more clazz params so it does safe checking and casting for us
+
   /**
    * Returns true if a property with the given exists
    */

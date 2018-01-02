@@ -1,7 +1,6 @@
 package io.annot8.core.stores;
 
 import io.annot8.core.annotations.Annotation;
-import io.annot8.core.bounds.Bounds;
 import io.annot8.core.components.Resource;
 import io.annot8.core.documents.Document;
 import java.util.Collection;
@@ -13,35 +12,31 @@ import java.util.stream.Stream;
  * associated with a given document.
  *
  * */
-public interface AnnotationStore<B extends Bounds> extends Resource {
+public interface AnnotationStore extends Resource {
 
-  <T> void addAnnotation(T annotation);
+  Annotation create();
 
-  <T> void updateAnnotation(T annotation);
+  void save(Annotation annotation);
 
-  <T> void removeAnnotation(T annotation);
+  void delete(Annotation annotation);
 
-  default <T> void addAnnotations(Collection<T> annotations) {
-    annotations.forEach(this::addAnnotation);
+  default void save(Collection<Annotation> annotations) {
+    annotations.forEach(this::save);
   }
 
-  default <T> void updateAnnotations(Collection<T> annotations) {
-    annotations.forEach(this::updateAnnotation);
+  default void delete(Collection<Annotation> annotations) {
+    annotations.forEach(this::delete);
   }
 
-  default <T> void removeAnnotations(Collection<T> annotations) {
-    annotations.forEach(this::removeAnnotation);
+  default void removeAll() {
+    delete(getAll().collect(Collectors.toList()));
   }
 
-  default void removeAllAnnotations() {
-    removeAnnotations(getAnnotations().collect(Collectors.toList()));
+  Stream<Annotation> getAll();
+
+  default Stream<Annotation> getByType(String type) {
+    return getAll()
+        .filter(a -> type.equals(a.getType()));
   }
 
-  Stream<? extends Annotation<B>> getAnnotations();
-
-  default <T> Stream<T> getAnnotations(Class<T> annotationClass) {
-    return getAnnotations()
-        .filter(annotationClass::isInstance)
-        .map(annotationClass::cast);
-  }
 }
