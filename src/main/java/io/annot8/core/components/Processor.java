@@ -12,5 +12,5 @@ import io.annot8.core.stores.AnnotationStore;
 @FunctionalInterface
 public interface Processor extends Annot8Component {
 
-	void process(ProcessingContext context) throws ProcessingException;
+  void process(ProcessingContext context) throws ProcessingException;
 }

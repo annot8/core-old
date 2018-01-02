@@ -5,4 +5,11 @@ package io.annot8.core.exceptions;
  */
 public class ProcessingException extends Annot8Exception {
 
+  public ProcessingException(String message) {
+    super(message);
+  }
+
+  public ProcessingException(String message, Throwable t) {
+    super(message, t);
+  }
 }

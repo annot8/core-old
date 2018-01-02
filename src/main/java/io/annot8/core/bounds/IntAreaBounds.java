@@ -1,26 +1,14 @@
 package io.annot8.core.bounds;
 
-public interface IntAreaBounds extends Bounds {
+public interface IntAreaBounds extends IntLineBounds {
 
   int getTop();
 
-  void setTop();
+  void setTop(int top);
 
   int getBottom();
 
-  void setBottom();
-
-  int getLeft();
-
-  void setLeft(int left);
-
-  int getRight();
-
-  void setRight(int right);
-
-  default int getWidth() {
-    return getRight() - getLeft();
-  }
+  void setBottom(int bottom);
 
   default int getHeight() {
     return getTop() - getBottom();

@@ -5,24 +5,24 @@ public interface IntLineBounds extends Bounds {
   /**
    * Return the begin offset
    */
-  int getBegin();
+  int getLeft();
 
   /**
    * Set the begin offset
    */
-  void setBegin(int begin);
+  void setLeft(int begin);
 
   /**
    * Return the end offset
    */
-  int getEnd();
+  int getRight();
 
   /**
    * Set the end offset
    */
-  void setEnd(int end);
+  void setRight(int end);
 
-  default int getLength() {
-    return getEnd() - getBegin();
+  default int getWidth() {
+    return getRight() - getLeft();
   }
 }

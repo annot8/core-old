@@ -6,4 +6,11 @@ package io.annot8.core.exceptions;
  */
 public class BadConfigurationException extends Annot8Exception {
 
+  public BadConfigurationException(String message) {
+    super(message);
+  }
+
+  public BadConfigurationException(String message, Throwable t) {
+    super(message, t);
+  }
 }

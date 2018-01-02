@@ -10,13 +10,12 @@ import java.util.stream.Stream;
 /**
  * Stores {@link Annotation} objects against {@link Document}s, and allows retrieval of annotations
  * associated with a given document.
- *
- * */
+ */
 public interface AnnotationStore extends Resource {
 
   Annotation create();
 
-  void save(Annotation annotation);
+  Annotation save(Annotation annotation);
 
   void delete(Annotation annotation);
 

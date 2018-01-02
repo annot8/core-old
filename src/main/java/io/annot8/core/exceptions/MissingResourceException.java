@@ -5,4 +5,11 @@ package io.annot8.core.exceptions;
  */
 public class MissingResourceException extends Annot8Exception {
 
+  public MissingResourceException(String message) {
+    super(message);
+  }
+
+  public MissingResourceException(String message, Throwable t) {
+    super(message, t);
+  }
 }

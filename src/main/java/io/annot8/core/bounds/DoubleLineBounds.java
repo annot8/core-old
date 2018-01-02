@@ -5,24 +5,24 @@ public interface DoubleLineBounds extends Bounds {
   /**
    * Return the begin offset
    */
-  double getBegin();
+  double getLeft();
 
   /**
    * Set the begin offset
    */
-  void setBegin(double begin);
+  void setLeft(double begin);
 
   /**
    * Return the end offset
    */
-  double getEnd();
+  double getRight();
 
   /**
    * Set the end offset
    */
-  void setEnd(double end);
+  void setRight(double end);
 
-  default double getLength() {
-    return getEnd() - getBegin();
+  default double getWidth() {
+    return getRight() - getLeft();
   }
 }

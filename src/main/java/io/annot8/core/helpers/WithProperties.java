@@ -82,5 +82,8 @@ public interface WithProperties {
   /**
    * Remove all properties that match the given keys
    */
-  void removeProperties(Collection<String> keys);
+  default void removeProperties(Collection<String> keys) {
+    keys.forEach(this::removeProperty);
+  }
+
 }

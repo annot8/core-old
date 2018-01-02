@@ -18,6 +18,7 @@ public class Metadata extends Overlay implements WithValue {
   public Metadata(Annotation annotation) {
     super(annotation);
   }
+
   /**
    * Get the key for this annotation
    */
@@ -33,13 +34,15 @@ public class Metadata extends Overlay implements WithValue {
   }
 
   @Override
+  @SuppressWarnings("unchecked")
   public <T> Optional<T> getValue(Class<T> clazz) {
     // TODO:CF I think this logic should be part of WithProperties.. not implemented repeated
     Optional<Object> optional = getProperty(VALUE_PROPERTY);
 
     if (optional.isPresent()) {
-      if (clazz.isInstance(optional.get())) {
-        return Optional.of((T) (optional.get()));
+      Object v = optional.get();
+      if (clazz.isInstance(v)) {
+        return Optional.of((T) v);
       }
     }
 

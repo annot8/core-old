@@ -12,6 +12,6 @@ import java.util.concurrent.Flow.Publisher;
  * ready for processing by processors. If appropriate, it may also add annotations to the Document
  * (for example, file metadata) via the {@link AnnotationStore}.
  */
-public interface DataSource extends AutoCloseable, Publisher<Document>, Annot8Component {
+public interface DataSource extends Publisher<Document>, Annot8Component {
 
 }
