@@ -2,7 +2,7 @@ package io.annot8.core.components;
 
 import java.util.stream.Stream;
 
-import io.annot8.core.documents.Content;
+import io.annot8.core.documents.DataItem;
 import io.annot8.core.documents.Document;
 import io.annot8.core.stores.AnnotationStore;
 
@@ -16,6 +16,5 @@ import io.annot8.core.stores.AnnotationStore;
  */
 public interface DataSource extends Annot8Component {
 
-
-  Stream<Content<?>> getContent();
+  Stream<DataItem> getDataItems();
 }

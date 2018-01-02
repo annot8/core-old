@@ -1,13 +1,14 @@
 package io.annot8.core.context;
 
-import io.annot8.core.documents.Content;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public interface View extends Context {
+import io.annot8.core.documents.Content;
 
-  Content getContent();
+public interface View<T> extends Context {
+
+  Content<T> getContent();
 
   default boolean hasTag(String tag) {
     return getTags().anyMatch(tag::equals);
