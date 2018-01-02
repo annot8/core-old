@@ -1,6 +1,6 @@
-package io.annot8.core.helpers.text;
+package io.annot8.noncore.helpers;
 
-import io.annot8.core.annotations.bounds.IntLineBounds;
+import io.annot8.core.bounds.IntLineBounds;
 import io.annot8.core.helpers.WithBounds;
 
 public interface WithTextBounds extends WithBounds<IntLineBounds> {

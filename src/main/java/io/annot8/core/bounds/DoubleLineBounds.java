@@ -1,4 +1,4 @@
-package io.annot8.core.annotations.bounds;
+package io.annot8.core.bounds;
 
 public interface DoubleLineBounds extends Bounds {
 

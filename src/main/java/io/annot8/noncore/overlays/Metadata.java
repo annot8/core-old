@@ -1,7 +1,8 @@
-package io.annot8.core.annotations;
+package io.annot8.noncore.overlays;
 
-import io.annot8.core.annotations.bounds.Bounds;
-import io.annot8.core.annotations.bounds.NoBounds;
+import io.annot8.core.annotations.Annotation;
+import io.annot8.core.bounds.Bounds;
+import io.annot8.core.bounds.NoBounds;
 import io.annot8.core.helpers.WithValue;
 
 /**

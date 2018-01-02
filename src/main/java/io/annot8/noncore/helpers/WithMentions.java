@@ -1,6 +1,6 @@
-package io.annot8.core.helpers;
+package io.annot8.noncore.helpers;
 
-import io.annot8.core.annotations.Mention;
+import io.annot8.noncore.overlays.Mention;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

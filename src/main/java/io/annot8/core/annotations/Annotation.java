@@ -1,7 +1,7 @@
 package io.annot8.core.annotations;
 
 
-import io.annot8.core.annotations.bounds.Bounds;
+import io.annot8.core.bounds.Bounds;
 import io.annot8.core.helpers.WithBounds;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithType;

@@ -1,7 +1,7 @@
 package io.annot8.core.stores;
 
 import io.annot8.core.annotations.Annotation;
-import io.annot8.core.annotations.bounds.Bounds;
+import io.annot8.core.bounds.Bounds;
 import io.annot8.core.components.Resource;
 import io.annot8.core.documents.Document;
 import java.util.Collection;

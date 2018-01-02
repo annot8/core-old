@@ -1,9 +1,9 @@
-package io.annot8.core.semantic;
+package io.annot8.noncore.semantic;
 
-import io.annot8.core.annotations.Mention;
-import io.annot8.core.helpers.WithMentions;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
+import io.annot8.noncore.helpers.WithMentions;
+import io.annot8.noncore.stores.overlays.Mention;
 
 /**
  * An Entity groups together one or more {@link Mention} that refer to the same physical (or
