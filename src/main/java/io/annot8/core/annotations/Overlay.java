@@ -34,6 +34,11 @@ public abstract class Overlay implements Annotatable {
     annotation.save();
   }
 
+  @Override
+  public void delete() {
+    annotation.delete();
+  }
+
   public boolean validate() {
     // Do nothing - implement if required
     return true;

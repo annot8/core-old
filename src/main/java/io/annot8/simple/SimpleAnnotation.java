@@ -1,4 +1,4 @@
-package simple;
+package io.annot8.simple;
 
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
@@ -24,12 +24,20 @@ public class SimpleAnnotation extends SimpleProperties implements Annotation {
   }
 
   public SimpleAnnotation(SimpleAnnotationStore annotationStore, String id, Annotation annotation) {
-    this(annotationStore, annotation.getId());
-
+    this(annotationStore, id);
   }
 
   protected AnnotationStore getAnnotationStore() {
     return annotationStore;
+  }
+
+
+  protected void setType(String type) {
+    this.type = type;
+  }
+
+  public String getType() {
+    return type;
   }
 
   @Override

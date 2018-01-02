@@ -11,4 +11,9 @@ public class NoBounds implements Bounds {
     // Singleton
   }
 
+
+  @Override
+  public Bounds copy() {
+    return this;
+  }
 }

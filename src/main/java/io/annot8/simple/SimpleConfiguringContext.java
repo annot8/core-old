@@ -1,4 +1,4 @@
-package simple;
+package io.annot8.simple;
 
 import io.annot8.core.components.Resource;
 import io.annot8.core.context.ConfiguringContext;
