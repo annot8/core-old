@@ -2,14 +2,14 @@ package io.annot8.core.stores;
 
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.annotations.Overlay;
-import io.annot8.core.documents.Document;
+import io.annot8.core.content.Text;
 import io.annot8.core.exceptions.Annot8RuntimeException;
 import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.stream.Stream;
 
 /**
- * Stores {@link Annotation} objects against {@link Document}s, and allows retrieval of annotations
+ * Stores {@link Annotation} objects against {@link Text}s, and allows retrieval of annotations
  * associated with a given document.
  *
  * @param <T> The type of {@link Annotation} stored by this store

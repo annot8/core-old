@@ -1,23 +1,23 @@
-package io.annot8.core.context;
+package io.annot8.core.data;
 
+import io.annot8.core.content.Content;
 import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Set;
 
-import io.annot8.core.documents.Content;
+public interface View {
 
-public interface View<T> extends Context {
+  String getName();
 
-  Content<T> getContent();
+  Content<?> getContent();
 
   default boolean hasTag(String tag) {
-    return getTags().anyMatch(tag::equals);
+    return getTags().contains(tag);
   }
 
-  Stream<String> getTags();
+  Set<String> getTags();
 
   default void setTags(Collection<String> tags) {
-    removeAllTags(getTags().collect(Collectors.toList()));
+    removeAllTags(getTags());
     addAllTags(tags);
   }
 

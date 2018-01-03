@@ -1,4 +1,4 @@
-package io.annot8.core.documents;
+package io.annot8.core.content;
 
 public interface Video extends Content<byte[]> {
 
@@ -9,5 +9,9 @@ public interface Video extends Content<byte[]> {
   int getHeight();
 
   Image getImage(int frame);
+
+  default Class<byte[]> getContentClass() {
+    return byte[].class;
+  }
 
 }

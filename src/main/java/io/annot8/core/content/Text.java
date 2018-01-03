@@ -1,4 +1,4 @@
-package io.annot8.core.documents;
+package io.annot8.core.content;
 
 import java.util.Optional;
 
@@ -9,10 +9,13 @@ import java.util.Optional;
  * Documents can contain no content and just sub-documents, although this is expected to be an
  * unusual use case.
  */
-public interface Document extends Content<String> {
+public interface Text extends Content<String> {
 
   Optional<String> getLanguage();
 
   void setLanguage(String language);
 
+  default Class<String> getContentClass() {
+    return String.class;
+  }
 }
