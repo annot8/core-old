@@ -10,16 +10,16 @@ import io.annot8.core.data.DataItem;
 import io.annot8.core.data.Document;
 import io.annot8.core.data.View;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class SimpleDocument extends SimpleProperties implements Document {
+public class SimpleDocument implements Document {
 
   private final DataItem dataItem;
   private final String id;
   private final Map<String, View> views = new HashMap<>();
   private String defaultView;
+
+  private final SimpleProperties properties = new SimpleProperties();
 
   public SimpleDocument(final DataItem dataItem, final String id) {
     this.dataItem = dataItem;

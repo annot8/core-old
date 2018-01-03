@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 import io.annot8.core.content.Text;
 import io.annot8.core.data.Document;
+import io.annot8.core.data.Properties;
 import io.annot8.pipeline.dataitems.FileDataItem;
 import io.annot8.simple.SimpleDocument;
 import io.annot8.simple.SimpleText;
@@ -28,11 +29,12 @@ public class FileConverter extends AbstractClassConverter<FileDataItem> {
     d.setDefaultView("default");
     d.createView("default", toText(item.getFile()));
 
-    d.setProperty("file.path", f.getAbsolutePath());
-    d.setProperty("file.size", f.length());
+    final Properties properties = d.getProperties();
+    properties.setProperty("file.path", f.getAbsolutePath());
+    properties.setProperty("file.size", f.length());
     // TODO: lots of other stuff like d.setProperty("file.extension", f.getName());
     try {
-      d.setProperty("file.contentType", Files.probeContentType(f.toPath()));
+      properties.setProperty("file.contentType", Files.probeContentType(f.toPath()));
     } catch (final IOException e) {
       // ignore...
     }

@@ -4,11 +4,9 @@ import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.stores.AnnotationStore;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class SimpleAnnotation extends SimpleProperties implements Annotation {
+public class SimpleAnnotation implements Annotation {
 
   private final AnnotationStore annotationStore;
 
@@ -18,12 +16,15 @@ public class SimpleAnnotation extends SimpleProperties implements Annotation {
 
   private Bounds bounds;
 
-  public SimpleAnnotation(AnnotationStore annotationStore, String id) {
+  private SimpleProperties properties = new SimpleProperties();
+
+  public SimpleAnnotation(final AnnotationStore annotationStore, final String id) {
     this.annotationStore = annotationStore;
     this.id = id;
   }
 
-  public SimpleAnnotation(SimpleAnnotationStore annotationStore, String id, Annotation annotation) {
+  public SimpleAnnotation(final SimpleAnnotationStore annotationStore, final String id,
+      final Annotation annotation) {
     this(annotationStore, id);
   }
 
@@ -32,7 +33,7 @@ public class SimpleAnnotation extends SimpleProperties implements Annotation {
   }
 
 
-  protected void setType(String type) {
+  protected void setType(final String type) {
     this.type = type;
   }
 
@@ -53,7 +54,7 @@ public class SimpleAnnotation extends SimpleProperties implements Annotation {
 
   @Override
   public Annotation copy() {
-    SimpleAnnotation copy = new SimpleAnnotation(getAnnotationStore(), getId());
+    final SimpleAnnotation copy = new SimpleAnnotation(getAnnotationStore(), getId());
     copy.setType(getType());
     copy.setBounds(getBounds().copy());
     copy.setProperties(getProperties());

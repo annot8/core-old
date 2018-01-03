@@ -4,15 +4,15 @@ import java.util.Optional;
 
 import io.annot8.core.data.DataItem;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class SimpleDataItem extends SimpleProperties implements DataItem {
+public class SimpleDataItem implements DataItem {
 
   private final Optional<DataItem> parent;
 
   private final String id;
+
+  private SimpleProperties properties = new SimpleProperties();
 
   public SimpleDataItem(final String id) {
     this(null, id);

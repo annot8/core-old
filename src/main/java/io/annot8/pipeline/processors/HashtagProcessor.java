@@ -13,19 +13,19 @@ public class HashtagProcessor extends AbstractMultiViewTextProcessor {
   private final Pattern REGEX = Pattern.compile("#[a-zA-Z0-9]+");
 
   @Override
-  protected void processText(AnnotationStore annotationStore, Text content) {
-    String text = content.getContent();
+  protected void processText(final AnnotationStore annotationStore, final Text content) {
+    final String text = content.getContent();
 
-    Matcher matcher = REGEX.matcher(text);
+    final Matcher matcher = REGEX.matcher(text);
 
     while (matcher.find()) {
-      Annotation annotation = annotationStore.create();
+      final Annotation annotation = annotationStore.create();
       // TODO: no setType... should it be on the annotation or on create()
-      int left = matcher.start();
-      int right = matcher.end();
+      final int left = matcher.start();
+      final int right = matcher.end();
 
       annotation.setBounds(new SimpleIntLineBounds(left, right));
-      annotation.setProperty("value", matcher.group());
+      annotation.getProperties().setProperty("value", matcher.group());
       annotation.save();
     }
   }

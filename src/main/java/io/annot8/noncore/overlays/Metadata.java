@@ -16,7 +16,7 @@ public class Metadata extends Overlay implements WithValue {
   public static final String KEY_PROPERTY = "key";
   public static final String VALUE_PROPERTY = "value";
 
-  public Metadata(Annotation annotation) {
+  public Metadata(final Annotation annotation) {
     super(annotation);
   }
 
@@ -24,24 +24,24 @@ public class Metadata extends Overlay implements WithValue {
    * Get the key for this annotation
    */
   public String getKey() {
-    return (String) getPropertyOrDefault(KEY_PROPERTY, "");
+    return (String) getProperties().getPropertyOrDefault(KEY_PROPERTY, "");
   }
 
   /**
    * Set the key for this annotation
    */
-  void setKey(String key) {
-    setProperty(KEY_PROPERTY, key);
+  void setKey(final String key) {
+    getProperties().setProperty(KEY_PROPERTY, key);
   }
 
   @Override
   @SuppressWarnings("unchecked")
-  public <T> Optional<T> getValue(Class<T> clazz) {
+  public <T> Optional<T> getValue(final Class<T> clazz) {
     // TODO:CF I think this logic should be part of WithProperties.. not implemented repeated
-    Optional<Object> optional = getProperty(VALUE_PROPERTY);
+    final Optional<Object> optional = getProperties().getProperty(VALUE_PROPERTY);
 
     if (optional.isPresent()) {
-      Object v = optional.get();
+      final Object v = optional.get();
       if (clazz.isInstance(v)) {
         return Optional.of((T) v);
       }
@@ -51,7 +51,7 @@ public class Metadata extends Overlay implements WithValue {
   }
 
   @Override
-  public void setValue(Object value) {
-    setProperty(VALUE_PROPERTY, value);
+  public void setValue(final Object value) {
+    getProperties().setProperty(VALUE_PROPERTY, value);
   }
 }

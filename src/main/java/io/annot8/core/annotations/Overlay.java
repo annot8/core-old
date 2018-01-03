@@ -1,19 +1,18 @@
 package io.annot8.core.annotations;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Stream;
-
 import io.annot8.core.bounds.Bounds;
+import io.annot8.core.data.OverlayProperties;
+import io.annot8.core.data.Properties;
 
 // TODO: CF I'm not sure that Annotation and AnnotationOver
 public abstract class Overlay implements Annotatable {
 
   private final Annotation annotation;
+  private final OverlayProperties properties;
 
-  public Overlay(Annotation annotation) {
+  public Overlay(final Annotation annotation) {
     this.annotation = annotation;
+    this.properties = new OverlayProperties(annotation.getProperties());
     postConstruct();
   }
 
@@ -63,63 +62,13 @@ public abstract class Overlay implements Annotatable {
   }
 
   @Override
-  public void setBounds(Bounds bounds) {
+  public void setBounds(final Bounds bounds) {
     getAnnotation().setBounds(bounds);
   }
 
   @Override
-  public boolean hasProperty(String key) {
-    return getAnnotation().hasProperty(key);
-  }
-
-  @Override
-  public Optional<Object> getProperty(String key) {
-    return getAnnotation().getProperty(key);
-  }
-
-  @Override
-  public Object getPropertyOrDefault(String key, Object defaultValue) {
-    return getAnnotation().getPropertyOrDefault(key, defaultValue);
-  }
-
-  @Override
-  public void setProperty(String key, Object value) {
-    getAnnotation().setProperty(key, value);
-  }
-
-  @Override
-  public Optional<Object> removeProperty(String key) {
-    return getAnnotation().removeProperty(key);
-  }
-
-  @Override
-  public Stream<String> listPropertyKeys() {
-    return getAnnotation().listPropertyKeys();
-  }
-
-  @Override
-  public Map<String, Object> getProperties() {
-    return getAnnotation().getProperties();
-  }
-
-  @Override
-  public void setProperties(Map<String, Object> properties) {
-    getAnnotation().setProperties(properties);
-  }
-
-  @Override
-  public void clear() {
-    getAnnotation().clear();
-  }
-
-  @Override
-  public void addProperties(Map<String, Object> properties) {
-    getAnnotation().addProperties(properties);
-  }
-
-  @Override
-  public void removeProperties(Collection<String> keys) {
-    getAnnotation().removeProperties(keys);
+  public Properties getProperties() {
+    return this.properties;
   }
 
 
