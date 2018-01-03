@@ -8,6 +8,7 @@ import io.annot8.pipeline.atomizers.KeepAllAtomizer;
 import io.annot8.pipeline.datasources.FileSystemDataSource;
 import io.annot8.pipeline.services.DataItemAtomizer;
 import io.annot8.pipeline.services.DataSourceMerger;
+import io.annot8.pipeline.services.RecursiveDataItemAtomizer;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
@@ -27,25 +28,26 @@ public class SamplePipeline {
     dataSources = Collections.singletonList(dataSource);
 
     atomizers = Arrays.asList(
-        new DirectoryAtomizer(),
-        new KeepAllAtomizer()
+        new DirectoryAtomizer()
     );
 
   }
 
   public void run() {
 
+    // Take datasources and create a single stream of DataItems
     DataSourceMerger merger = new DataSourceMerger(dataSources);
-    DataItemAtomizer atomizer = new DataItemAtomizer(atomizers);
-
-
-    // Combined all the data sources
     Stream<DataItem> merged = merger.merge();
-    Stream<DataItem> atomized = merged.flatMap(atomizer);
 
 
+    // Take dataitems and recurively spilt them
+    DataItemAtomizer atomizer = new DataItemAtomizer(atomizers);
+    RecursiveDataItemAtomizer recursiveaAtomizer = new RecursiveDataItemAtomizer(atomizer);
+    Stream<DataItem> atomized = merged.flatMap(recursiveaAtomizer);
 
-    // TODO: every time to create new content (eg in a view... we should run the Content convertors???)
+    // Convert dataitem to documents
+
+
   }
 
   public static void main(String[] args) {

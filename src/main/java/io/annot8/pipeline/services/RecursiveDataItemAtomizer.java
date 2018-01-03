@@ -1,4 +1,4 @@
-package io.annot8.pipeline;
+package io.annot8.pipeline.services;
 
 import io.annot8.core.data.DataItem;
 import io.annot8.pipeline.services.DataItemAtomizer;
@@ -31,33 +31,6 @@ public class RecursiveDataItemAtomizer implements Function<DataItem, Stream<Data
     // atomize it we create a stream from it.
     // we retain a list of all the data items we've atomized so far
     // we don't reatomized anything we've already processed
-
-
-
-// An attempt with streams but how to output... a stream
-//    LinkedList<Stream<DataItem>> streamsToProcess = new LinkedList<>();
-//    streamsToProcess.add(Stream.of(dataItem));
-//    Set<DataItem> processedItems = new HashSet<>();
-//
-//    // With a listiterator we can add new stream as we as we go...
-//    ListIterator<Stream<DataItem>> iterator = streamsToProcess.listIterator();
-//
-//    while(iterator.hasNext()) {
-//      Stream<DataItem> nextStream = iterator.next();
-//
-//      nextStream.forEach(i -> {
-//        if(!processedItems.contains(i)) {
-//          Stream<DataItem> out = atomizer.apply(i);
-//          processedItems.add(i);
-//
-//          // Add 'out' to our streamsToProcess at the current location
-//          iterator.add(out);
-//          // but in order to actually process it we need to go backwards to make it the next
-//          iterator.previous();
-//        }
-//      });
-//    }
-
 
     List<DataItem> output = new LinkedList<>();
 
