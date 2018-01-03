@@ -1,11 +1,16 @@
 package io.annot8.simple;
 
+import java.util.Optional;
+
 import io.annot8.core.content.Text;
 import io.annot8.core.exceptions.UnmodifiableDocumentException;
-import java.util.Optional;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SimpleText implements Text {
 
   private String language;

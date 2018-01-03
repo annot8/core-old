@@ -1,10 +1,11 @@
 package io.annot8.simple;
 
-import io.annot8.core.components.Resource;
-import io.annot8.core.context.Context;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
+
+import io.annot8.core.components.Resource;
+import io.annot8.core.context.Context;
 
 public class SimpleContext implements Context {
 

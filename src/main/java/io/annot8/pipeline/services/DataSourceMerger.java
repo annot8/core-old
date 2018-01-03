@@ -1,11 +1,10 @@
 package io.annot8.pipeline.services;
 
-import io.annot8.core.components.DataSource;
-import io.annot8.core.content.Content;
-import io.annot8.core.data.DataItem;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.stream.Stream;
+
+import io.annot8.core.components.DataSource;
+import io.annot8.core.data.DataItem;
 
 public class DataSourceMerger {
 

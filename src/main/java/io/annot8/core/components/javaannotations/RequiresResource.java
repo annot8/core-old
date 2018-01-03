@@ -1,10 +1,11 @@
 package io.annot8.core.components.javaannotations;
 
-import io.annot8.core.components.Resource;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+
+import io.annot8.core.components.Resource;
 
 /**
  * Declares a resource that a component requires

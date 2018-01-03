@@ -1,19 +1,20 @@
 package io.annot8.simple;
 
-import io.annot8.core.content.Content;
-import io.annot8.core.data.View;
 import java.util.HashSet;
 import java.util.Set;
+
+import io.annot8.core.content.Content;
+import io.annot8.core.data.View;
 
 public class SimpleView implements View {
 
   private final String name;
 
-  private final Content content;
+  private final Content<?> content;
 
   private final Set<String> tags = new HashSet<>();
 
-  public SimpleView(String name, Content content) {
+  public SimpleView(final String name, final Content<?> content) {
     this.name = name;
     this.content = content;
   }
@@ -24,7 +25,7 @@ public class SimpleView implements View {
   }
 
   @Override
-  public Content getContent() {
+  public Content<?> getContent() {
     return content;
   }
 
@@ -34,12 +35,12 @@ public class SimpleView implements View {
   }
 
   @Override
-  public boolean addTag(String tag) {
+  public boolean addTag(final String tag) {
     return tags.add(tag);
   }
 
   @Override
-  public boolean removeTag(String tag) {
+  public boolean removeTag(final String tag) {
     return tags.remove(tag);
   }
 }

@@ -1,8 +1,9 @@
 package io.annot8.simple;
 
+import java.util.Map;
+
 import io.annot8.core.components.Resource;
 import io.annot8.core.context.ConfiguringContext;
-import java.util.Map;
 
 public class SimpleConfiguringContext extends SimpleContext implements ConfiguringContext {
 

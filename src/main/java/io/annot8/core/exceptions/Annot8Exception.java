@@ -5,11 +5,13 @@ package io.annot8.core.exceptions;
  */
 public class Annot8Exception extends Exception {
 
-  public Annot8Exception(String message) {
+  private static final long serialVersionUID = 1L;
+
+  public Annot8Exception(final String message) {
     super(message);
   }
 
-  public Annot8Exception(String message, Throwable t) {
+  public Annot8Exception(final String message, final Throwable t) {
     super(message, t);
   }
 }

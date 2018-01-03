@@ -1,9 +1,10 @@
 package io.annot8.core.helpers;
 
-import io.annot8.core.content.Content;
-import io.annot8.core.data.View;
 import java.util.Optional;
 import java.util.stream.Stream;
+
+import io.annot8.core.content.Content;
+import io.annot8.core.data.View;
 
 public interface WithViews {
 

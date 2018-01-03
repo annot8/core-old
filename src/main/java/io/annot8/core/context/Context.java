@@ -1,8 +1,9 @@
 package io.annot8.core.context;
 
-import io.annot8.core.components.Resource;
 import java.util.Optional;
 import java.util.stream.Stream;
+
+import io.annot8.core.components.Resource;
 
 /**
  * Context interface to hold configuration and resources to be passed to a component, usually at

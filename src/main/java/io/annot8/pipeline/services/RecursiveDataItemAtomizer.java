@@ -1,7 +1,5 @@
 package io.annot8.pipeline.services;
 
-import io.annot8.core.data.DataItem;
-import io.annot8.pipeline.services.DataItemAtomizer;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,6 +7,8 @@ import java.util.ListIterator;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Stream;
+
+import io.annot8.core.data.DataItem;
 
 public class RecursiveDataItemAtomizer implements Function<DataItem, Stream<DataItem>> {
 

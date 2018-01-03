@@ -1,8 +1,9 @@
 package io.annot8.core.data;
 
-import io.annot8.core.content.Content;
 import java.util.Collection;
 import java.util.Set;
+
+import io.annot8.core.content.Content;
 
 public interface View {
 

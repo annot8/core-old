@@ -1,9 +1,10 @@
 package io.annot8.noncore.helpers;
 
-import io.annot8.noncore.overlays.Mention;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import io.annot8.noncore.overlays.Mention;
 
 /**
  * Indicates that an object stores a collection of {@link Mention} objects.

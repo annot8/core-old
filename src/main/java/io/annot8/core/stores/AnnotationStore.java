@@ -1,11 +1,12 @@
 package io.annot8.core.stores;
 
-import io.annot8.core.annotations.Annotation;
-import io.annot8.core.components.Resource;
-import io.annot8.core.content.Text;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import io.annot8.core.annotations.Annotation;
+import io.annot8.core.components.Resource;
+import io.annot8.core.content.Text;
 
 /**
  * Stores {@link Annotation} objects against {@link Text}s, and allows retrieval of annotations

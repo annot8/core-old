@@ -1,12 +1,13 @@
 package io.annot8.noncore.semantic;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
 import io.annot8.noncore.helpers.WithMentions;
 import io.annot8.noncore.overlays.Mention;
-import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * A Association groups together two or more {@link Entity} objects, and zero or more {@link

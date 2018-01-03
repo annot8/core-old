@@ -1,8 +1,9 @@
 package io.annot8.pipeline.atomizers;
 
+import java.util.stream.Stream;
+
 import io.annot8.core.data.DataItem;
 import io.annot8.pipeline.dataitems.DirectoryDataItem;
-import java.util.stream.Stream;
 
 public class DirectoryAtomizer extends AbstractClassAtomizer<DirectoryDataItem> {
 

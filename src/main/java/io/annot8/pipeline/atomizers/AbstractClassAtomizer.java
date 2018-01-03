@@ -1,24 +1,33 @@
 package io.annot8.pipeline.atomizers;
 
-import io.annot8.core.data.DataItem;
 import java.util.stream.Stream;
 
-public abstract  class AbstractClassAtomizer<T extends DataItem> implements Atomizer {
+import io.annot8.core.data.DataItem;
+import lombok.extern.slf4j.Slf4j;
 
-  private Class<T> clazz;
+@Slf4j
+public abstract class AbstractClassAtomizer<T extends DataItem> implements Atomizer {
 
-  public AbstractClassAtomizer(Class<T> clazz) {
+  private final Class<T> clazz;
+
+  public AbstractClassAtomizer(final Class<T> clazz) {
     this.clazz = clazz;
   }
 
   @Override
-  public boolean accepts(DataItem item) {
+  public boolean accepts(final DataItem item) {
     return clazz.isInstance(item);
   }
 
   @Override
-  public final Stream<DataItem> convert(DataItem item) {
-    return convert((T)item);
+  public final Stream<DataItem> divide(final DataItem item) {
+    // its checked by supports in theory but an overridder might not.
+    if (clazz.isInstance(item)) {
+      return divide(item);
+    } else {
+      log.warn("Not correct class to convert");
+      return Stream.empty();
+    }
   }
 
   protected abstract Stream<DataItem> convertItem(T item);

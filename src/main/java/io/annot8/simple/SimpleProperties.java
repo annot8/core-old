@@ -1,9 +1,10 @@
 package io.annot8.simple;
 
-import io.annot8.core.helpers.WithProperties;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+
+import io.annot8.core.helpers.WithProperties;
 
 public class SimpleProperties implements WithProperties {
 

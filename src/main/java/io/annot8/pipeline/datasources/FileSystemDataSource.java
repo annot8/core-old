@@ -1,11 +1,11 @@
 package io.annot8.pipeline.datasources;
 
-import io.annot8.core.components.DataSource;
-import io.annot8.core.content.Content;
-import io.annot8.core.data.DataItem;
-import io.annot8.pipeline.dataitems.DirectoryDataItem;
 import java.io.File;
 import java.util.stream.Stream;
+
+import io.annot8.core.components.DataSource;
+import io.annot8.core.data.DataItem;
+import io.annot8.pipeline.dataitems.DirectoryDataItem;
 
 public class FileSystemDataSource implements DataSource {
 

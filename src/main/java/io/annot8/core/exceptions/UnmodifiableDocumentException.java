@@ -6,11 +6,13 @@ package io.annot8.core.exceptions;
  */
 public class UnmodifiableDocumentException extends Annot8Exception {
 
-  public UnmodifiableDocumentException(String message) {
+  private static final long serialVersionUID = 1L;
+
+  public UnmodifiableDocumentException(final String message) {
     super(message);
   }
 
-  public UnmodifiableDocumentException(String message, Throwable t) {
+  public UnmodifiableDocumentException(final String message, final Throwable t) {
     super(message, t);
   }
 }

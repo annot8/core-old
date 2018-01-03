@@ -1,9 +1,10 @@
 package io.annot8.core.components;
 
+import java.util.stream.Stream;
+
 import io.annot8.core.content.Text;
 import io.annot8.core.data.DataItem;
 import io.annot8.core.stores.AnnotationStore;
-import java.util.stream.Stream;
 
 /**
  * Provides documents for processing from a given data source, for example a folder of files on

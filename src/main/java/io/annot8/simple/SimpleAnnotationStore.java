@@ -1,11 +1,12 @@
 package io.annot8.simple;
 
-import io.annot8.core.annotations.Annotation;
-import io.annot8.core.stores.AnnotationStore;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
+
+import io.annot8.core.annotations.Annotation;
+import io.annot8.core.stores.AnnotationStore;
 
 
 // TODO: CF this is a lazy implementation using defaults... note we basically copy all the annotations all the time!

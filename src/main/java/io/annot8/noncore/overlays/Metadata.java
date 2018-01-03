@@ -1,9 +1,10 @@
 package io.annot8.noncore.overlays;
 
+import java.util.Optional;
+
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.annotations.Overlay;
 import io.annot8.core.helpers.WithValue;
-import java.util.Optional;
 
 /**
  * Annotation to hold document level metadata that has no location within the text. For example, a

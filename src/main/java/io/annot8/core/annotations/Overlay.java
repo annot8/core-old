@@ -1,10 +1,11 @@
 package io.annot8.core.annotations;
 
-import io.annot8.core.bounds.Bounds;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
+
+import io.annot8.core.bounds.Bounds;
 
 // TODO: CF I'm not sure that Annotation and AnnotationOver
 public abstract class Overlay implements Annotatable {
