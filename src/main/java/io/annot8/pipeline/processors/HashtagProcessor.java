@@ -25,7 +25,7 @@ public class HashtagProcessor extends AbstractMultiViewTextProcessor {
       final int right = matcher.end();
 
       annotation.setBounds(new SimpleIntLineBounds(left, right));
-      annotation.getProperties().setProperty("value", matcher.group());
+      annotation.getProperties().set("value", matcher.group());
       annotation.save();
     }
   }

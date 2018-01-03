@@ -24,21 +24,21 @@ public class Metadata extends Overlay implements WithValue {
    * Get the key for this annotation
    */
   public String getKey() {
-    return (String) getProperties().getPropertyOrDefault(KEY_PROPERTY, "");
+    return (String) getProperties().getOrDefault(KEY_PROPERTY, "");
   }
 
   /**
    * Set the key for this annotation
    */
   void setKey(final String key) {
-    getProperties().setProperty(KEY_PROPERTY, key);
+    getProperties().set(KEY_PROPERTY, key);
   }
 
   @Override
   @SuppressWarnings("unchecked")
   public <T> Optional<T> getValue(final Class<T> clazz) {
     // TODO:CF I think this logic should be part of WithProperties.. not implemented repeated
-    final Optional<Object> optional = getProperties().getProperty(VALUE_PROPERTY);
+    final Optional<Object> optional = getProperties().get(VALUE_PROPERTY);
 
     if (optional.isPresent()) {
       final Object v = optional.get();
@@ -52,6 +52,6 @@ public class Metadata extends Overlay implements WithValue {
 
   @Override
   public void setValue(final Object value) {
-    getProperties().setProperty(VALUE_PROPERTY, value);
+    getProperties().set(VALUE_PROPERTY, value);
   }
 }

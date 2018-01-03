@@ -15,43 +15,43 @@ public class OverlayProperties implements Properties {
 
 
   @Override
-  public boolean hasProperty(final String key) {
-    return properties.hasProperty(key);
+  public boolean has(final String key) {
+    return properties.has(key);
   }
 
   @Override
-  public Optional<Object> getProperty(final String key) {
-    return properties.getProperty(key);
+  public Optional<Object> get(final String key) {
+    return properties.get(key);
   }
 
   @Override
-  public Object getPropertyOrDefault(final String key, final Object defaultValue) {
-    return properties.getPropertyOrDefault(key, defaultValue);
+  public Object getOrDefault(final String key, final Object defaultValue) {
+    return properties.getOrDefault(key, defaultValue);
   }
 
   @Override
-  public void setProperty(final String key, final Object value) {
-    properties.setProperty(key, value);
+  public void set(final String key, final Object value) {
+    properties.set(key, value);
   }
 
   @Override
-  public Optional<Object> removeProperty(final String key) {
-    return properties.removeProperty(key);
+  public Optional<Object> remove(final String key) {
+    return properties.remove(key);
   }
 
   @Override
-  public Stream<String> listPropertyKeys() {
-    return properties.listPropertyKeys();
+  public Stream<String> getKeys() {
+    return properties.getKeys();
   }
 
   @Override
-  public Map<String, Object> getProperties() {
-    return properties.getProperties();
+  public Map<String, Object> getAll() {
+    return properties.getAll();
   }
 
   @Override
-  public void setProperties(final Map<String, Object> map) {
-    properties.setProperties(map);
+  public void set(final Map<String, Object> map) {
+    properties.set(map);
   }
 
   @Override
@@ -60,13 +60,13 @@ public class OverlayProperties implements Properties {
   }
 
   @Override
-  public void addProperties(final Map<String, Object> map) {
-    properties.addProperties(map);
+  public void add(final Map<String, Object> map) {
+    properties.add(map);
   }
 
   @Override
-  public void removeProperties(final Collection<String> keys) {
-    properties.removeProperties(keys);
+  public void remove(final Collection<String> keys) {
+    properties.remove(keys);
   }
 
 }

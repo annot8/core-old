@@ -11,17 +11,17 @@ public class SimpleProperties implements Properties {
   private final Map<String, Object> map = new HashMap<>();
 
   @Override
-  public void setProperty(final String key, final Object value) {
+  public void set(final String key, final Object value) {
     map.put(key, value);
   }
 
   @Override
-  public Optional<Object> removeProperty(final String key) {
+  public Optional<Object> remove(final String key) {
     return Optional.ofNullable(map.remove(key));
   }
 
   @Override
-  public Map<String, Object> getProperties() {
+  public Map<String, Object> getAll() {
     return map;
   }
 

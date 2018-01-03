@@ -30,11 +30,11 @@ public class FileConverter extends AbstractClassConverter<FileDataItem> {
     d.createView("default", toText(item.getFile()));
 
     final Properties properties = d.getProperties();
-    properties.setProperty("file.path", f.getAbsolutePath());
-    properties.setProperty("file.size", f.length());
-    // TODO: lots of other stuff like d.setProperty("file.extension", f.getName());
+    properties.set("file.path", f.getAbsolutePath());
+    properties.set("file.size", f.length());
+    // TODO: lots of other stuff like d.set("file.extension", f.getName());
     try {
-      properties.setProperty("file.contentType", Files.probeContentType(f.toPath()));
+      properties.set("file.contentType", Files.probeContentType(f.toPath()));
     } catch (final IOException e) {
       // ignore...
     }
