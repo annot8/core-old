@@ -15,6 +15,7 @@ public interface Text extends Content<String> {
 
   void setLanguage(String language);
 
+  @Override
   default Class<String> getContentClass() {
     return String.class;
   }

@@ -36,6 +36,7 @@ public class SimpleAnnotation extends SimpleProperties implements Annotation {
     this.type = type;
   }
 
+  @Override
   public String getType() {
     return type;
   }

@@ -9,5 +9,5 @@ public interface Converter {
 
   boolean supports(DataItem dataItem);
 
-  Optional<Document>  convert(DataItem dataItem);
+  Optional<Document> convert(DataItem dataItem);
 }

@@ -40,7 +40,7 @@ public class RecursiveDataItemAtomizer implements Function<DataItem, Stream<Data
 
     // With a listiterator we can add new stream as we as we go...
     ListIterator<Stream<DataItem>> iterator = streamsToProcess.listIterator();
-    while(iterator.hasNext()) {
+    while (iterator.hasNext()) {
       Stream<DataItem> nextStream = iterator.next();
 
       nextStream
@@ -58,7 +58,7 @@ public class RecursiveDataItemAtomizer implements Function<DataItem, Stream<Data
             iterator.add(out);
             // but in order to actually process it we need to go backwards to make it the next
             iterator.previous();
-        });
+          });
     }
 
     return output.stream();

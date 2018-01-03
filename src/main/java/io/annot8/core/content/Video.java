@@ -10,6 +10,7 @@ public interface Video extends Content<byte[]> {
 
   Image getImage(int frame);
 
+  @Override
   default Class<byte[]> getContentClass() {
     return byte[].class;
   }

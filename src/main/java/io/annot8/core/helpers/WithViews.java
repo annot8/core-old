@@ -8,7 +8,7 @@ import io.annot8.core.data.View;
 
 public interface WithViews {
 
-  //Views
+  // Views
 
   Optional<View> getDefaultView();
 

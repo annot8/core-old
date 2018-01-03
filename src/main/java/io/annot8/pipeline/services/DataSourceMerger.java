@@ -21,16 +21,17 @@ public class DataSourceMerger {
   private Stream<DataItem> combineStreams() {
 
     // TODO: Be better to round robin / other implementaions but we just create a long stream...
-    // I suspect that stream is not the right interface here... I was Flux but its a depednence we'd need to add for DataSource.
+    // I suspect that stream is not the right interface here... I was Flux but its a depednence we'd
+    // need to add for DataSource.
 
 
     Stream<DataItem> combinedStream = null;
-    for(DataSource ds : sources) {
+    for (DataSource ds : sources) {
 
       Stream<DataItem> stream = ds.getDataItems();
 
-      if(stream != null) {
-        if(combinedStream == null) {
+      if (stream != null) {
+        if (combinedStream == null) {
           combinedStream = stream;
         } else {
           combinedStream = Stream.concat(combinedStream, stream);

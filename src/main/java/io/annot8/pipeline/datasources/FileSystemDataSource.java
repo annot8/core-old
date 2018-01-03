@@ -18,11 +18,11 @@ public class FileSystemDataSource implements DataSource {
 
   @Override
   public Stream<DataItem> getDataItems() {
-   // perhaps a bit crazy but we just return a single thing.
-   // I think it reality we should recursive here to output
-   // all the files etc we want processed, but this is an interesting
-   // use case for the DataItem spiltting.
-   return Stream.of(new DirectoryDataItem(rootDirectory));
+    // perhaps a bit crazy but we just return a single thing.
+    // I think it reality we should recursive here to output
+    // all the files etc we want processed, but this is an interesting
+    // use case for the DataItem spiltting.
+    return Stream.of(new DirectoryDataItem(rootDirectory));
   }
 
 }

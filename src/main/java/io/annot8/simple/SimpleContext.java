@@ -27,6 +27,7 @@ public class SimpleContext implements Context {
     return resources;
   }
 
+  @Override
   public <T extends Resource> Stream<T> getResources(Class<T> clazz) {
     return resources.values().stream().filter(clazz::isInstance).map(clazz::cast);
   }

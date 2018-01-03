@@ -21,14 +21,14 @@ public class MultiProcessor implements Processor {
   @Override
   public void configure(ConfiguringContext context)
       throws BadConfigurationException, MissingResourceException {
-    for(Processor p : processors) {
+    for (Processor p : processors) {
       p.configure(context);
     }
   }
 
   @Override
   public void process(ProcessingContext context, Document document) throws ProcessingException {
-    for(Processor p : processors) {
+    for (Processor p : processors) {
       p.process(context, document);
     }
   }

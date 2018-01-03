@@ -6,6 +6,7 @@ public interface Image extends Content<byte[]> {
 
   int getHeight();
 
+  @Override
   default Class<byte[]> getContentClass() {
     return byte[].class;
   }

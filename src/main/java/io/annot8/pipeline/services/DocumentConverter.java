@@ -16,11 +16,11 @@ public class DocumentConverter {
   }
 
   public Optional<Document> convert(DataItem item) {
-    for(Converter c : converters) {
-      if(c.supports(item)) {
+    for (Converter c : converters) {
+      if (c.supports(item)) {
         Optional<Document> optional = c.convert(item);
 
-        if(optional.isPresent()) {
+        if (optional.isPresent()) {
           return optional;
         }
       }

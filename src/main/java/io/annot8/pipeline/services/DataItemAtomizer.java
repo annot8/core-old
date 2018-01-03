@@ -19,8 +19,8 @@ public class DataItemAtomizer implements Function<DataItem, Stream<DataItem>> {
   @Override
   public Stream<DataItem> apply(DataItem dataItem) {
 
-    for(Atomizer atomizer : atomizers) {
-      if( atomizer.accepts(dataItem) ) {
+    for (Atomizer atomizer : atomizers) {
+      if (atomizer.accepts(dataItem)) {
         Stream<DataItem> stream = atomizer.divide(dataItem);
 
         // TODO: If we've processed this we one content converter, is that enough?

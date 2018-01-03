@@ -9,7 +9,8 @@ import io.annot8.core.annotations.Annotation;
 import io.annot8.core.stores.AnnotationStore;
 
 
-// TODO: CF this is a lazy implementation using defaults... note we basically copy all the annotations all the time!
+// TODO: CF this is a lazy implementation using defaults... note we basically copy all the
+// annotations all the time!
 // since we use getAll() for everything. So every in-efficient...
 public class SimpleAnnotationStore implements AnnotationStore {
 

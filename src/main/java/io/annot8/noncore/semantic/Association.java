@@ -10,8 +10,8 @@ import io.annot8.noncore.helpers.WithMentions;
 import io.annot8.noncore.overlays.Mention;
 
 /**
- * A Association groups together two or more {@link Entity} objects, and zero or more {@link
- * Mention} objects, where a relationship of any kind exists between the entities.
+ * A Association groups together two or more {@link Entity} objects, and zero or more
+ * {@link Mention} objects, where a relationship of any kind exists between the entities.
  */
 public interface Association extends WithType, WithMentions, WithProperties {
 
