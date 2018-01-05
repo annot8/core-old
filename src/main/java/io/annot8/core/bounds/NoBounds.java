@@ -10,10 +10,4 @@ public class NoBounds implements Bounds {
   private NoBounds() {
     // Singleton
   }
-
-
-  @Override
-  public Bounds copy() {
-    return this;
-  }
 }

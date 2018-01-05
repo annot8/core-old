@@ -1,21 +1,20 @@
 package io.annot8.core.stores;
 
 import io.annot8.core.annotations.Annotation;
-import io.annot8.core.components.Resource;
-import io.annot8.core.documents.Document;
+import io.annot8.core.components.Annot8Component;
+import io.annot8.core.content.Text;
+
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Stores {@link Annotation} objects against {@link Document}s, and allows retrieval of annotations
+ * Stores {@link Annotation} objects against {@link Text}s, and allows retrieval of annotations
  * associated with a given document.
  */
-public interface AnnotationStore extends Resource {
+public interface AnnotationStore extends Annot8Component {
 
-  Annotation create();
-
-  Annotation save(Annotation annotation);
+  void save(Annotation annotation);
 
   void delete(Annotation annotation);
 

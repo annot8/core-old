@@ -1,7 +1,7 @@
 package io.annot8.core.annotations;
 
 
-import io.annot8.core.helpers.WithCopy;
+import io.annot8.core.helpers.*;
 
 /**
  * Base annotation interface from which all other annotations extend.
@@ -9,6 +9,6 @@ import io.annot8.core.helpers.WithCopy;
  * This class provides the common functionality required to track the history of an annotation (i.e.
  * which processor created it, which ones modified it, etc.)
  */
-public interface Annotation extends Annotatable, WithCopy<Annotation> {
+public interface Annotation extends WithId, WithType, WithBounds, WithProperties {
 
 }
