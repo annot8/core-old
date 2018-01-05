@@ -17,7 +17,6 @@ public class Email implements Processor {
     private static final Pattern EMAIL = Pattern.compile("[A-Z0-9._%+-]+@([A-Z0-9.-]+[.][A-Z]{2,6})", Pattern.CASE_INSENSITIVE);
 
     public void process(DataItem dataItem, ProcessingContext context) throws ProcessingException {
-        processView(dataItem.getDefaultView(), context);
         dataItem.getViews().forEach(v -> processView(v, context));
     }
 

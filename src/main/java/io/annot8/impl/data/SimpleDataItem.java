@@ -3,6 +3,7 @@ package io.annot8.impl.data;
 import io.annot8.core.content.Content;
 import io.annot8.core.data.DataItem;
 import io.annot8.core.data.View;
+import io.annot8.core.exceptions.AlreadyExistsException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,28 +12,34 @@ import java.util.stream.Stream;
 
 public class SimpleDataItem implements DataItem {
 
-    private View<?> defaultView;
     private Map<String, View<?>> views = new HashMap<>();
     private Map<String, Object> properties = new HashMap<>();
+    private String defaultViewName = DEFAULT_VIEW;
+
+    private static final String DEFAULT_VIEW = "__default";
 
     public SimpleDataItem(View<?> defaultView){
-        this.defaultView = defaultView;
+        views.put(DEFAULT_VIEW, defaultView);
+    }
+
+    public SimpleDataItem(View<?> defaultView, String defaultViewName){
+        views.put(defaultViewName, defaultView);
+        this.defaultViewName = defaultViewName;
     }
 
     @Override
-    public void setDefaultView(View<?> view, String newKeyForOldView) {
-        views.put(newKeyForOldView, defaultView);
-        this.defaultView = view;
+    public void setDefaultView(String name) {
+        defaultViewName = name;
     }
 
     @Override
     public View<?> getDefaultView() {
-        return defaultView;
+        return views.get(defaultViewName);
     }
 
     @Override
     public Stream<String> listViews() {
-        return views.keySet().stream(); //TODO: Should the default view be included here?
+        return views.keySet().stream();
     }
 
     @Override
@@ -46,7 +53,10 @@ public class SimpleDataItem implements DataItem {
     }
 
     @Override
-    public <T> View<T> createView(String name, Content<T> content) {
+    public <T> View<T> createView(String name, Content<T> content) throws AlreadyExistsException {
+        if(views.containsKey(name))
+            throw new AlreadyExistsException("View with that name already exists");
+
         View<T> view = new SimpleView<>(content);
         views.put(name, view);
         return view;
@@ -54,6 +64,7 @@ public class SimpleDataItem implements DataItem {
 
     @Override
     public Optional<View<?>> removeView(String name) {
+        //TODO: Don't allow removal of default view
         return Optional.ofNullable(views.remove(name));
     }
 

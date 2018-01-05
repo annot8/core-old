@@ -17,7 +17,6 @@ public class HashTag implements Processor {
     private static final Pattern HASHTAG = Pattern.compile("#[a-z0-9]+", Pattern.CASE_INSENSITIVE);
 
     public void process(DataItem dataItem, ProcessingContext context) throws ProcessingException {
-        processView(dataItem.getDefaultView(), context);    //TODO: Process all views
         dataItem.getViews().forEach(v -> processView(v, context));
     }
 

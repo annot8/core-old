@@ -7,6 +7,7 @@ import io.annot8.core.content.Text;
 import io.annot8.core.context.ProcessingContext;
 import io.annot8.core.data.DataItem;
 import io.annot8.core.data.View;
+import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.ProcessingException;
 import io.annot8.impl.content.SimpleText;
 
@@ -18,7 +19,11 @@ public class Capitalise implements Processor{
         Content c = v.getContent();
         if(c instanceof Text){
             if(c.getContent().isPresent()) {
-                dataItem.createView("CAPITALISED", new SimpleText(((Text) c).getContent().get().toUpperCase()));
+                try {
+                    dataItem.createView("CAPITALISED", new SimpleText(((Text) c).getContent().get().toUpperCase()));
+                }catch (AlreadyExistsException aee){
+                    //TODO: Log error
+                }
             }
         }
     }
