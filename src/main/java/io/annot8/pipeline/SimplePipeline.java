@@ -12,8 +12,10 @@ import io.annot8.core.stores.AnnotationStore;
 import io.annot8.impl.context.SimpleConfiguringContext;
 import io.annot8.impl.context.SimpleProcessingContext;
 import io.annot8.impl.datasources.TxtDirectoryDataSource;
+import io.annot8.impl.processors.Capitalise;
 import io.annot8.impl.processors.Email;
 import io.annot8.impl.processors.HashTag;
+import io.annot8.impl.processors.PrintMentions;
 import io.annot8.impl.stores.InMemoryStore;
 
 import java.util.ArrayList;
@@ -87,8 +89,10 @@ public class SimplePipeline {
         SimplePipeline pipeline = new SimplePipeline(context);
 
         pipeline.addDataSource(new TxtDirectoryDataSource());
+        pipeline.addProcessor(new Capitalise());
         pipeline.addProcessor(new Email());
         pipeline.addProcessor(new HashTag());
+        pipeline.addProcessor(new PrintMentions());
 
         pipeline.run();
     }

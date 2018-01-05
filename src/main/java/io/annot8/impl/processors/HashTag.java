@@ -18,6 +18,7 @@ public class HashTag implements Processor {
 
     public void process(DataItem dataItem, ProcessingContext context) throws ProcessingException {
         processView(dataItem.getDefaultView(), context);    //TODO: Process all views
+        dataItem.getViews().forEach(v -> processView(v, context));
     }
 
     private void processView(View view, ProcessingContext context) {
@@ -29,7 +30,7 @@ public class HashTag implements Processor {
 
             Matcher matcher = HASHTAG.matcher(doc.getContent().get());
             while(matcher.find()) {
-                context.getAnnotationStore().save(new TextMention("HASHTAG", matcher.start(), matcher.end()));
+                context.getAnnotationStore().save(new TextMention(view, "HASHTAG", matcher.start(), matcher.end()));
             }
         }
     }

@@ -9,11 +9,12 @@ import io.annot8.impl.data.SimpleView;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Instant;
 
 public class TxtDirectoryDataSource extends DirectoryDataSource {
     @Override
     public boolean accept(Path p) {
-        return p.toString().endsWith(".txt");   //TODO: This could probably be better, and perhaps configurable?
+        return p.toString().toLowerCase().endsWith(".txt");
     }
 
     @Override
@@ -31,7 +32,9 @@ public class TxtDirectoryDataSource extends DirectoryDataSource {
         content.setLanguage("x-unknown");
 
         DataItem dataItem = new SimpleDataItem(new SimpleView(content));
-        //TODO: Add properties
+        dataItem.setProperty("source", p);
+        dataItem.setProperty("accessedAt", Instant.now().getEpochSecond());
+
         return dataItem;
     }
 }

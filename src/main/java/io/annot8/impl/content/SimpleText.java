@@ -2,6 +2,7 @@ package io.annot8.impl.content;
 
 import io.annot8.core.content.Text;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class SimpleText implements Text {
@@ -26,5 +27,22 @@ public class SimpleText implements Text {
     @Override
     public Optional<String> getContent() {
         return Optional.ofNullable(content);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof SimpleText))
+            return false;
+
+        SimpleText st = (SimpleText) obj;
+
+        //TODO: Ought to check for null here
+        return st.getContent().equals(getContent())
+                && st.getLanguage().equals(getLanguage());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(content, language);
     }
 }

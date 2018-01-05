@@ -13,17 +13,11 @@ public class InMemoryStore implements AnnotationStore {
     @Override
     public void save(Annotation annotation) {
         annotations.put(annotation.getId(), annotation);
-
-        //TODO: This should be logged properly
-        System.out.println("Annotation of type "+annotation.getType()+" saved to store");
     }
 
     @Override
     public void delete(Annotation annotation) {
         annotations.remove(annotation.getId());
-
-        //TODO: This should be logged properly
-        System.out.println("Annotation with ID "+annotation.getId()+" removed from store");
     }
 
     @Override

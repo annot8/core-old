@@ -3,6 +3,7 @@ package io.annot8.core.stores;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.components.Annot8Component;
 import io.annot8.core.content.Text;
+import io.annot8.core.data.View;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -35,6 +36,17 @@ public interface AnnotationStore extends Annot8Component {
   default Stream<Annotation> getByType(String type) {
     return getAll()
         .filter(a -> type.equals(a.getType()));
+  }
+
+  default Stream<Annotation> getByView(View view) {
+    return getAll()
+            .filter(a -> view.equals(a.getView()));
+  }
+
+  default Stream<Annotation> getByViewAndType(View view, String type) {
+    return getAll()
+            .filter(a -> view.equals(a.getView()))
+            .filter(a -> type.equals(a.getType()));
   }
 
 }

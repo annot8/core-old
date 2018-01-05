@@ -17,7 +17,8 @@ public class Email implements Processor {
     private static final Pattern EMAIL = Pattern.compile("[A-Z0-9._%+-]+@([A-Z0-9.-]+[.][A-Z]{2,6})", Pattern.CASE_INSENSITIVE);
 
     public void process(DataItem dataItem, ProcessingContext context) throws ProcessingException {
-        processView(dataItem.getDefaultView(), context);    //TODO: Process all views
+        processView(dataItem.getDefaultView(), context);
+        dataItem.getViews().forEach(v -> processView(v, context));
     }
 
     private void processView(View view, ProcessingContext context) {
@@ -29,7 +30,7 @@ public class Email implements Processor {
 
             Matcher matcher = EMAIL.matcher(doc.getContent().get());
             while(matcher.find()) {
-                context.getAnnotationStore().save(new TextMention("EMAIL", matcher.start(), matcher.end()));
+                context.getAnnotationStore().save(new TextMention(view, "EMAIL", matcher.start(), matcher.end()));
             }
         }
     }

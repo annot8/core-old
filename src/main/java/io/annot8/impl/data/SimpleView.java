@@ -4,6 +4,7 @@ import io.annot8.core.content.Content;
 import io.annot8.core.data.View;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -33,5 +34,22 @@ public class SimpleView<T> implements View<T>{
     @Override
     public boolean removeTag(String tag) {
         return tags.remove(tag);
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof SimpleView))
+           return false;
+
+        SimpleView sv = (SimpleView) obj;
+
+        //TODO: Ought to check for null here
+        return sv.getContent().equals(getContent())
+                && sv.getTags().equals(getTags());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(content, tags);
     }
 }

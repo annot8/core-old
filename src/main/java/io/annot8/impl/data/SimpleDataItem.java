@@ -41,6 +41,11 @@ public class SimpleDataItem implements DataItem {
     }
 
     @Override
+    public Stream<View<?>> getViews() {
+        return views.values().stream();
+    }
+
+    @Override
     public <T> View<T> createView(String name, Content<T> content) {
         View<T> view = new SimpleView<>(content);
         views.put(name, view);

@@ -20,6 +20,8 @@ public interface DataItem extends WithProperties {
 
 	Optional<View<?>> getView(String name);
 
+	Stream<View<?>> getViews();
+
 	<T> View<T> createView(String name, Content<T> content);
 
 	Optional<View<?>> removeView(String name);
