@@ -1,13 +1,13 @@
 package io.annot8.core.stores;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.components.Annot8Component;
 import io.annot8.core.content.Text;
 import io.annot8.core.data.View;
-
-import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Stores {@link Annotation} objects against {@link Text}s, and allows retrieval of annotations
@@ -38,12 +38,12 @@ public interface AnnotationStore extends Annot8Component {
         .filter(a -> type.equals(a.getType()));
   }
 
-  default Stream<Annotation> getByView(View view) {
+  default Stream<Annotation> getByView(View<?> view) {
     return getAll()
             .filter(a -> view.equals(a.getView()));
   }
 
-  default Stream<Annotation> getByViewAndType(View view, String type) {
+  default Stream<Annotation> getByViewAndType(View<?> view, String type) {
     return getAll()
             .filter(a -> view.equals(a.getView()))
             .filter(a -> type.equals(a.getType()));

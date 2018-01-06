@@ -14,5 +14,5 @@ import io.annot8.core.helpers.WithType;
  * which processor created it, which ones modified it, etc.)
  */
 public interface Annotation extends WithId, WithType, WithBounds, WithProperties {
-    View getView();
+    View<?> getView();
 }

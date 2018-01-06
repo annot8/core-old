@@ -1,23 +1,23 @@
 package io.annot8.impl.data;
 
-import io.annot8.core.content.Content;
-import io.annot8.core.data.View;
-
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Stream;
 
-public class SimpleView<T> implements View<T>{
-    private Content<T> content;
+import io.annot8.core.content.Content;
+import io.annot8.core.data.View;
+
+public class SimpleView<T extends Content<?>> implements View<T>{
+    private T content;
     private Set<String> tags = new HashSet<>();
 
-    public SimpleView(Content<T> content){
+    public SimpleView(T content){
         this.content = content;
     }
 
     @Override
-    public Content<T> getContent() {
+    public T getContent() {
         return content;
     }
 
@@ -41,7 +41,7 @@ public class SimpleView<T> implements View<T>{
         if(!(obj instanceof SimpleView))
            return false;
 
-        SimpleView sv = (SimpleView) obj;
+        SimpleView<?> sv = (SimpleView<?>) obj;
 
         //TODO: Ought to check for null here
         return sv.getContent().equals(getContent())

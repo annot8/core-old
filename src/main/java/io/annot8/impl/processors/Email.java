@@ -1,16 +1,16 @@
 package io.annot8.impl.processors;
 
-import io.annot8.core.components.Processor;
-import io.annot8.core.components.javaannotations.OutputAnnotation;
-import io.annot8.core.context.ProcessingContext;
-import io.annot8.core.data.View;
-import io.annot8.core.data.DataItem;
-import io.annot8.core.content.Text;
-import io.annot8.core.exceptions.ProcessingException;
-import io.annot8.impl.annotations.TextMention;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import io.annot8.core.components.Processor;
+import io.annot8.core.components.javaannotations.OutputAnnotation;
+import io.annot8.core.content.Text;
+import io.annot8.core.context.ProcessingContext;
+import io.annot8.core.data.DataItem;
+import io.annot8.core.data.View;
+import io.annot8.core.exceptions.ProcessingException;
+import io.annot8.impl.annotations.TextMention;
 
 @OutputAnnotation("EMAIL")
 public class Email implements Processor {
@@ -20,7 +20,7 @@ public class Email implements Processor {
         dataItem.getViews().forEach(v -> processView(v, context));
     }
 
-    private void processView(View view, ProcessingContext context) {
+    private void processView(View<?> view, ProcessingContext context) {
         if(view.getContent() instanceof Text){
             Text doc = (Text) view.getContent();
 

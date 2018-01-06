@@ -1,5 +1,9 @@
 package io.annot8.pipeline;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 import io.annot8.core.components.Annot8Component;
 import io.annot8.core.components.DataSource;
 import io.annot8.core.components.Processor;
@@ -17,10 +21,6 @@ import io.annot8.impl.processors.Email;
 import io.annot8.impl.processors.HashTag;
 import io.annot8.impl.processors.PrintMentions;
 import io.annot8.impl.stores.InMemoryStore;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 /**
  * Simple proof of concept pipeline that assumes that data sources produce a finite number
@@ -51,6 +51,7 @@ public class SimplePipeline {
         AnnotationStore store = new InMemoryStore();
         processingContext = SimpleProcessingContext.fromContext(store, configuringContext);
 
+        //TODO: Really, each component should be initialised with it's own configuration (i.e. so we could have multiple data sources with different paths)
         dataSources = dataSources.stream().filter(ds -> configureComponent(ds)).collect(Collectors.toList());
         processors = processors.stream().filter(p -> configureComponent(p)).collect(Collectors.toList());
 

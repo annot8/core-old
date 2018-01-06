@@ -1,14 +1,14 @@
 package io.annot8.impl.data;
 
-import io.annot8.core.content.Content;
-import io.annot8.core.data.DataItem;
-import io.annot8.core.data.View;
-import io.annot8.core.exceptions.AlreadyExistsException;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
+
+import io.annot8.core.content.Content;
+import io.annot8.core.data.DataItem;
+import io.annot8.core.data.View;
+import io.annot8.core.exceptions.AlreadyExistsException;
 
 public class SimpleDataItem implements DataItem {
 
@@ -53,19 +53,13 @@ public class SimpleDataItem implements DataItem {
     }
 
     @Override
-    public <T> View<T> createView(String name, Content<T> content) throws AlreadyExistsException {
+    public <T extends Content<?>> View<T> createView(String name, T content) throws AlreadyExistsException {
         if(views.containsKey(name))
             throw new AlreadyExistsException("View with that name already exists");
 
         View<T> view = new SimpleView<>(content);
         views.put(name, view);
         return view;
-    }
-
-    @Override
-    public Optional<View<?>> removeView(String name) {
-        //TODO: Don't allow removal of default view
-        return Optional.ofNullable(views.remove(name));
     }
 
     @Override

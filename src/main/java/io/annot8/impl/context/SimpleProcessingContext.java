@@ -1,12 +1,17 @@
 package io.annot8.impl.context;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 import io.annot8.core.components.Resource;
 import io.annot8.core.context.Context;
 import io.annot8.core.context.ProcessingContext;
 import io.annot8.core.stores.AnnotationStore;
-
-import java.util.*;
-import java.util.stream.Stream;
 
 public class SimpleProcessingContext implements ProcessingContext {
     private Map<Class<? extends Resource>, Map<String, Resource>> resources = new HashMap<>();
@@ -35,12 +40,7 @@ public class SimpleProcessingContext implements ProcessingContext {
     @Override
     public <T extends Resource> Optional<T> getResource(String key, Class<T> clazz) {
         Map<String, Resource> classResources = resources.getOrDefault(clazz, Collections.emptyMap());
-
-        Resource r = classResources.get(key);
-        if(r == null)
-            return Optional.empty();
-
-        return Optional.of((T) r);
+        return Optional.ofNullable(clazz.cast(classResources.get(key)));
     }
 
     @Override
@@ -48,7 +48,7 @@ public class SimpleProcessingContext implements ProcessingContext {
         List<T> ret = new ArrayList<>();
 
         for(Resource r : resources.get(clazz).values())
-            ret.add((T) r);
+            ret.add(clazz.cast(r));
 
         return ret.stream();
     }

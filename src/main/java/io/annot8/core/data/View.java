@@ -1,14 +1,24 @@
 package io.annot8.core.data;
 
-import io.annot8.core.content.Content;
-
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public interface View<T> {
+import io.annot8.core.content.Content;
 
-  Content<T> getContent();
+public interface View<T extends Content<?>> {
+
+  T getContent();
+  default <U extends Content<?>> Optional<U> getContent(Class<U> clazz){
+	  T content = getContent();
+	  
+	  if(clazz.isInstance(content)) {
+		  return Optional.of(clazz.cast(content));
+	  }else {
+		  return Optional.empty();
+	  }
+  }
 
   default boolean hasTag(String tag) {
     return getTags().anyMatch(tag::equals);
