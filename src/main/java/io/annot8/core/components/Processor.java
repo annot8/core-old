@@ -1,7 +1,6 @@
 package io.annot8.core.components;
 
 import io.annot8.core.content.Text;
-import io.annot8.core.context.ProcessingContext;
 import io.annot8.core.data.DataItem;
 import io.annot8.core.exceptions.ProcessingException;
 import io.annot8.core.stores.AnnotationStore;
@@ -13,5 +12,5 @@ import io.annot8.core.stores.AnnotationStore;
 @FunctionalInterface
 public interface Processor extends Annot8Component {
 
-  void process(DataItem dataItem, ProcessingContext context) throws ProcessingException;
+  void process(DataItem dataItem, AnnotationStore store) throws ProcessingException;
 }

@@ -10,17 +10,10 @@ import java.util.stream.Stream;
 
 import io.annot8.core.components.Resource;
 import io.annot8.core.context.Context;
-import io.annot8.core.context.ProcessingContext;
-import io.annot8.core.stores.AnnotationStore;
 
-public class SimpleProcessingContext implements ProcessingContext {
+public class SimpleContext implements Context {
     private Map<Class<? extends Resource>, Map<String, Resource>> resources = new HashMap<>();
     private Map<String, Object> configuration = new HashMap<>();
-    private AnnotationStore annotationStore;
-
-    public SimpleProcessingContext(AnnotationStore annotationStore){
-        this.annotationStore = annotationStore;
-    }
 
     public void addConfiguration(String key, Object value){
         configuration.put(key, value);
@@ -51,23 +44,5 @@ public class SimpleProcessingContext implements ProcessingContext {
             ret.add(clazz.cast(r));
 
         return ret.stream();
-    }
-
-    public static SimpleProcessingContext fromContext(AnnotationStore annotationStore, Context context){
-        SimpleProcessingContext spc = new SimpleProcessingContext(annotationStore);
-
-        //TODO: Copy configuration and resources from context
-
-        return spc;
-    }
-
-    @Override
-    public AnnotationStore getAnnotationStore() {
-        return annotationStore;
-    }
-
-    @Override
-    public void setAnnotationStore(AnnotationStore store) {
-        this.annotationStore = store;
     }
 }
