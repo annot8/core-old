@@ -1,12 +1,10 @@
 package io.annot8.impl.processors;
 
-import java.util.Optional;
-
 import io.annot8.core.components.Processor;
 import io.annot8.core.components.javaannotations.CreatesViews;
+import io.annot8.core.content.Content;
 import io.annot8.core.content.Text;
 import io.annot8.core.data.DataItem;
-import io.annot8.core.data.View;
 import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.ProcessingException;
 import io.annot8.core.stores.AnnotationStore;
@@ -16,11 +14,12 @@ import io.annot8.impl.content.SimpleText;
 public class Capitalise implements Processor{
 	@Override
 	public void process(DataItem dataItem, AnnotationStore store) throws ProcessingException {
-		View<?> v = dataItem.getDefaultView();
-		Optional<Text> content = v.getContent(Text.class);
-		if(content.isPresent() && content.get().getContent().isPresent()) {
+		Content<?> content = dataItem.getDefaultContent();
+
+		if(content instanceof Text) {
+			Text doc = (Text) content;
 			try {
-				dataItem.createView("CAPITALISED", new SimpleText(content.get().getContent().get().toUpperCase()));
+				dataItem.addContent("CAPITALISED", new SimpleText(doc.getContent().toUpperCase()));
 			}catch (AlreadyExistsException aee){
 				//TODO: Log error
 			}

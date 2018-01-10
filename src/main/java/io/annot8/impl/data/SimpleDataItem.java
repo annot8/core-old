@@ -1,65 +1,62 @@
 package io.annot8.impl.data;
 
+import io.annot8.core.content.Content;
+import io.annot8.core.data.DataItem;
+import io.annot8.core.exceptions.AlreadyExistsException;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import io.annot8.core.content.Content;
-import io.annot8.core.data.DataItem;
-import io.annot8.core.data.View;
-import io.annot8.core.exceptions.AlreadyExistsException;
-
 public class SimpleDataItem implements DataItem {
 
-    private Map<String, View<?>> views = new HashMap<>();
+    private Map<String, Content<?>> contents = new HashMap<>();
     private Map<String, Object> properties = new HashMap<>();
-    private String defaultViewName = DEFAULT_VIEW;
+    private String defaultContentName = DEFAULT_CONTENT;
 
-    private static final String DEFAULT_VIEW = "__default";
+    private static final String DEFAULT_CONTENT = "__default";
 
-    public SimpleDataItem(View<?> defaultView){
-        views.put(DEFAULT_VIEW, defaultView);
+    public SimpleDataItem(Content<?> defaultContent){
+        contents.put(DEFAULT_CONTENT, defaultContent);
     }
 
-    public SimpleDataItem(View<?> defaultView, String defaultViewName){
-        views.put(defaultViewName, defaultView);
-        this.defaultViewName = defaultViewName;
-    }
-
-    @Override
-    public void setDefaultView(String name) {
-        defaultViewName = name;
+    public SimpleDataItem(Content<?> defaultContent, String defaultContentName){
+        contents.put(defaultContentName, defaultContent);
+        this.defaultContentName = defaultContentName;
     }
 
     @Override
-    public View<?> getDefaultView() {
-        return views.get(defaultViewName);
+    public void setDefaultContent(String name) {
+        defaultContentName = name;
     }
 
     @Override
-    public Stream<String> listViews() {
-        return views.keySet().stream();
+    public Content<?> getDefaultContent() {
+        return contents.get(defaultContentName);
     }
 
     @Override
-    public Optional<View<?>> getView(String name) {
-        return Optional.ofNullable(views.get(name));
+    public Stream<String> listContents() {
+        return contents.keySet().stream();
     }
 
     @Override
-    public Stream<View<?>> getViews() {
-        return views.values().stream();
+    public Optional<Content<?>> getContent(String name) {
+        return Optional.ofNullable(contents.get(name));
     }
 
     @Override
-    public <T extends Content<?>> View<T> createView(String name, T content) throws AlreadyExistsException {
-        if(views.containsKey(name))
-            throw new AlreadyExistsException("View with that name already exists");
+    public Stream<Content<?>> getContents() {
+        return contents.values().stream();
+    }
 
-        View<T> view = new SimpleView<>(content);
-        views.put(name, view);
-        return view;
+    @Override
+    public <T> void addContent(String name, Content<T> content) throws AlreadyExistsException {
+        if(contents.containsKey(name))
+            throw new AlreadyExistsException("Content with that name already exists");
+
+        contents.put(name, content);
     }
 
     @Override

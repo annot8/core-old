@@ -1,14 +1,14 @@
 package io.annot8.core.stores;
 
-import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.components.Annot8Component;
+import io.annot8.core.content.Content;
 import io.annot8.core.content.Text;
-import io.annot8.core.data.View;
+
+import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Stores {@link Annotation} objects against {@link Text}s, and allows retrieval of annotations
@@ -16,8 +16,8 @@ import io.annot8.core.data.View;
  */
 public interface AnnotationStore extends Annot8Component {
 
-  //Annotation<? extends Bounds> createNew(View<?> view, Bounds bounds);	//TODO: Ideally, the generics here would be such that you know what type of Annotation you're getting back
-  <T extends Bounds> Annotation<T> createNew(View<?> view, T bounds);
+  //Annotation<? extends Bounds> createNew(Content<?> content, Bounds bounds);	//TODO: Ideally, the generics here would be such that you know what type of Annotation you're getting back
+  <T extends Bounds> Annotation<T> createNew(Content<?> content, T bounds);
 	
   void save(Annotation<? extends Bounds> annotation);
 
@@ -42,14 +42,14 @@ public interface AnnotationStore extends Annot8Component {
         .filter(a -> type.equals(a.getType()));
   }
 
-  default Stream<Annotation<? extends Bounds>> getByView(View<?> view) {
+  default Stream<Annotation<? extends Bounds>> getByContent(Content<?> content) {
     return getAll()
-            .filter(a -> view.equals(a.getView()));
+            .filter(a -> content.equals(a.getContent()));
   }
 
-  default Stream<Annotation<? extends Bounds>> getByViewAndType(View<?> view, String type) {
+  default Stream<Annotation<? extends Bounds>> getByContentAndType(Content<?> content, String type) {
     return getAll()
-            .filter(a -> view.equals(a.getView()))
+            .filter(a -> content.equals(a.getContent()))
             .filter(a -> type.equals(a.getType()));
   }
 

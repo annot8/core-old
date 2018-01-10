@@ -2,10 +2,12 @@ package io.annot8.core.annotations;
 
 
 import io.annot8.core.bounds.Bounds;
-import io.annot8.core.data.View;
+import io.annot8.core.content.Content;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
+
+import java.util.Optional;
 
 /**
  * Base annotation interface from which all other annotations extend.
@@ -17,6 +19,7 @@ public interface Annotation<T extends Bounds> extends WithId, WithType, WithProp
 	T getBounds();
 	void setBounds(T bounds);
 	
-    void setView(View<?> view);
-	View<?> getView();
+    void setContent(Content<?> content);
+	Content<?> getContent();
+	<T extends Content> Optional<T> getContent(Class<T> clazz);
 }

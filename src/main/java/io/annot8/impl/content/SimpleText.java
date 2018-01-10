@@ -2,13 +2,18 @@ package io.annot8.impl.content;
 
 import io.annot8.core.content.Text;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Stream;
 
 public class SimpleText implements Text {
 
     private String language = null;
     private String content;
+
+    private Set<String> tags = new HashSet<>();
 
     public SimpleText(String content){
         this.content = content;
@@ -25,8 +30,23 @@ public class SimpleText implements Text {
     }
 
     @Override
-    public Optional<String> getContent() {
-        return Optional.ofNullable(content);
+    public String getContent() {
+        return content;
+    }
+
+    @Override
+    public Stream<String> getTags() {
+        return tags.stream();
+    }
+
+    @Override
+    public boolean addTag(String tag) {
+        return tags.add(tag);
+    }
+
+    @Override
+    public boolean removeTag(String tag) {
+        return tags.remove(tag);
     }
 
     @Override
@@ -36,6 +56,7 @@ public class SimpleText implements Text {
 
         SimpleText st = (SimpleText) obj;
 
+        //TODO: Also need to check tags
         //TODO: Ought to check for null here
         return st.getContent().equals(getContent())
                 && st.getLanguage().equals(getLanguage());

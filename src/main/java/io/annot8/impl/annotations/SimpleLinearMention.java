@@ -1,14 +1,14 @@
 package io.annot8.impl.annotations;
 
 
+import io.annot8.core.annotations.Annotation;
+import io.annot8.core.bounds.LinearBounds;
+import io.annot8.core.content.Content;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-
-import io.annot8.core.annotations.Annotation;
-import io.annot8.core.bounds.LinearBounds;
-import io.annot8.core.data.View;
 
 public class SimpleLinearMention implements Annotation<LinearBounds>{
 	private String id;
@@ -16,14 +16,14 @@ public class SimpleLinearMention implements Annotation<LinearBounds>{
 	
     private Map<String, Object> properties = new HashMap<>();
     
-    private View<?> view;
+    private Content<?> content;
     private LinearBounds bounds;
 
 	
-	public SimpleLinearMention(View<?> view, LinearBounds bounds) {
+	public SimpleLinearMention(Content<?> content, LinearBounds bounds) {
 		this.id = UUID.randomUUID().toString();
 		this.bounds = bounds;
-		this.view = view;
+		this.content = content;
 	}
 	
 	@Override
@@ -57,13 +57,22 @@ public class SimpleLinearMention implements Annotation<LinearBounds>{
     }
 
 	@Override
-	public void setView(View<?> view) {
-		this.view = view;
+	public void setContent(Content<?> content) {
+		this.content = content;
 	}
 
 	@Override
-	public View<?> getView() {
-		return view;
+	public Content<?> getContent() {
+		return content;
+	}
+
+	@Override
+	public <T extends Content> Optional<T> getContent(Class<T> clazz) {
+		if(clazz.isAssignableFrom(content.getClass())) {
+			return Optional.of(clazz.cast(content));
+		}else{
+			return Optional.empty();
+		}
 	}
 
 	@Override
