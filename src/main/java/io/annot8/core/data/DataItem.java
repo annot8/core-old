@@ -23,5 +23,7 @@ public interface DataItem extends WithProperties {
 
 	Stream<Content<?>> getContents();
 
+	<T extends Content> Stream<T> getContents(Class<T> clazz);
+
 	<T> void addContent(String name, Content<T> content) throws AlreadyExistsException;
 }

@@ -14,9 +14,6 @@ public class PrintMentions implements Processor {
 	@Override
 	public void process(DataItem dataItem, AnnotationStore store) throws ProcessingException {
 		store.getAll().forEach(a -> {
-
-
-
 			Optional<Text> text = a.getContent(Text.class);
 			Bounds bounds = a.getBounds();
 

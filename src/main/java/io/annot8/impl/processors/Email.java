@@ -4,7 +4,6 @@ import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.LinearBounds;
 import io.annot8.core.components.Processor;
 import io.annot8.core.components.javaannotations.OutputAnnotation;
-import io.annot8.core.content.Content;
 import io.annot8.core.content.Text;
 import io.annot8.core.data.DataItem;
 import io.annot8.core.exceptions.ProcessingException;
@@ -19,20 +18,16 @@ public class Email implements Processor {
     private static final Pattern EMAIL = Pattern.compile("[A-Z0-9._%+-]+@([A-Z0-9.-]+[.][A-Z]{2,6})", Pattern.CASE_INSENSITIVE);
 
     public void process(DataItem dataItem, AnnotationStore store) throws ProcessingException {
-        dataItem.getContents().forEach(c -> processContent(c, store));
+        dataItem.getContents(Text.class).forEach(c -> processText(c, store));
     }
 
-    private void processContent(Content<?> content, AnnotationStore store) {
-        if(content instanceof Text){
-            Text doc = (Text) content;
-
-            Matcher matcher = EMAIL.matcher(doc.getContent());
-            while(matcher.find()) {
-            		LinearBounds bounds = new SimpleLinearBounds(matcher.start(), matcher.end());
-            		Annotation<LinearBounds> annot = store.createNew(content, bounds);
-            		annot.setType("EMAIL");
-            		store.save(annot);
-            }
+    private void processText(Text content, AnnotationStore store) {
+        Matcher matcher = EMAIL.matcher(content.getContent());
+        while(matcher.find()) {
+            LinearBounds bounds = new SimpleLinearBounds(matcher.start(), matcher.end());
+            Annotation<LinearBounds> annot = store.createNew(content, bounds);
+            annot.setType("EMAIL");
+            store.save(annot);
         }
     }
 }

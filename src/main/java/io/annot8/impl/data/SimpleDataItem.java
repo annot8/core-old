@@ -4,9 +4,7 @@ import io.annot8.core.content.Content;
 import io.annot8.core.data.DataItem;
 import io.annot8.core.exceptions.AlreadyExistsException;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class SimpleDataItem implements DataItem {
@@ -49,6 +47,15 @@ public class SimpleDataItem implements DataItem {
     @Override
     public Stream<Content<?>> getContents() {
         return contents.values().stream();
+    }
+
+    @Override
+    public <T extends Content> Stream<T> getContents(Class<T> clazz) {
+        List<T> ret = new ArrayList<>();
+
+        contents.values().stream().filter(c -> clazz.isAssignableFrom(c.getClass())).forEach(c -> ret.add(clazz.cast(c)));
+
+        return ret.stream();
     }
 
     @Override
