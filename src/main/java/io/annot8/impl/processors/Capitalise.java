@@ -1,7 +1,7 @@
 package io.annot8.impl.processors;
 
 import io.annot8.core.components.Processor;
-import io.annot8.core.components.javaannotations.CreatesViews;
+import io.annot8.core.components.javaannotations.CreatesContent;
 import io.annot8.core.content.Content;
 import io.annot8.core.content.Text;
 import io.annot8.core.data.DataItem;
@@ -10,7 +10,7 @@ import io.annot8.core.exceptions.ProcessingException;
 import io.annot8.core.stores.AnnotationStore;
 import io.annot8.impl.content.SimpleText;
 
-@CreatesViews
+@CreatesContent
 public class Capitalise implements Processor{
 	@Override
 	public void process(DataItem dataItem, AnnotationStore store) throws ProcessingException {
