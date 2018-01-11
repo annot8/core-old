@@ -1,13 +1,12 @@
 package io.annot8.core.annotations;
 
 
+import java.util.Optional;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.content.Content;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
-
-import java.util.Optional;
 
 /**
  * Base annotation interface from which all other annotations extend.
@@ -16,10 +15,13 @@ import java.util.Optional;
  * which processor created it, which ones modified it, etc.)
  */
 public interface Annotation<T extends Bounds> extends WithId, WithType, WithProperties {
-	T getBounds();
-	void setBounds(T bounds);
-	
-    void setContent(Content<?> content);
-	Content<?> getContent();
-	<T extends Content> Optional<T> getContent(Class<T> clazz);
+  T getBounds();
+
+  void setBounds(T bounds);
+
+  void setContent(Content<?> content);
+
+  Content<?> getContent();
+
+  <T extends Content> Optional<T> getContent(Class<T> clazz);
 }

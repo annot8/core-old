@@ -2,11 +2,13 @@ package io.annot8.core.exceptions;
 
 public class Annot8RuntimeException extends RuntimeException {
 
-  public Annot8RuntimeException(String message) {
+  private static final long serialVersionUID = 1L;
+
+  public Annot8RuntimeException(final String message) {
     super(message);
   }
 
-  public Annot8RuntimeException(String message, Throwable t) {
+  public Annot8RuntimeException(final String message, final Throwable t) {
     super(message, t);
   }
 }

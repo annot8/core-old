@@ -1,29 +1,29 @@
 package io.annot8.core.data;
 
+import java.util.Optional;
+import java.util.stream.Stream;
 import io.annot8.core.content.Content;
 import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.helpers.WithProperties;
 
-import java.util.Optional;
-import java.util.stream.Stream;
-
 public interface DataItem extends WithProperties {
 
-	//Contents
-	void setDefaultContent(String name);
-	Content<?> getDefaultContent();
+  // Contents
+  void setDefaultContent(String name);
 
-	default boolean hasContent(String name) {
-		return listContents().anyMatch(name::equals);
-	}
+  Content<?> getDefaultContent();
 
-	Stream<String> listContents();
+  default boolean hasContent(final String name) {
+    return listContents().anyMatch(name::equals);
+  }
 
-	Optional<Content<?>> getContent(String name);
+  Stream<String> listContents();
 
-	Stream<Content<?>> getContents();
+  Optional<Content<?>> getContent(String name);
 
-	<T extends Content> Stream<T> getContents(Class<T> clazz);
+  Stream<Content<?>> getContents();
 
-	<T> void addContent(String name, Content<T> content) throws AlreadyExistsException;
+  <T extends Content<?>> Stream<T> getContents(Class<T> clazz);
+
+  <T> void addContent(String name, Content<T> content) throws AlreadyExistsException;
 }

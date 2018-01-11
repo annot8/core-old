@@ -5,11 +5,13 @@ package io.annot8.core.exceptions;
  */
 public class MissingResourceException extends Annot8Exception {
 
-  public MissingResourceException(String message) {
+  private static final long serialVersionUID = 1L;
+
+  public MissingResourceException(final String message) {
     super(message);
   }
 
-  public MissingResourceException(String message, Throwable t) {
+  public MissingResourceException(final String message, final Throwable t) {
     super(message, t);
   }
 }

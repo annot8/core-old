@@ -5,11 +5,13 @@ package io.annot8.core.exceptions;
  */
 public class ProcessingException extends Annot8Exception {
 
-  public ProcessingException(String message) {
+  private static final long serialVersionUID = 1L;
+
+  public ProcessingException(final String message) {
     super(message);
   }
 
-  public ProcessingException(String message, Throwable t) {
+  public ProcessingException(final String message, final Throwable t) {
     super(message, t);
   }
 }

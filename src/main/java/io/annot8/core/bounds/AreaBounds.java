@@ -1,15 +1,19 @@
 package io.annot8.core.bounds;
 
-public interface AreaBounds extends Bounds{
-    int getTop();
-    void setTop(int top);
+public interface AreaBounds extends Bounds {
+  int getTop();
 
-    int getBottom();
-    void setBottom(int bottom);
+  void setTop(int top);
 
-    int getLeft();
-    void setLeft(int left);
+  int getBottom();
 
-    int getRight();
-    void setRight(int right);
+  void setBottom(int bottom);
+
+  int getLeft();
+
+  void setLeft(int left);
+
+  int getRight();
+
+  void setRight(int right);
 }

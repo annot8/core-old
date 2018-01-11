@@ -6,7 +6,7 @@ import io.annot8.core.exceptions.MissingResourceException;
 
 public interface Annot8Component extends AutoCloseable {
 
-  default void configure(Context context)
+  default void configure(final Context context)
       throws BadConfigurationException, MissingResourceException {
     // Do nothing
   }
