@@ -56,10 +56,9 @@ public class SimpleText implements Text {
 
         SimpleText st = (SimpleText) obj;
 
-        //TODO: Also need to check tags
-        //TODO: Ought to check for null here
-        return st.getContent().equals(getContent())
-                && st.getLanguage().equals(getLanguage());
+        return Objects.equals(getContent(), st.getContent())
+                && Objects.equals(getLanguage(), st.getLanguage())
+                && Objects.equals(getTags(), st.getTags());
     }
 
     @Override
