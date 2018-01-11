@@ -5,7 +5,7 @@ import io.annot8.core.bounds.LinearBounds;
 import io.annot8.core.stores.AudioAnnotationStore;
 
 public interface Audio
-    extends Content<LinearBounds, AudioAnnotation, AudioAnnotationStore, byte[]> {
+    extends TypedContent<LinearBounds, AudioAnnotation, AudioAnnotationStore, byte[]> {
 
 
 }

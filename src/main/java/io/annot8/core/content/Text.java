@@ -12,7 +12,8 @@ import io.annot8.core.stores.TextAnnotationStore;
  * Documents can contain no content and just sub-content, although this is expected to be an unusual
  * use case.
  */
-public interface Text extends Content<LinearBounds, TextAnnotation, TextAnnotationStore, String> {
+public interface Text
+    extends TypedContent<LinearBounds, TextAnnotation, TextAnnotationStore, String> {
 
   Optional<String> getLanguage();
 

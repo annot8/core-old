@@ -5,7 +5,7 @@ import io.annot8.core.bounds.IndexedAreaBounds;
 import io.annot8.core.stores.VideoAnnotationStore;
 
 public interface Video
-    extends Content<IndexedAreaBounds, VideoAnnotation, VideoAnnotationStore, byte[]> {
+    extends TypedContent<IndexedAreaBounds, VideoAnnotation, VideoAnnotationStore, byte[]> {
 
   int getFrames();
 

@@ -11,7 +11,7 @@ public interface Item extends WithProperties {
   // Contents
   void setDefaultContent(String name);
 
-  Content<?, ?, ?, ?> getDefaultContent();
+  Content getDefaultContent();
 
   default boolean hasContent(final String name) {
     return listContents().anyMatch(name::equals);
@@ -19,13 +19,13 @@ public interface Item extends WithProperties {
 
   Stream<String> listContents();
 
-  Optional<Content<?, ?, ?, ?>> getContent(String name);
+  Optional<Content> getContent(String name);
 
-  Stream<Content<?, ?, ?, ?>> getContents();
+  Stream<Content> getContents();
 
-  <T extends Content<?, ?, ?, ?>> Stream<T> getContents(Class<T> clazz);
+  <T extends Content> Stream<T> getContents(Class<T> clazz);
 
-  void addContent(String name, Content<?, ?, ?, ?> content) throws AlreadyExistsException;
+  void addContent(String name, Content content) throws AlreadyExistsException;
 
   void removeContent(String name);
 
