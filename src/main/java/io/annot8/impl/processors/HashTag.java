@@ -18,18 +18,20 @@ public class HashTag implements Processor {
   private static final Pattern HASHTAG = Pattern.compile("#[a-z0-9]+", Pattern.CASE_INSENSITIVE);
 
   @Override
-  public Response process(final Item item, final AnnotationStore store)
-      throws ProcessingException {
-    item.getContents(Text.class).forEach(c -> processText(c, store));
+  public Response process(final Item item) throws ProcessingException {
+    item.getContents(Text.class).forEach(c -> processText(c));
 
     return Response.ok(item);
   }
 
-  private void processText(final Text content, final AnnotationStore store) {
+  private void processText(final Text content) {
+
+    final AnnotationStore<LinearBounds> store = content.getAnnotationStore();
+
     final Matcher matcher = HASHTAG.matcher(content.getData());
     while (matcher.find()) {
       final LinearBounds bounds = new SimpleLinearBounds(matcher.start(), matcher.end());
-      final Annotation<LinearBounds> annot = store.createNew(content, bounds);
+      final Annotation<LinearBounds> annot = store.createNew(bounds);
       annot.setType("HASHTAG");
       store.save(annot);
     }

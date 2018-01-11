@@ -5,29 +5,25 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
-import io.annot8.core.components.Annot8Component;
-import io.annot8.core.content.Content;
 import io.annot8.core.content.Text;
 
 /**
  * Stores {@link Annotation} objects against {@link Text}s, and allows retrieval of annotations
  * associated with a given document.
  */
-public interface AnnotationStore extends Annot8Component {
+public interface AnnotationStore<B extends Bounds> {
 
-  // Annotation<? extends Bounds> createNew(Content<?> content, Bounds bounds); //TODO: Ideally, the
-  // generics here would be such that you know what type of Annotation you're getting back
-  <T extends Bounds> Annotation<T> createNew(Content<?> content, T bounds);
+  Annotation<B> createNew(B bounds);
 
-  void save(Annotation<? extends Bounds> annotation);
+  void save(Annotation<B> annotation);
 
-  void delete(Annotation<? extends Bounds> annotation);
+  void delete(Annotation<B> annotation);
 
-  default void save(final Collection<Annotation<? extends Bounds>> annotations) {
+  default void save(final Collection<Annotation<B>> annotations) {
     annotations.forEach(this::save);
   }
 
-  default void delete(final Collection<Annotation<? extends Bounds>> annotations) {
+  default void delete(final Collection<Annotation<B>> annotations) {
     annotations.forEach(this::delete);
   }
 
@@ -35,20 +31,10 @@ public interface AnnotationStore extends Annot8Component {
     delete(getAll().collect(Collectors.toList()));
   }
 
-  Stream<Annotation<? extends Bounds>> getAll();
+  Stream<Annotation<B>> getAll();
 
-  default Stream<Annotation<? extends Bounds>> getByType(final String type) {
+  default Stream<Annotation<B>> getByType(final String type) {
     return getAll().filter(a -> type.equals(a.getType()));
-  }
-
-  default Stream<Annotation<? extends Bounds>> getByContent(final Content<?> content) {
-    return getAll().filter(a -> content.equals(a.getContent()));
-  }
-
-  default Stream<Annotation<? extends Bounds>> getByContentAndType(final Content<?> content,
-      final String type) {
-    return getAll().filter(a -> content.equals(a.getContent()))
-        .filter(a -> type.equals(a.getType()));
   }
 
 }

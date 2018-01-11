@@ -1,9 +1,7 @@
 package io.annot8.core.annotations;
 
 
-import java.util.Optional;
 import io.annot8.core.bounds.Bounds;
-import io.annot8.core.content.Content;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
@@ -18,10 +16,4 @@ public interface Annotation<B extends Bounds> extends WithId, WithType, WithProp
   B getBounds();
 
   void setBounds(B bounds);
-
-  void setContent(Content<?> content);
-
-  Content<?> getContent();
-
-  <T extends Content<?>> Optional<T> getContent(Class<T> clazz);
 }

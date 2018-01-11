@@ -12,7 +12,6 @@ import io.annot8.core.context.Context;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.Annot8Exception;
 import io.annot8.core.exceptions.ProcessingException;
-import io.annot8.core.stores.AnnotationStore;
 import io.annot8.impl.context.SimpleContext;
 import io.annot8.impl.processors.Capitalise;
 import io.annot8.impl.processors.Email;
@@ -20,7 +19,6 @@ import io.annot8.impl.processors.HashTag;
 import io.annot8.impl.processors.PrintMentions;
 import io.annot8.impl.sources.PipelineSource;
 import io.annot8.impl.sources.TxtDirectoryDataSource;
-import io.annot8.impl.stores.InMemoryStore;
 
 /**
  * Simple proof of concept pipeline that assumes that data sources produce a finite number of
@@ -30,7 +28,6 @@ import io.annot8.impl.stores.InMemoryStore;
 public class SimplePipeline {
 
   private final Context context;
-  private final AnnotationStore store = new InMemoryStore();
   private Collection<Source> sources = new ArrayList<>();
   private Collection<Processor> processors = new ArrayList<>();
 
@@ -80,7 +77,7 @@ public class SimplePipeline {
   private void processItem(final Item item) {
     for (final Processor processor : processors) {
       try {
-        final Response response = processor.process(item, store);
+        final Response response = processor.process(item);
 
         final Status status = response.getStatus();
         if (status == Status.OK) {

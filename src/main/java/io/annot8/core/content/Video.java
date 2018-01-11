@@ -1,6 +1,8 @@
 package io.annot8.core.content;
 
-public interface Video extends Content<byte[]> {
+import io.annot8.core.bounds.IndexedAreaBounds;
+
+public interface Video extends Content<IndexedAreaBounds, byte[]> {
 
   int getFrames();
 

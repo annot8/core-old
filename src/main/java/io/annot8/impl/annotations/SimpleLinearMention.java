@@ -1,26 +1,21 @@
 package io.annot8.impl.annotations;
 
 
-import java.util.Optional;
 import java.util.UUID;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.LinearBounds;
-import io.annot8.core.content.Content;
 import io.annot8.core.stores.Properties;
 
 public class SimpleLinearMention implements Annotation<LinearBounds> {
   private final String id;
   private String type;
 
-
-  private Content<?> content;
   private LinearBounds bounds;
   private final SimpleProperties properties;
 
-  public SimpleLinearMention(final Content<?> content, final LinearBounds bounds) {
+  public SimpleLinearMention(final LinearBounds bounds) {
     this.id = UUID.randomUUID().toString();
     this.bounds = bounds;
-    this.content = content;
     this.properties = new SimpleProperties();
   }
 
@@ -40,24 +35,6 @@ public class SimpleLinearMention implements Annotation<LinearBounds> {
   }
 
 
-  @Override
-  public void setContent(final Content<?> content) {
-    this.content = content;
-  }
-
-  @Override
-  public Content<?> getContent() {
-    return content;
-  }
-
-  @Override
-  public <T extends Content<?>> Optional<T> getContent(final Class<T> clazz) {
-    if (clazz.isAssignableFrom(content.getClass())) {
-      return Optional.of(clazz.cast(content));
-    } else {
-      return Optional.empty();
-    }
-  }
 
   @Override
   public LinearBounds getBounds() {

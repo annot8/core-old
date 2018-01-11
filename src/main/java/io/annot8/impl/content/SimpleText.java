@@ -5,7 +5,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
+import io.annot8.core.bounds.LinearBounds;
 import io.annot8.core.content.Text;
+import io.annot8.core.stores.AnnotationStore;
 
 public class SimpleText implements Text {
 
@@ -16,6 +18,12 @@ public class SimpleText implements Text {
 
   public SimpleText(final String content) {
     this.content = content;
+  }
+
+  @Override
+  public AnnotationStore<LinearBounds> getAnnotationStore() {
+    // TODO Auto-generated method stub
+    return null;
   }
 
   @Override
@@ -63,5 +71,14 @@ public class SimpleText implements Text {
   @Override
   public int hashCode() {
     return Objects.hash(content, language);
+  }
+
+  @Override
+  public String getText(final LinearBounds lb) {
+    if (lb != null && lb.getBegin() >= 0 && lb.getEnd() >= 0 && lb.getBegin() >= lb.getEnd()) {
+      return content.substring(lb.getBegin(), lb.getEnd());
+    } else {
+      return "";
+    }
   }
 }

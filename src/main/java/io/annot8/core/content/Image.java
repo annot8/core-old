@@ -1,6 +1,8 @@
 package io.annot8.core.content;
 
-public interface Image extends Content<byte[]> {
+import io.annot8.core.bounds.AreaBounds;
+
+public interface Image extends Content<AreaBounds, byte[]> {
 
   int getWidth();
 
