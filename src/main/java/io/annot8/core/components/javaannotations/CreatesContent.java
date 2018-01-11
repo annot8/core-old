@@ -13,5 +13,5 @@ import io.annot8.core.content.Content;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CreatesContent {
 
-  Class<? extends Content<?>>[] values();
+  Class<? extends Content<?>>[] value();
 }
