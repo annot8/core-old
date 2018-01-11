@@ -7,14 +7,14 @@ import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
-import io.annot8.core.components.DataSource;
+import io.annot8.core.components.Source;
 import io.annot8.core.components.javaannotations.ConfigurationParameter;
 import io.annot8.core.context.Context;
-import io.annot8.core.data.DataItem;
+import io.annot8.core.data.Item;
 
 @ConfigurationParameter(key = "path", defaultValue = ".",
     description = "The folder to process (folder is processed recursively)")
-public abstract class DirectoryDataSource implements DataSource {
+public abstract class DirectoryDataSource implements Source {
 
   private Path rootFolder;
 
@@ -29,7 +29,7 @@ public abstract class DirectoryDataSource implements DataSource {
   }
 
   @Override
-  public Stream<DataItem> getDataItems() {
+  public Stream<Item> getDataItems() {
     try {
       return Files.walk(rootFolder).filter(Files::isRegularFile).filter(this::accept)
           .map(this::createDataItem).filter(Objects::nonNull);
@@ -41,5 +41,5 @@ public abstract class DirectoryDataSource implements DataSource {
 
   public abstract boolean accept(Path p);
 
-  public abstract DataItem createDataItem(Path p);
+  public abstract Item createDataItem(Path p);
 }

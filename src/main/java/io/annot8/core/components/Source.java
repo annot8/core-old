@@ -2,7 +2,7 @@ package io.annot8.core.components;
 
 import java.util.stream.Stream;
 import io.annot8.core.content.Text;
-import io.annot8.core.data.DataItem;
+import io.annot8.core.data.Item;
 import io.annot8.core.stores.AnnotationStore;
 
 /**
@@ -13,7 +13,7 @@ import io.annot8.core.stores.AnnotationStore;
  * for processing by processors. If appropriate, it may also add annotations to the Text (for
  * example, file metadata) via the {@link AnnotationStore}.
  */
-public interface DataSource extends Annot8Component {
+public interface Source extends Annot8Component {
 
-  Stream<DataItem> getDataItems();
+  Stream<Item> getDataItems();
 }

@@ -6,7 +6,7 @@ import io.annot8.core.content.Content;
 import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.helpers.WithProperties;
 
-public interface DataItem extends WithProperties {
+public interface Item extends WithProperties {
 
   // Contents
   void setDefaultContent(String name);

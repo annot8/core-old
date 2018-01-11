@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import io.annot8.core.components.Annot8Component;
-import io.annot8.core.components.DataSource;
+import io.annot8.core.components.Source;
 import io.annot8.core.components.Processor;
 import io.annot8.core.context.Context;
-import io.annot8.core.data.DataItem;
+import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.Annot8Exception;
 import io.annot8.core.exceptions.ProcessingException;
 import io.annot8.core.stores.AnnotationStore;
@@ -28,7 +28,7 @@ public class SimplePipeline {
 
   private final Context context;
   private final AnnotationStore store = new InMemoryStore();
-  private Collection<DataSource> dataSources = new ArrayList<>();
+  private Collection<Source> dataSources = new ArrayList<>();
   private Collection<Processor> processors = new ArrayList<>();
 
 
@@ -36,7 +36,7 @@ public class SimplePipeline {
     this.context = context;
   }
 
-  public void addDataSource(final DataSource dataSource) {
+  public void addDataSource(final Source dataSource) {
     dataSources.add(dataSource);
   }
 
@@ -53,12 +53,12 @@ public class SimplePipeline {
     processors =
         processors.stream().filter(p -> configureComponent(p)).collect(Collectors.toList());
 
-    for (final DataSource dataSource : dataSources) {
+    for (final Source dataSource : dataSources) {
       dataSource.getDataItems().forEach(this::process);
     }
   }
 
-  private void process(final DataItem dataItem) {
+  private void process(final Item dataItem) {
     for (final Processor processor : processors) {
       try {
         processor.process(dataItem, store);

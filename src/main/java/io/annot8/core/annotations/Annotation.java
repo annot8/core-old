@@ -14,14 +14,14 @@ import io.annot8.core.helpers.WithType;
  * This class provides the common functionality required to track the history of an annotation (i.e.
  * which processor created it, which ones modified it, etc.)
  */
-public interface Annotation<T extends Bounds> extends WithId, WithType, WithProperties {
-  T getBounds();
+public interface Annotation<B extends Bounds> extends WithId, WithType, WithProperties {
+  B getBounds();
 
-  void setBounds(T bounds);
+  void setBounds(B bounds);
 
   void setContent(Content<?> content);
 
   Content<?> getContent();
 
-  <T extends Content> Optional<T> getContent(Class<T> clazz);
+  <T extends Content<?>> Optional<T> getContent(Class<T> clazz);
 }

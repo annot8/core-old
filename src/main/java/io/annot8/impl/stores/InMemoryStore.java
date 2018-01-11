@@ -31,13 +31,14 @@ public class InMemoryStore implements AnnotationStore {
   @Override
   public <T extends Bounds> Annotation<T> createNew(final Content<?> content, final T bounds) {
     if (bounds instanceof LinearBounds) {
-      return (Annotation<T>) new SimpleLinearMention(content, (LinearBounds) bounds); // TODO: Can't
-                                                                                      // get the
-                                                                                      // generics to
-                                                                                      // work right
-                                                                                      // here
-                                                                                      // without a
-                                                                                      // warning
+      return (Annotation<T>) new SimpleLinearMention(content, (LinearBounds) bounds);
+      // TODO: Can't
+      // get the
+      // generics to
+      // work right
+      // here
+      // without a
+      // warning
     } else {
       return null; // TODO: What do we do if a store doesn't support this kind of Bounds?
     }

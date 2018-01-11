@@ -66,7 +66,7 @@ public class SimpleLinearMention implements Annotation<LinearBounds> {
   }
 
   @Override
-  public <T extends Content> Optional<T> getContent(final Class<T> clazz) {
+  public <T extends Content<?>> Optional<T> getContent(final Class<T> clazz) {
     if (clazz.isAssignableFrom(content.getClass())) {
       return Optional.of(clazz.cast(content));
     } else {

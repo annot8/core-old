@@ -29,7 +29,7 @@ public class SimpleText implements Text {
   }
 
   @Override
-  public String getContent() {
+  public String getData() {
     return content;
   }
 
@@ -55,7 +55,7 @@ public class SimpleText implements Text {
 
     final SimpleText st = (SimpleText) obj;
 
-    return Objects.equals(getContent(), st.getContent())
+    return Objects.equals(getData(), st.getData())
         && Objects.equals(getLanguage(), st.getLanguage())
         && Objects.equals(getTags(), st.getTags());
   }

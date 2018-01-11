@@ -7,10 +7,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 import io.annot8.core.content.Content;
-import io.annot8.core.data.DataItem;
+import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.AlreadyExistsException;
 
-public class SimpleDataItem implements DataItem {
+public class SimpleDataItem implements Item {
 
   private final Map<String, Content<?>> contents = new HashMap<>();
   private final Map<String, Object> properties = new HashMap<>();
