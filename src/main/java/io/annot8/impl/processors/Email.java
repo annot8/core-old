@@ -19,11 +19,11 @@ public class Email implements Processor {
       Pattern.compile("[A-Z0-9._%+-]+@([A-Z0-9.-]+[.][A-Z]{2,6})", Pattern.CASE_INSENSITIVE);
 
   @Override
-  public Response process(final Item dataItem, final AnnotationStore store)
+  public Response process(final Item item, final AnnotationStore store)
       throws ProcessingException {
-    dataItem.getContents(Text.class).forEach(c -> processText(c, store));
+    item.getContents(Text.class).forEach(c -> processText(c, store));
 
-    return Response.ok(dataItem);
+    return Response.ok(item);
 
   }
 

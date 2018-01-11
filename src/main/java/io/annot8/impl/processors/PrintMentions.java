@@ -12,7 +12,7 @@ import io.annot8.core.stores.AnnotationStore;
 
 public class PrintMentions implements Processor {
   @Override
-  public Response process(final Item dataItem, final AnnotationStore store)
+  public Response process(final Item item, final AnnotationStore store)
       throws ProcessingException {
     store.getAll().forEach(a -> {
       final Optional<Text> text = a.getContent(Text.class);
@@ -27,6 +27,6 @@ public class PrintMentions implements Processor {
       }
     });
 
-    return Response.ok(dataItem);
+    return Response.ok(item);
   }
 }

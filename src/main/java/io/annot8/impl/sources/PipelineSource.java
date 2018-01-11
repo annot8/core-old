@@ -1,4 +1,4 @@
-package io.annot8.impl.datasources;
+package io.annot8.impl.sources;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

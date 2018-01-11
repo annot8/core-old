@@ -14,12 +14,12 @@ import io.annot8.core.exceptions.Annot8Exception;
 import io.annot8.core.exceptions.ProcessingException;
 import io.annot8.core.stores.AnnotationStore;
 import io.annot8.impl.context.SimpleContext;
-import io.annot8.impl.datasources.PipelineSource;
-import io.annot8.impl.datasources.TxtDirectoryDataSource;
 import io.annot8.impl.processors.Capitalise;
 import io.annot8.impl.processors.Email;
 import io.annot8.impl.processors.HashTag;
 import io.annot8.impl.processors.PrintMentions;
+import io.annot8.impl.sources.PipelineSource;
+import io.annot8.impl.sources.TxtDirectoryDataSource;
 import io.annot8.impl.stores.InMemoryStore;
 
 /**
@@ -31,7 +31,7 @@ public class SimplePipeline {
 
   private final Context context;
   private final AnnotationStore store = new InMemoryStore();
-  private Collection<Source> dataSources = new ArrayList<>();
+  private Collection<Source> sources = new ArrayList<>();
   private Collection<Processor> processors = new ArrayList<>();
 
   private final PipelineSource pipelineSource = new PipelineSource();
@@ -41,8 +41,8 @@ public class SimplePipeline {
     this.context = context;
   }
 
-  public void addDataSource(final Source dataSource) {
-    dataSources.add(dataSource);
+  public void addDataSource(final Source source) {
+    sources.add(source);
   }
 
   public void addProcessor(final Processor processor) {
@@ -53,35 +53,34 @@ public class SimplePipeline {
 
     // TODO: Really, each component should be initialised with it's own configuration (i.e. so we
     // could have multiple data sources with different paths)
-    dataSources =
-        dataSources.stream().filter(ds -> configureComponent(ds)).collect(Collectors.toList());
+    sources = sources.stream().filter(s -> configureComponent(s)).collect(Collectors.toList());
     processors =
         processors.stream().filter(p -> configureComponent(p)).collect(Collectors.toList());
 
-    for (final Source dataSource : dataSources) {
+    for (final Source dataSource : sources) {
       dataSource.getDataItems().forEach(this::process);
     }
 
   }
 
-  private void process(final Item dataItem) {
+  private void process(final Item item) {
 
-    processItem(dataItem);
+    processItem(item);
 
     // TODO: PipelineSource is not a dataSource so this is a bit of a hack
     // it should probably be a DataSource which is the first to be cleared out each time
 
     while (pipelineSource.hasItems()) {
-      final Item item = pipelineSource.next();
-      processItem(item);
+      final Item i = pipelineSource.next();
+      processItem(i);
     }
 
   }
 
-  private void processItem(final Item dataItem) {
+  private void processItem(final Item item) {
     for (final Processor processor : processors) {
       try {
-        final Response response = processor.process(dataItem, store);
+        final Response response = processor.process(item, store);
 
         final Status status = response.getStatus();
         if (status == Status.OK) {
@@ -95,13 +94,13 @@ public class SimplePipeline {
             // Add all the items (which aren't the one we are currently processing to our
             // PipelineQueue)
             for (final Item i : items) {
-              if (i != dataItem) {
+              if (i != item) {
                 pipelineSource.add(i);
               }
             }
 
             // If we don't have this time in our list then we stop, and move to the next pipeline
-            if (!items.contains(dataItem)) {
+            if (!items.contains(item)) {
               return;
             }
 

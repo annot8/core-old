@@ -18,11 +18,11 @@ public class HashTag implements Processor {
   private static final Pattern HASHTAG = Pattern.compile("#[a-z0-9]+", Pattern.CASE_INSENSITIVE);
 
   @Override
-  public Response process(final Item dataItem, final AnnotationStore store)
+  public Response process(final Item item, final AnnotationStore store)
       throws ProcessingException {
-    dataItem.getContents(Text.class).forEach(c -> processText(c, store));
+    item.getContents(Text.class).forEach(c -> processText(c, store));
 
-    return Response.ok(dataItem);
+    return Response.ok(item);
   }
 
   private void processText(final Text content, final AnnotationStore store) {

@@ -10,7 +10,7 @@ import io.annot8.core.content.Content;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.AlreadyExistsException;
 
-public class SimpleDataItem implements Item {
+public class SimpleItem implements Item {
 
   private final Map<String, Content<?>> contents = new HashMap<>();
   private final Map<String, Object> properties = new HashMap<>();
@@ -18,11 +18,11 @@ public class SimpleDataItem implements Item {
 
   private static final String DEFAULT_CONTENT = "__default";
 
-  public SimpleDataItem(final Content<?> defaultContent) {
+  public SimpleItem(final Content<?> defaultContent) {
     contents.put(DEFAULT_CONTENT, defaultContent);
   }
 
-  public SimpleDataItem(final Content<?> defaultContent, final String defaultContentName) {
+  public SimpleItem(final Content<?> defaultContent, final String defaultContentName) {
     contents.put(defaultContentName, defaultContent);
     this.defaultContentName = defaultContentName;
   }

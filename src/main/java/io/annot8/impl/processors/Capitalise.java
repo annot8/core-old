@@ -14,19 +14,19 @@ import io.annot8.impl.content.SimpleText;
 @CreatesContent(Text.class)
 public class Capitalise implements Processor {
   @Override
-  public Response process(final Item dataItem, final AnnotationStore store)
+  public Response process(final Item item, final AnnotationStore store)
       throws ProcessingException {
-    final Content<?> content = dataItem.getDefaultContent();
+    final Content<?> content = item.getDefaultContent();
 
     if (content instanceof Text) {
       final Text doc = (Text) content;
       try {
-        dataItem.addContent("CAPITALISED", new SimpleText(doc.getData().toUpperCase()));
+        item.addContent("CAPITALISED", new SimpleText(doc.getData().toUpperCase()));
       } catch (final AlreadyExistsException aee) {
         // TODO: Log error
       }
     }
 
-    return Response.ok(dataItem);
+    return Response.ok(item);
   }
 }

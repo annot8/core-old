@@ -1,4 +1,4 @@
-package io.annot8.impl.datasources;
+package io.annot8.impl.sources;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,7 +7,7 @@ import java.time.Instant;
 import io.annot8.core.content.Text;
 import io.annot8.core.data.Item;
 import io.annot8.impl.content.SimpleText;
-import io.annot8.impl.data.SimpleDataItem;
+import io.annot8.impl.data.SimpleItem;
 
 public class TxtDirectoryDataSource extends DirectoryDataSource {
   @Override
@@ -29,7 +29,7 @@ public class TxtDirectoryDataSource extends DirectoryDataSource {
     }
     content.setLanguage("x-unknown");
 
-    final Item dataItem = new SimpleDataItem(content);
+    final Item dataItem = new SimpleItem(content);
     dataItem.setProperty("source", p);
     dataItem.setProperty("accessedAt", Instant.now().getEpochSecond());
 
