@@ -4,6 +4,7 @@ import java.util.Optional;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.bounds.LinearBounds;
 import io.annot8.core.components.Processor;
+import io.annot8.core.components.Response;
 import io.annot8.core.content.Text;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.ProcessingException;
@@ -11,7 +12,7 @@ import io.annot8.core.stores.AnnotationStore;
 
 public class PrintMentions implements Processor {
   @Override
-  public void process(final Item dataItem, final AnnotationStore store)
+  public Response process(final Item dataItem, final AnnotationStore store)
       throws ProcessingException {
     store.getAll().forEach(a -> {
       final Optional<Text> text = a.getContent(Text.class);
@@ -25,5 +26,7 @@ public class PrintMentions implements Processor {
             .println("Annotation from " + lb.getBegin() + " to " + lb.getEnd() + ": " + value);
       }
     });
+
+    return Response.ok(dataItem);
   }
 }

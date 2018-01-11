@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 import io.annot8.core.components.Annot8Component;
-import io.annot8.core.components.Source;
 import io.annot8.core.components.Processor;
+import io.annot8.core.components.Response;
+import io.annot8.core.components.Response.Status;
+import io.annot8.core.components.Source;
 import io.annot8.core.context.Context;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.Annot8Exception;
 import io.annot8.core.exceptions.ProcessingException;
 import io.annot8.core.stores.AnnotationStore;
 import io.annot8.impl.context.SimpleContext;
+import io.annot8.impl.datasources.PipelineSource;
 import io.annot8.impl.datasources.TxtDirectoryDataSource;
 import io.annot8.impl.processors.Capitalise;
 import io.annot8.impl.processors.Email;
@@ -30,6 +33,8 @@ public class SimplePipeline {
   private final AnnotationStore store = new InMemoryStore();
   private Collection<Source> dataSources = new ArrayList<>();
   private Collection<Processor> processors = new ArrayList<>();
+
+  private final PipelineSource pipelineSource = new PipelineSource();
 
 
   public SimplePipeline(final Context context) {
@@ -56,12 +61,62 @@ public class SimplePipeline {
     for (final Source dataSource : dataSources) {
       dataSource.getDataItems().forEach(this::process);
     }
+
   }
 
   private void process(final Item dataItem) {
+
+    processItem(dataItem);
+
+    // TODO: PipelineSource is not a dataSource so this is a bit of a hack
+    // it should probably be a DataSource which is the first to be cleared out each time
+
+    while (pipelineSource.hasItems()) {
+      final Item item = pipelineSource.next();
+      processItem(item);
+    }
+
+  }
+
+  private void processItem(final Item dataItem) {
     for (final Processor processor : processors) {
       try {
-        processor.process(dataItem, store);
+        final Response response = processor.process(dataItem, store);
+
+        final Status status = response.getStatus();
+        if (status == Status.OK) {
+          final Collection<Item> items = response.getItems();
+
+          if (items == null || items.isEmpty()) {
+            // If we have nothing to continue processing, we stop
+            return;
+          } else {
+
+            // Add all the items (which aren't the one we are currently processing to our
+            // PipelineQueue)
+            for (final Item i : items) {
+              if (i != dataItem) {
+                pipelineSource.add(i);
+              }
+            }
+
+            // If we don't have this time in our list then we stop, and move to the next pipeline
+            if (!items.contains(dataItem)) {
+              return;
+            }
+
+
+          }
+        } else if (status == Status.PIPELINE_ERROR) {
+          // TODO: Would do something nicer here but
+          System.err.println("Pipeline problem, exiting");
+
+          System.exit(1);
+        } else if (status == Status.ITEM_ERROR) {
+          System.err.println("Item problem, skipping rest of pipeline");
+          return;
+        }
+
       } catch (final ProcessingException pe) {
         // TODO: Log this error - should we stop processing this dataItem or carry on?
         System.err.println(

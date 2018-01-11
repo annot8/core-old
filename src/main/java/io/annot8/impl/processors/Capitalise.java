@@ -1,6 +1,7 @@
 package io.annot8.impl.processors;
 
 import io.annot8.core.components.Processor;
+import io.annot8.core.components.Response;
 import io.annot8.core.components.javaannotations.CreatesContent;
 import io.annot8.core.content.Content;
 import io.annot8.core.content.Text;
@@ -13,7 +14,7 @@ import io.annot8.impl.content.SimpleText;
 @CreatesContent(Text.class)
 public class Capitalise implements Processor {
   @Override
-  public void process(final Item dataItem, final AnnotationStore store)
+  public Response process(final Item dataItem, final AnnotationStore store)
       throws ProcessingException {
     final Content<?> content = dataItem.getDefaultContent();
 
@@ -25,5 +26,7 @@ public class Capitalise implements Processor {
         // TODO: Log error
       }
     }
+
+    return Response.ok(dataItem);
   }
 }
