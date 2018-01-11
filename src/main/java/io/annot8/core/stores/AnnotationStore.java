@@ -11,19 +11,19 @@ import io.annot8.core.content.Text;
  * Stores {@link Annotation} objects against {@link Text}s, and allows retrieval of annotations
  * associated with a given document.
  */
-public interface AnnotationStore<B extends Bounds> {
+public interface AnnotationStore<B extends Bounds, A extends Annotation<B>> {
 
-  Annotation<B> createNew(B bounds);
+  A createNew(B bounds);
 
-  void save(Annotation<B> annotation);
+  void save(A annotation);
 
-  void delete(Annotation<B> annotation);
+  void delete(A annotation);
 
-  default void save(final Collection<Annotation<B>> annotations) {
+  default void save(final Collection<A> annotations) {
     annotations.forEach(this::save);
   }
 
-  default void delete(final Collection<Annotation<B>> annotations) {
+  default void delete(final Collection<A> annotations) {
     annotations.forEach(this::delete);
   }
 
@@ -31,9 +31,9 @@ public interface AnnotationStore<B extends Bounds> {
     delete(getAll().collect(Collectors.toList()));
   }
 
-  Stream<Annotation<B>> getAll();
+  Stream<A> getAll();
 
-  default Stream<Annotation<B>> getByType(final String type) {
+  default Stream<A> getByType(final String type) {
     return getAll().filter(a -> type.equals(a.getType()));
   }
 

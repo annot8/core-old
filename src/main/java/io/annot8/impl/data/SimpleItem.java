@@ -14,18 +14,18 @@ import io.annot8.impl.annotations.SimpleProperties;
 
 public class SimpleItem implements Item {
 
-  private final Map<String, Content<?, ?>> contents = new HashMap<>();
+  private final Map<String, Content<?, ?, ?, ?>> contents = new HashMap<>();
   private String defaultContentName = DEFAULT_CONTENT;
 
   private final SimpleProperties properties = new SimpleProperties();
 
   private static final String DEFAULT_CONTENT = "__default";
 
-  public SimpleItem(final Content<?, ?> defaultContent) {
+  public SimpleItem(final Content<?, ?, ?, ?> defaultContent) {
     contents.put(DEFAULT_CONTENT, defaultContent);
   }
 
-  public SimpleItem(final Content<?, ?> defaultContent, final String defaultContentName) {
+  public SimpleItem(final Content<?, ?, ?, ?> defaultContent, final String defaultContentName) {
     contents.put(defaultContentName, defaultContent);
     this.defaultContentName = defaultContentName;
   }
@@ -36,7 +36,7 @@ public class SimpleItem implements Item {
   }
 
   @Override
-  public Content<?, ?> getDefaultContent() {
+  public Content<?, ?, ?, ?> getDefaultContent() {
     return contents.get(defaultContentName);
   }
 
@@ -46,17 +46,17 @@ public class SimpleItem implements Item {
   }
 
   @Override
-  public Optional<Content<?, ?>> getContent(final String name) {
+  public Optional<Content<?, ?, ?, ?>> getContent(final String name) {
     return Optional.ofNullable(contents.get(name));
   }
 
   @Override
-  public Stream<Content<?, ?>> getContents() {
+  public Stream<Content<?, ?, ?, ?>> getContents() {
     return contents.values().stream();
   }
 
   @Override
-  public <T extends Content<?, ?>> Stream<T> getContents(final Class<T> clazz) {
+  public <T extends Content<?, ?, ?, ?>> Stream<T> getContents(final Class<T> clazz) {
     final List<T> ret = new ArrayList<>();
 
     contents.values().stream().filter(c -> clazz.isAssignableFrom(c.getClass()))
@@ -66,7 +66,7 @@ public class SimpleItem implements Item {
   }
 
   @Override
-  public void addContent(final String name, final Content<?, ?> content)
+  public void addContent(final String name, final Content<?, ?, ?, ?> content)
       throws AlreadyExistsException {
     if (contents.containsKey(name))
       throw new AlreadyExistsException("Content with that name already exists");

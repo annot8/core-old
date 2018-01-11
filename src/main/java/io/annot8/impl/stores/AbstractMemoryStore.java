@@ -7,21 +7,22 @@ import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.stores.AnnotationStore;
 
-public abstract class AbstractMemoryStore<B extends Bounds> implements AnnotationStore<B> {
-  private final Map<String, Annotation<B>> annotations = new HashMap<>();
+public abstract class AbstractMemoryStore<B extends Bounds, A extends Annotation<B>>
+    implements AnnotationStore<B, A> {
+  private final Map<String, A> annotations = new HashMap<>();
 
   @Override
-  public void save(final Annotation<B> annotation) {
+  public void save(final A annotation) {
     annotations.put(annotation.getId(), annotation);
   }
 
   @Override
-  public void delete(final Annotation<B> annotation) {
+  public void delete(final A annotation) {
     annotations.remove(annotation.getId());
   }
 
   @Override
-  public Stream<Annotation<B>> getAll() {
+  public Stream<A> getAll() {
     return annotations.values().stream();
   }
 

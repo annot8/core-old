@@ -7,7 +7,7 @@ import io.annot8.core.components.Response;
 import io.annot8.core.content.Text;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.ProcessingException;
-import io.annot8.core.stores.AnnotationStore;
+import io.annot8.core.stores.TextAnnotationStore;
 
 public class PrintMentions implements Processor {
   @Override
@@ -18,7 +18,7 @@ public class PrintMentions implements Processor {
 
   private void processText(final Text content) {
 
-    final AnnotationStore<LinearBounds> store = content.getAnnotationStore();
+    final TextAnnotationStore store = content.getAnnotationStore();
 
     store.getAll().forEach(a -> {
       final Bounds bounds = a.getBounds();

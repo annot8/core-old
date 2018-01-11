@@ -2,11 +2,11 @@ package io.annot8.impl.annotations;
 
 
 import java.util.UUID;
-import io.annot8.core.annotations.Annotation;
+import io.annot8.core.annotations.TextAnnotation;
 import io.annot8.core.bounds.LinearBounds;
 import io.annot8.core.stores.Properties;
 
-public class SimpleLinearMention implements Annotation<LinearBounds> {
+public class SimpleLinearMention implements TextAnnotation {
   private final String id;
   private String type;
 
@@ -33,8 +33,6 @@ public class SimpleLinearMention implements Annotation<LinearBounds> {
   public String getType() {
     return type;
   }
-
-
 
   @Override
   public LinearBounds getBounds() {

@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 import io.annot8.core.bounds.LinearBounds;
 import io.annot8.core.content.Text;
-import io.annot8.core.stores.AnnotationStore;
+import io.annot8.core.stores.TextAnnotationStore;
 
 public class SimpleText implements Text {
 
@@ -21,7 +21,7 @@ public class SimpleText implements Text {
   }
 
   @Override
-  public AnnotationStore<LinearBounds> getAnnotationStore() {
+  public TextAnnotationStore getAnnotationStore() {
     // TODO Auto-generated method stub
     return null;
   }

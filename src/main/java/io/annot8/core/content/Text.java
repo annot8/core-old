@@ -1,7 +1,9 @@
 package io.annot8.core.content;
 
 import java.util.Optional;
+import io.annot8.core.annotations.TextAnnotation;
 import io.annot8.core.bounds.LinearBounds;
+import io.annot8.core.stores.TextAnnotationStore;
 
 /**
  * Documents store the text to be processed, and may also contain links to sub-content (known as
@@ -10,7 +12,7 @@ import io.annot8.core.bounds.LinearBounds;
  * Documents can contain no content and just sub-content, although this is expected to be an unusual
  * use case.
  */
-public interface Text extends Content<LinearBounds, String> {
+public interface Text extends Content<LinearBounds, TextAnnotation, TextAnnotationStore, String> {
 
   Optional<String> getLanguage();
 
