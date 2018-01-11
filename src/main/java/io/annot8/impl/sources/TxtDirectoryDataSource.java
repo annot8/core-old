@@ -30,8 +30,8 @@ public class TxtDirectoryDataSource extends DirectoryDataSource {
     content.setLanguage("x-unknown");
 
     final Item dataItem = new SimpleItem(content);
-    dataItem.setProperty("source", p);
-    dataItem.setProperty("accessedAt", Instant.now().getEpochSecond());
+    dataItem.getProperties().setProperty("source", p);
+    dataItem.getProperties().setProperty("accessedAt", Instant.now().getEpochSecond());
 
     return dataItem;
   }

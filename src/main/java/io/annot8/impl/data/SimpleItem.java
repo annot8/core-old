@@ -9,12 +9,15 @@ import java.util.stream.Stream;
 import io.annot8.core.content.Content;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.AlreadyExistsException;
+import io.annot8.core.stores.Properties;
+import io.annot8.impl.annotations.SimpleProperties;
 
 public class SimpleItem implements Item {
 
   private final Map<String, Content<?>> contents = new HashMap<>();
-  private final Map<String, Object> properties = new HashMap<>();
   private String defaultContentName = DEFAULT_CONTENT;
+
+  private final SimpleProperties properties = new SimpleProperties();
 
   private static final String DEFAULT_CONTENT = "__default";
 
@@ -72,17 +75,7 @@ public class SimpleItem implements Item {
   }
 
   @Override
-  public void setProperty(final String key, final Object value) {
-    properties.put(key, value);
-  }
-
-  @Override
-  public Optional<Object> removeProperty(final String key) {
-    return Optional.ofNullable(properties.remove(key));
-  }
-
-  @Override
-  public Map<String, Object> getProperties() {
+  public Properties getProperties() {
     return properties;
   }
 }

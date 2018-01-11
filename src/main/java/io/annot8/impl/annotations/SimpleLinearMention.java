@@ -1,28 +1,27 @@
 package io.annot8.impl.annotations;
 
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.LinearBounds;
 import io.annot8.core.content.Content;
+import io.annot8.core.stores.Properties;
 
 public class SimpleLinearMention implements Annotation<LinearBounds> {
   private final String id;
   private String type;
 
-  private final Map<String, Object> properties = new HashMap<>();
 
   private Content<?> content;
   private LinearBounds bounds;
-
+  private final SimpleProperties properties;
 
   public SimpleLinearMention(final Content<?> content, final LinearBounds bounds) {
     this.id = UUID.randomUUID().toString();
     this.bounds = bounds;
     this.content = content;
+    this.properties = new SimpleProperties();
   }
 
   @Override
@@ -40,20 +39,6 @@ public class SimpleLinearMention implements Annotation<LinearBounds> {
     return type;
   }
 
-  @Override
-  public void setProperty(final String key, final Object value) {
-    properties.put(key, value);
-  }
-
-  @Override
-  public Optional<Object> removeProperty(final String key) {
-    return Optional.ofNullable(properties.remove(key));
-  }
-
-  @Override
-  public Map<String, Object> getProperties() {
-    return properties;
-  }
 
   @Override
   public void setContent(final Content<?> content) {
@@ -82,6 +67,11 @@ public class SimpleLinearMention implements Annotation<LinearBounds> {
   @Override
   public void setBounds(final LinearBounds bounds) {
     this.bounds = bounds;
+  }
+
+  @Override
+  public Properties getProperties() {
+    return properties;
   }
 
 }
