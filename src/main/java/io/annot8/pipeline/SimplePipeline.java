@@ -8,8 +8,8 @@ import io.annot8.core.components.Processor;
 import io.annot8.core.components.Source;
 import io.annot8.core.data.Context;
 import io.annot8.core.data.Item;
-import io.annot8.core.data.Response;
-import io.annot8.core.data.Response.Status;
+import io.annot8.core.data.ProcessResponse;
+import io.annot8.core.data.ProcessResponse.Status;
 import io.annot8.core.exceptions.Annot8Exception;
 import io.annot8.core.exceptions.ProcessingException;
 import io.annot8.impl.data.SimpleContext;
@@ -77,7 +77,7 @@ public class SimplePipeline {
   private void processItem(final Item item) {
     for (final Processor processor : processors) {
       try {
-        final Response response = processor.process(item);
+        final ProcessResponse response = processor.process(item);
 
         final Status status = response.getStatus();
         if (status == Status.OK) {

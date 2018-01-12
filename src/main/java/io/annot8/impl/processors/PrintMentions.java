@@ -6,14 +6,14 @@ import io.annot8.content.text.TextBounds;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.components.Processor;
 import io.annot8.core.data.Item;
-import io.annot8.core.data.Response;
+import io.annot8.core.data.ProcessResponse;
 import io.annot8.core.exceptions.ProcessingException;
 
 public class PrintMentions implements Processor {
   @Override
-  public Response process(final Item item) throws ProcessingException {
+  public ProcessResponse process(final Item item) throws ProcessingException {
     item.getContents(Text.class).forEach(this::processText);
-    return Response.ok(item);
+    return ProcessResponse.ok(item);
   }
 
   private void processText(final Text content) {

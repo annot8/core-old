@@ -5,7 +5,7 @@ import io.annot8.core.components.Processor;
 import io.annot8.core.components.java.CreatesContent;
 import io.annot8.core.data.Content;
 import io.annot8.core.data.Item;
-import io.annot8.core.data.Response;
+import io.annot8.core.data.ProcessResponse;
 import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.ProcessingException;
 import io.annot8.impl.data.SimpleText;
@@ -13,7 +13,7 @@ import io.annot8.impl.data.SimpleText;
 @CreatesContent(Text.class)
 public class Capitalise implements Processor {
   @Override
-  public Response process(final Item item) throws ProcessingException {
+  public ProcessResponse process(final Item item) throws ProcessingException {
     final Content content = item.getDefaultContent();
 
     if (content instanceof Text) {
@@ -25,6 +25,6 @@ public class Capitalise implements Processor {
       }
     }
 
-    return Response.ok(item);
+    return ProcessResponse.ok(item);
   }
 }

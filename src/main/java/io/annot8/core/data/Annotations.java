@@ -37,4 +37,6 @@ public interface Annotations<B extends Bounds, A extends Annotation<B>> {
     return getAll().filter(a -> type.equals(a.getType()));
   }
 
+  // TODO: Get inside, get covering?, Or should we just let the sub implementation add the specific
+  // stuff?
 }
