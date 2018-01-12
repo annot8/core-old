@@ -1,23 +1,17 @@
 package io.annot8.impl.processors;
 
+import io.annot8.base.processors.AbstractTextAnnotator;
 import io.annot8.content.text.Text;
 import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
 import io.annot8.core.bounds.Bounds;
-import io.annot8.core.components.Processor;
 import io.annot8.core.data.Item;
-import io.annot8.core.data.ProcessResponse;
-import io.annot8.core.exceptions.ProcessingException;
 
-public class PrintMentions implements Processor {
+public class PrintMentions extends AbstractTextAnnotator {
+
+
   @Override
-  public ProcessResponse process(final Item item) throws ProcessingException {
-    item.getContents(Text.class).forEach(this::processText);
-    return ProcessResponse.ok(item);
-  }
-
-  private void processText(final Text content) {
-
+  protected void process(final Item item, final Text content) throws Exception {
     final TextAnnotations store = content.getAnnotations();
 
     store.getAll().forEach(a -> {
@@ -28,7 +22,6 @@ public class PrintMentions implements Processor {
 
       System.out.println("Annotation from " + lb.getBegin() + " to " + lb.getEnd() + ": " + value);
     });
-
   }
 
 }

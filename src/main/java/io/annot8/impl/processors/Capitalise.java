@@ -1,30 +1,17 @@
 package io.annot8.impl.processors;
 
+import io.annot8.base.processors.AbstractTextAnnotator;
 import io.annot8.content.text.Text;
-import io.annot8.core.components.Processor;
 import io.annot8.core.components.java.CreatesContent;
-import io.annot8.core.data.Content;
 import io.annot8.core.data.Item;
-import io.annot8.core.data.ProcessResponse;
 import io.annot8.core.exceptions.AlreadyExistsException;
-import io.annot8.core.exceptions.ProcessingException;
 import io.annot8.impl.data.SimpleText;
 
 @CreatesContent(Text.class)
-public class Capitalise implements Processor {
+public class Capitalise extends AbstractTextAnnotator {
+
   @Override
-  public ProcessResponse process(final Item item) throws ProcessingException {
-    final Content content = item.getDefaultContent();
-
-    if (content instanceof Text) {
-      final Text doc = (Text) content;
-      try {
-        item.addContent("CAPITALISED", new SimpleText(doc.getData().toUpperCase()));
-      } catch (final AlreadyExistsException aee) {
-        // TODO: Log error
-      }
-    }
-
-    return ProcessResponse.ok(item);
+  protected void process(final Item item, final Text content) throws AlreadyExistsException {
+    item.addContent("CAPITALISED", new SimpleText(content.getData().toUpperCase()));
   }
 }

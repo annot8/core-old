@@ -1,6 +1,7 @@
 package io.annot8.core.components.java;
 
 import java.lang.annotation.Documented;
+import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import io.annot8.core.data.Content;
@@ -11,6 +12,7 @@ import io.annot8.core.data.Content;
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
+@Inherited
 public @interface CreatesContent {
 
   Class<? extends Content>[] value();
