@@ -3,8 +3,9 @@ package io.annot8.impl.annotations;
 
 import java.util.UUID;
 import io.annot8.content.text.TextBounds;
+import io.annot8.core.data.Properties;
+import io.annot8.impl.data.SimpleProperties;
 import io.annot8.content.text.TextAnnotation;
-import io.annot8.core.stores.Properties;
 
 public class SimpleTextAnnotation implements TextAnnotation {
   private final String id;

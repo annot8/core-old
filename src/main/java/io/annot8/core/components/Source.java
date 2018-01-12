@@ -2,8 +2,8 @@ package io.annot8.core.components;
 
 import java.util.stream.Stream;
 import io.annot8.content.text.Text;
+import io.annot8.core.data.Annotations;
 import io.annot8.core.data.Item;
-import io.annot8.core.stores.Annotations;
 
 /**
  * Provides content for processing from a given data source, for example a folder of files on disk,

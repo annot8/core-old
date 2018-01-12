@@ -1,4 +1,4 @@
-package io.annot8.core.stores;
+package io.annot8.core.data;
 
 import java.util.Collection;
 import java.util.stream.Collectors;

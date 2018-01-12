@@ -1,6 +1,6 @@
 package io.annot8.content.text;
 
-import io.annot8.core.stores.Annotations;
+import io.annot8.core.data.Annotations;
 
 public interface TextAnnotations extends Annotations<TextBounds, TextAnnotation> {
 

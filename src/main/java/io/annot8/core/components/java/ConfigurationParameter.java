@@ -1,4 +1,4 @@
-package io.annot8.core.components.javaannotations;
+package io.annot8.core.components.java;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Repeatable;

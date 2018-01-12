@@ -1,4 +1,4 @@
-package io.annot8.core.components.javaannotations;
+package io.annot8.core.components.java;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Repeatable;
@@ -6,12 +6,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Declares the annotations that a processor requires
+ * Declares annotations that a processor will produce
  */
 @Documented
-@Repeatable(InputAnnotations.class)
+@Repeatable(OutputAnnotations.class)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface InputAnnotation {
+public @interface OutputAnnotation {
 
   String value();
 }

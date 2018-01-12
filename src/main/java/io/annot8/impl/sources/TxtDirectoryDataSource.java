@@ -6,8 +6,8 @@ import java.nio.file.Path;
 import java.time.Instant;
 import io.annot8.content.text.Text;
 import io.annot8.core.data.Item;
-import io.annot8.impl.content.SimpleText;
 import io.annot8.impl.data.SimpleItem;
+import io.annot8.impl.data.SimpleText;
 
 public class TxtDirectoryDataSource extends DirectoryDataSource {
   @Override

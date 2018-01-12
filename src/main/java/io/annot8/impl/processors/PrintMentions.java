@@ -5,8 +5,8 @@ import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.components.Processor;
-import io.annot8.core.components.Response;
 import io.annot8.core.data.Item;
+import io.annot8.core.data.Response;
 import io.annot8.core.exceptions.ProcessingException;
 
 public class PrintMentions implements Processor {

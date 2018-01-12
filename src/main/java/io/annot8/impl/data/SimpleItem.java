@@ -6,11 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
-import io.annot8.core.content.Content;
+import io.annot8.core.data.Content;
 import io.annot8.core.data.Item;
+import io.annot8.core.data.Properties;
 import io.annot8.core.exceptions.AlreadyExistsException;
-import io.annot8.core.stores.Properties;
-import io.annot8.impl.annotations.SimpleProperties;
 
 public class SimpleItem implements Item {
 

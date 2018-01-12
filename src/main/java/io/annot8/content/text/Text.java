@@ -1,7 +1,7 @@
 package io.annot8.content.text;
 
 import java.util.Optional;
-import io.annot8.core.content.TypedContent;
+import io.annot8.core.data.TypedContent;
 
 /**
  * Documents store the text to be processed, and may also contain links to sub-content (known as

@@ -1,9 +1,9 @@
-package io.annot8.impl.annotations;
+package io.annot8.impl.data;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import io.annot8.core.stores.Properties;
+import io.annot8.core.data.Properties;
 
 public class SimpleProperties implements Properties {
   private final Map<String, Object> properties = new HashMap<>();

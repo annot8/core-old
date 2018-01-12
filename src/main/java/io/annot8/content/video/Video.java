@@ -1,7 +1,7 @@
 package io.annot8.content.video;
 
 import io.annot8.content.image.Image;
-import io.annot8.core.content.TypedContent;
+import io.annot8.core.data.TypedContent;
 
 public interface Video
     extends TypedContent<VideoBounds, VideoAnnotation, VideoAnnotations, byte[]> {

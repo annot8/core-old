@@ -1,4 +1,4 @@
-package io.annot8.impl.context;
+package io.annot8.impl.data;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 import io.annot8.core.components.Resource;
-import io.annot8.core.context.Context;
+import io.annot8.core.data.Context;
 
 public class SimpleContext implements Context {
   private final Map<Class<? extends Resource>, Map<String, Resource>> resources = new HashMap<>();

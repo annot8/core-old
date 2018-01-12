@@ -8,8 +8,8 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 import io.annot8.core.components.Source;
-import io.annot8.core.components.javaannotations.ConfigurationParameter;
-import io.annot8.core.context.Context;
+import io.annot8.core.components.java.ConfigurationParameter;
+import io.annot8.core.data.Context;
 import io.annot8.core.data.Item;
 
 @ConfigurationParameter(key = "path", defaultValue = ".",

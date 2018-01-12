@@ -1,7 +1,6 @@
-package io.annot8.core.content;
+package io.annot8.core.data;
 
 import io.annot8.core.helpers.WithTags;
-import io.annot8.core.stores.Annotations;
 
 public interface Content extends WithTags {
 

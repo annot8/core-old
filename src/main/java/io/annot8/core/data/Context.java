@@ -1,4 +1,4 @@
-package io.annot8.core.context;
+package io.annot8.core.data;
 
 import java.util.Optional;
 import java.util.stream.Stream;

@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
-import io.annot8.core.stores.Annotations;
+import io.annot8.core.data.Annotations;
 
 public abstract class AbstractMemoryStore<B extends Bounds, A extends Annotation<B>>
     implements Annotations<B, A> {

@@ -1,8 +1,7 @@
-package io.annot8.core.components;
+package io.annot8.core.data;
 
 import java.util.Collection;
 import java.util.Collections;
-import io.annot8.core.data.Item;
 
 // TODO: Name me better
 public class Response {

@@ -1,4 +1,4 @@
-package io.annot8.impl.content;
+package io.annot8.impl.data;
 
 import java.util.HashSet;
 import java.util.Objects;

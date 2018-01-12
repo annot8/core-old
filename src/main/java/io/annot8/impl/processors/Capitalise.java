@@ -2,13 +2,13 @@ package io.annot8.impl.processors;
 
 import io.annot8.content.text.Text;
 import io.annot8.core.components.Processor;
-import io.annot8.core.components.Response;
-import io.annot8.core.components.javaannotations.CreatesContent;
-import io.annot8.core.content.Content;
+import io.annot8.core.components.java.CreatesContent;
+import io.annot8.core.data.Content;
 import io.annot8.core.data.Item;
+import io.annot8.core.data.Response;
 import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.ProcessingException;
-import io.annot8.impl.content.SimpleText;
+import io.annot8.impl.data.SimpleText;
 
 @CreatesContent(Text.class)
 public class Capitalise implements Processor {
