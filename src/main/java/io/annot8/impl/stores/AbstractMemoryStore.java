@@ -5,10 +5,10 @@ import java.util.Map;
 import java.util.stream.Stream;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
-import io.annot8.core.stores.AnnotationStore;
+import io.annot8.core.stores.Annotations;
 
 public abstract class AbstractMemoryStore<B extends Bounds, A extends Annotation<B>>
-    implements AnnotationStore<B, A> {
+    implements Annotations<B, A> {
   private final Map<String, A> annotations = new HashMap<>();
 
   @Override

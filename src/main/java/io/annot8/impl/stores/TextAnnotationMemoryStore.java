@@ -1,13 +1,13 @@
 package io.annot8.impl.stores;
 
-import io.annot8.core.annotations.TextAnnotation;
-import io.annot8.core.bounds.LinearBounds;
-import io.annot8.impl.annotations.SimpleLinearMention;
+import io.annot8.content.text.TextBounds;
+import io.annot8.content.text.TextAnnotation;
+import io.annot8.impl.annotations.SimpleTextAnnotation;
 
-public class TextAnnotationMemoryStore extends AbstractMemoryStore<LinearBounds, TextAnnotation> {
+public class TextAnnotationMemoryStore extends AbstractMemoryStore<TextBounds, TextAnnotation> {
 
   @Override
-  public TextAnnotation createNew(final LinearBounds bounds) {
-    return new SimpleLinearMention(bounds);
+  public TextAnnotation createNew(final TextBounds bounds) {
+    return new SimpleTextAnnotation(bounds);
   }
 }

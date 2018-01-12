@@ -1,11 +1,9 @@
-package io.annot8.core.content;
+package io.annot8.content.image;
 
-import io.annot8.core.annotations.ImageAnnotation;
-import io.annot8.core.bounds.AreaBounds;
-import io.annot8.core.stores.ImageAnnotationStore;
+import io.annot8.core.content.TypedContent;
 
 public interface Image
-    extends TypedContent<AreaBounds, ImageAnnotation, ImageAnnotationStore, byte[]> {
+    extends TypedContent<ImageBounds, ImageAnnotation, ImageAnnotationStore, byte[]> {
 
   int getWidth();
 

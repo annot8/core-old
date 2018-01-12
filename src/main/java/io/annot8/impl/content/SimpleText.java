@@ -5,9 +5,9 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
-import io.annot8.core.bounds.LinearBounds;
-import io.annot8.core.content.Text;
-import io.annot8.core.stores.TextAnnotationStore;
+import io.annot8.content.text.Text;
+import io.annot8.content.text.TextAnnotationStore;
+import io.annot8.content.text.TextBounds;
 
 public class SimpleText implements Text {
 
@@ -74,7 +74,7 @@ public class SimpleText implements Text {
   }
 
   @Override
-  public String getText(final LinearBounds lb) {
+  public String getText(final TextBounds lb) {
     if (lb != null && lb.getBegin() >= 0 && lb.getEnd() >= 0 && lb.getBegin() >= lb.getEnd()) {
       return content.substring(lb.getBegin(), lb.getEnd());
     } else {

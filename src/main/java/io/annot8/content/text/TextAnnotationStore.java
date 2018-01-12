@@ -1,8 +1,7 @@
-package io.annot8.core.stores;
+package io.annot8.content.text;
 
-import io.annot8.core.annotations.TextAnnotation;
-import io.annot8.core.bounds.LinearBounds;
+import io.annot8.core.stores.Annotations;
 
-public interface TextAnnotationStore extends AnnotationStore<LinearBounds, TextAnnotation> {
+public interface TextAnnotationStore extends Annotations<TextBounds, TextAnnotation> {
 
 }

@@ -1,7 +1,7 @@
-package io.annot8.core.annotations;
+package io.annot8.content.image;
 
-import io.annot8.core.bounds.AreaBounds;
+import io.annot8.core.annotations.Annotation;
 
-public interface ImageAnnotation extends Annotation<AreaBounds> {
+public interface ImageAnnotation extends Annotation<ImageBounds> {
 
 }

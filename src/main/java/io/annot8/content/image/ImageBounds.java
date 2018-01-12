@@ -1,6 +1,8 @@
-package io.annot8.core.bounds;
+package io.annot8.content.image;
 
-public interface AreaBounds extends Bounds {
+import io.annot8.core.bounds.Bounds;
+
+public interface ImageBounds extends Bounds {
   int getTop();
 
   void setTop(int top);

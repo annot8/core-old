@@ -1,9 +1,7 @@
-package io.annot8.core.content;
+package io.annot8.content.text;
 
 import java.util.Optional;
-import io.annot8.core.annotations.TextAnnotation;
-import io.annot8.core.bounds.LinearBounds;
-import io.annot8.core.stores.TextAnnotationStore;
+import io.annot8.core.content.TypedContent;
 
 /**
  * Documents store the text to be processed, and may also contain links to sub-content (known as
@@ -13,13 +11,13 @@ import io.annot8.core.stores.TextAnnotationStore;
  * use case.
  */
 public interface Text
-    extends TypedContent<LinearBounds, TextAnnotation, TextAnnotationStore, String> {
+    extends TypedContent<TextBounds, TextAnnotation, TextAnnotationStore, String> {
 
   Optional<String> getLanguage();
 
   void setLanguage(String language);
 
   // TODO: Should this be on Content generically
-  String getText(LinearBounds lb);
+  String getText(TextBounds lb);
 
 }

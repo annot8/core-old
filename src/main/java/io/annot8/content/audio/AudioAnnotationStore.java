@@ -1,8 +1,8 @@
-package io.annot8.core.stores;
+package io.annot8.content.audio;
 
-import io.annot8.core.annotations.AudioAnnotation;
-import io.annot8.core.bounds.LinearBounds;
+import io.annot8.content.text.TextBounds;
+import io.annot8.core.stores.Annotations;
 
-public interface AudioAnnotationStore extends AnnotationStore<LinearBounds, AudioAnnotation> {
+public interface AudioAnnotationStore extends Annotations<TextBounds, AudioAnnotation> {
 
 }

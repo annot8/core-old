@@ -2,15 +2,15 @@ package io.annot8.impl.processors;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import io.annot8.core.annotations.TextAnnotation;
-import io.annot8.core.bounds.LinearBounds;
+import io.annot8.content.text.TextBounds;
+import io.annot8.content.text.Text;
+import io.annot8.content.text.TextAnnotation;
+import io.annot8.content.text.TextAnnotationStore;
 import io.annot8.core.components.Processor;
 import io.annot8.core.components.Response;
 import io.annot8.core.components.javaannotations.OutputAnnotation;
-import io.annot8.core.content.Text;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.ProcessingException;
-import io.annot8.core.stores.TextAnnotationStore;
 import io.annot8.impl.bounds.SimpleLinearBounds;
 
 @OutputAnnotation("HASHTAG")
@@ -30,7 +30,7 @@ public class HashTag implements Processor {
 
     final Matcher matcher = HASHTAG.matcher(content.getData());
     while (matcher.find()) {
-      final LinearBounds bounds = new SimpleLinearBounds(matcher.start(), matcher.end());
+      final TextBounds bounds = new SimpleLinearBounds(matcher.start(), matcher.end());
       final TextAnnotation annot = store.createNew(bounds);
       annot.setType("HASHTAG");
       store.save(annot);

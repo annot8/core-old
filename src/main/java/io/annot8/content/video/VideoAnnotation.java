@@ -1,7 +1,7 @@
-package io.annot8.core.annotations;
+package io.annot8.content.video;
 
-import io.annot8.core.bounds.IndexedAreaBounds;
+import io.annot8.core.annotations.Annotation;
 
-public interface VideoAnnotation extends Annotation<IndexedAreaBounds> {
+public interface VideoAnnotation extends Annotation<VideoBounds> {
 
 }

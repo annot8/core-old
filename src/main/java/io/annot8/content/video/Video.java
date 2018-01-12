@@ -1,11 +1,10 @@
-package io.annot8.core.content;
+package io.annot8.content.video;
 
-import io.annot8.core.annotations.VideoAnnotation;
-import io.annot8.core.bounds.IndexedAreaBounds;
-import io.annot8.core.stores.VideoAnnotationStore;
+import io.annot8.content.image.Image;
+import io.annot8.core.content.TypedContent;
 
 public interface Video
-    extends TypedContent<IndexedAreaBounds, VideoAnnotation, VideoAnnotationStore, byte[]> {
+    extends TypedContent<VideoBounds, VideoAnnotation, VideoAnnotationStore, byte[]> {
 
   int getFrames();
 

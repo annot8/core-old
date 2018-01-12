@@ -1,6 +1,8 @@
-package io.annot8.core.bounds;
+package io.annot8.content.video;
 
-public interface IndexedAreaBounds extends Bounds {
+import io.annot8.core.bounds.Bounds;
+
+public interface VideoBounds extends Bounds {
 
   // Area bounds
 

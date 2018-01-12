@@ -1,10 +1,10 @@
 package io.annot8.impl.processors;
 
+import io.annot8.content.text.Text;
 import io.annot8.core.components.Processor;
 import io.annot8.core.components.Response;
 import io.annot8.core.components.javaannotations.CreatesContent;
 import io.annot8.core.content.Content;
-import io.annot8.core.content.Text;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.ProcessingException;

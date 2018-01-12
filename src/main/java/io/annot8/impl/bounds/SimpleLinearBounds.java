@@ -1,8 +1,8 @@
 package io.annot8.impl.bounds;
 
-import io.annot8.core.bounds.LinearBounds;
+import io.annot8.content.text.TextBounds;
 
-public class SimpleLinearBounds implements LinearBounds {
+public class SimpleLinearBounds implements TextBounds {
 
   private int begin;
   private int end;
