@@ -11,7 +11,7 @@ import io.annot8.core.components.Response;
 import io.annot8.core.components.javaannotations.OutputAnnotation;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.ProcessingException;
-import io.annot8.impl.bounds.SimpleLinearBounds;
+import io.annot8.impl.bounds.SimpleTextBounds;
 
 @OutputAnnotation("HASHTAG")
 public class HashTag implements Processor {
@@ -30,7 +30,7 @@ public class HashTag implements Processor {
 
     final Matcher matcher = HASHTAG.matcher(content.getData());
     while (matcher.find()) {
-      final TextBounds bounds = new SimpleLinearBounds(matcher.start(), matcher.end());
+      final TextBounds bounds = new SimpleTextBounds(matcher.start(), matcher.end());
       final TextAnnotation annot = store.createNew(bounds);
       annot.setType("HASHTAG");
       store.save(annot);

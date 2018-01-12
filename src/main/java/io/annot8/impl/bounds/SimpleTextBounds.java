@@ -2,12 +2,12 @@ package io.annot8.impl.bounds;
 
 import io.annot8.content.text.TextBounds;
 
-public class SimpleLinearBounds implements TextBounds {
+public class SimpleTextBounds implements TextBounds {
 
   private int begin;
   private int end;
 
-  public SimpleLinearBounds(final int begin, final int end) {
+  public SimpleTextBounds(final int begin, final int end) {
     this.begin = begin;
     this.end = end;
   }
