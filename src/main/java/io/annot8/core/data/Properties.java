@@ -2,6 +2,7 @@ package io.annot8.core.data;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -16,94 +17,105 @@ public interface Properties {
   /**
    * Returns true if a property with the given exists
    */
-  default boolean hasProperty(final String key) {
-    return getProperties().containsKey(key);
+  default boolean has(final String key) {
+    return getAll().containsKey(key);
   }
 
-  default <T> boolean hasProperty(final String key, final Class<T> clazz) {
-    return getProperties(clazz).containsKey(key);
+  default boolean has(final String key, final Class<?> clazz) {
+    return getAll(clazz).containsKey(key);
   }
 
   /**
    * Return the property value for the specified key, if it exists
    */
-  default Optional<Object> getProperty(final String key) {
-    return Optional.ofNullable(getProperties().get(key));
+  default Optional<Object> get(final String key) {
+    return Optional.ofNullable(getAll().get(key));
   }
 
   default <T> Optional<T> getProperty(final String key, final Class<T> clazz) {
-    return Optional.ofNullable(getProperties(clazz).get(key));
+    return Optional.ofNullable(getAll(clazz).get(key));
   }
 
   /**
    * Return the property value for the specified key, or a default value if the key doesn't exist
    */
-  default Object getPropertyOrDefault(final String key, final Object defaultValue) {
-    return getProperty(key).orElse(defaultValue);
+  default Object getObjectOrDefault(final String key, final Object defaultValue) {
+    return get(key).orElse(defaultValue);
   }
 
-  default <T> T getPropertyOrDefault(final String key, final T defaultValue, final Class<T> clazz) {
-    return getProperty(key, clazz).orElse(defaultValue);
+  @SuppressWarnings("unchecked")
+  default <T> T getOrDefault(final String key, final T defaultValue) {
+    final Class<? extends Object> clazz = defaultValue.getClass();
+    final Object o = getObjectOrDefault(key, defaultValue.getClass());
+    if (o != null && clazz.isInstance(o)) {
+      return (T) clazz.cast(o);
+    } else {
+      return defaultValue;
+    }
   }
 
   /**
    * Set the property value for the specified key
    */
-  void setProperty(String key, Object value);
+  void set(String key, Object value);
 
   /**
    * Remove the property for the specified key, and return it's object (if it exists)
    */
-  Optional<Object> removeProperty(String key);
+  Optional<Object> remove(String key);
 
   /**
    * List the currently set property keys
    */
-  default Stream<String> listPropertyKeys() {
-    return getProperties().keySet().stream();
+  default Stream<String> keys() {
+    return getAll().keySet().stream();
   }
 
-  default <T> Stream<String> listPropertyKeys(final Class<T> clazz) {
-    return getProperties(clazz).keySet().stream();
+  default <T> Stream<String> listKeys(final Class<T> clazz) {
+    return getAll(clazz).keySet().stream();
   }
 
   /**
    * Return a map of all properties
    */
-  Map<String, Object> getProperties();
+  Map<String, Object> getAll();
 
-  default <T> Map<String, T> getProperties(final Class<T> clazz) {
-    return getProperties().entrySet().stream().filter(e -> clazz.isInstance(e.getValue()))
-        .collect(Collectors.toMap(e -> e.getKey(), e -> clazz.cast(e.getValue())));
+  default <T> Map<String, T> getAll(final Class<T> clazz) {
+    return getAll().entrySet().stream().filter(e -> clazz.isInstance(e.getValue()))
+        .collect(Collectors.toMap(Entry<String, Object>::getKey, e -> clazz.cast(e.getValue())));
   }
 
   /**
    * Set the current properties to be equal to the map
    */
-  default void setProperties(final Map<String, Object> properties) {
+  default void set(final Map<String, Object> properties) {
     clear();
-    addProperties(properties);
+    add(properties);
   }
 
   /**
    * Return a map of all properties
    */
   default void clear() {
-    listPropertyKeys().forEach(this::removeProperty);
+    keys().forEach(this::remove);
   }
 
   /**
    * Add all properties from the given map, overwriting values where they already exist
    */
-  default void addProperties(final Map<String, Object> properties) {
-    properties.forEach(this::setProperty);
+  default void add(final Map<String, Object> properties) {
+    if (properties != null) {
+      properties.forEach(this::set);
+    }
   }
 
   /**
    * Remove all properties that match the given keys
    */
-  default void removeProperties(final Collection<String> keys) {
-    keys.forEach(this::removeProperty);
+  default void remove(final Collection<String> keys) {
+    if (keys != null) {
+      keys.forEach(this::remove);
+    }
   }
 
 }

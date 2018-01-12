@@ -9,17 +9,17 @@ public class SimpleProperties implements Properties {
   private final Map<String, Object> properties = new HashMap<>();
 
   @Override
-  public void setProperty(final String key, final Object value) {
+  public void set(final String key, final Object value) {
     properties.put(key, value);
   }
 
   @Override
-  public Optional<Object> removeProperty(final String key) {
+  public Optional<Object> remove(final String key) {
     return Optional.ofNullable(properties.remove(key));
   }
 
   @Override
-  public Map<String, Object> getProperties() {
+  public Map<String, Object> getAll() {
     return properties;
   }
 
