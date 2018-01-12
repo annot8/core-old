@@ -13,6 +13,8 @@ public class Response {
 
   private final Status status;
 
+  // TODO: If you add a new item, are we processing from this point on in the pipeline, or back at
+  // the start? NEed to do both??
   private final Collection<Item> items;
 
   private Response(final Status status) {

@@ -1,5 +1,6 @@
 package io.annot8.core.bounds;
 
+// TODO: Dead? since we have a type safe content...
 public class NoBounds implements Bounds {
 
   /**
