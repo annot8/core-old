@@ -1,9 +1,8 @@
 package io.annot8.core.components;
 
-import java.util.stream.Stream;
 import io.annot8.content.text.Text;
 import io.annot8.core.data.Annotations;
-import io.annot8.core.data.Item;
+import io.annot8.core.data.SourceResponse;
 
 /**
  * Provides content for processing from a given data source, for example a folder of files on disk,
@@ -15,5 +14,6 @@ import io.annot8.core.data.Item;
  */
 public interface Source extends Annot8Component {
 
-  Stream<Item> getDataItems();
+  SourceResponse read();
+
 }

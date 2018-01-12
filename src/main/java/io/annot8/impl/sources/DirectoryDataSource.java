@@ -6,11 +6,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Stream;
 import io.annot8.core.components.Source;
 import io.annot8.core.components.java.ConfigurationParameter;
 import io.annot8.core.data.Context;
 import io.annot8.core.data.Item;
+import io.annot8.core.data.SourceResponse;
 
 @ConfigurationParameter(key = "path", defaultValue = ".",
     description = "The folder to process (folder is processed recursively)")
@@ -29,13 +29,13 @@ public abstract class DirectoryDataSource implements Source {
   }
 
   @Override
-  public Stream<Item> getDataItems() {
+  public SourceResponse read() {
     try {
-      return Files.walk(rootFolder).filter(Files::isRegularFile).filter(this::accept)
-          .map(this::createDataItem).filter(Objects::nonNull);
+      return SourceResponse.ok(Files.walk(rootFolder).filter(Files::isRegularFile)
+          .filter(this::accept).map(this::createDataItem).filter(Objects::nonNull));
     } catch (final IOException ioe) {
       // TODO: Log error
-      return Stream.empty();
+      return SourceResponse.sourceError();
     }
   }
 

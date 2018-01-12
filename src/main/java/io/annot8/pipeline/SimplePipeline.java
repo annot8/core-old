@@ -9,7 +9,7 @@ import io.annot8.core.components.Source;
 import io.annot8.core.data.Context;
 import io.annot8.core.data.Item;
 import io.annot8.core.data.ProcessResponse;
-import io.annot8.core.data.ProcessResponse.Status;
+import io.annot8.core.data.SourceResponse;
 import io.annot8.core.exceptions.Annot8Exception;
 import io.annot8.core.exceptions.ProcessingException;
 import io.annot8.impl.data.SimpleContext;
@@ -54,9 +54,21 @@ public class SimplePipeline {
     processors =
         processors.stream().filter(p -> configureComponent(p)).collect(Collectors.toList());
 
-    for (final Source dataSource : sources) {
-      dataSource.getDataItems().forEach(this::process);
+    for (final Source source : sources) {
+      process(source);
     }
+
+  }
+
+  private void process(final Source source) {
+    SourceResponse.Status status;
+    do {
+      final SourceResponse response = source.read();
+      status = response.getStatus();
+      if (status == SourceResponse.Status.OK) {
+        response.getItems().forEach(this::process);
+      }
+    } while (status == SourceResponse.Status.OK);
 
   }
 
@@ -67,11 +79,10 @@ public class SimplePipeline {
     // TODO: PipelineSource is not a dataSource so this is a bit of a hack
     // it should probably be a DataSource which is the first to be cleared out each time
 
-    while (pipelineSource.hasItems()) {
-      final Item i = pipelineSource.next();
-      processItem(i);
+    SourceResponse response;
+    while ((response = pipelineSource.read()).getStatus() == SourceResponse.Status.OK) {
+      response.getItems().forEach(this::processItem);
     }
-
   }
 
   private void processItem(final Item item) {
@@ -79,8 +90,8 @@ public class SimplePipeline {
       try {
         final ProcessResponse response = processor.process(item);
 
-        final Status status = response.getStatus();
-        if (status == Status.OK) {
+        final ProcessResponse.Status status = response.getStatus();
+        if (status == ProcessResponse.Status.OK) {
           final Collection<Item> items = response.getItems();
 
           if (items == null || items.isEmpty()) {
@@ -103,12 +114,12 @@ public class SimplePipeline {
 
 
           }
-        } else if (status == Status.PIPELINE_ERROR) {
+        } else if (status == ProcessResponse.Status.PIPELINE_ERROR) {
           // TODO: Would do something nicer here but
           System.err.println("Pipeline problem, exiting");
 
           System.exit(1);
-        } else if (status == Status.ITEM_ERROR) {
+        } else if (status == ProcessResponse.Status.ITEM_ERROR) {
           System.err.println("Item problem, skipping rest of pipeline");
           return;
         }

@@ -2,26 +2,35 @@ package io.annot8.impl.sources;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import io.annot8.core.components.Source;
 import io.annot8.core.data.Item;
+import io.annot8.core.data.SourceResponse;
 
-public class PipelineSource {
+public class PipelineSource implements Source {
 
   private final Deque<Item> items = new ArrayDeque<>();
 
-
-  public boolean hasItems() {
-    return items.isEmpty();
-  }
-
-  public Item next() {
-    return items.pop();
-  }
-
-  public void add(final Item item) {
+  public synchronized void add(final Item item) {
     items.addLast(item);
   }
 
-  // TODO: Stream is not really compatible with this... so its not a Source
+  @Override
+  public synchronized SourceResponse read() {
+    if (!hasItems()) {
+      return SourceResponse.empty();
+    } else {
+      return SourceResponse.ok(next());
+    }
+  }
+
+
+  private boolean hasItems() {
+    return items.isEmpty();
+  }
+
+  private Item next() {
+    return items.pop();
+  }
 
 
 
