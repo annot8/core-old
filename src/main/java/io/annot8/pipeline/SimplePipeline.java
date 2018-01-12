@@ -1,24 +1,28 @@
 package io.annot8.pipeline;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import io.annot8.core.components.Annot8Component;
 import io.annot8.core.components.Processor;
+import io.annot8.core.components.Resource;
 import io.annot8.core.components.Source;
-import io.annot8.core.data.Context;
 import io.annot8.core.data.Item;
 import io.annot8.core.data.ProcessResponse;
 import io.annot8.core.data.SourceResponse;
 import io.annot8.core.exceptions.Annot8Exception;
 import io.annot8.core.exceptions.ProcessingException;
-import io.annot8.impl.data.SimpleContext;
+import io.annot8.impl.data.SimpleComponentContext;
+import io.annot8.impl.data.SimpleGlobalContext;
 import io.annot8.impl.processors.Capitalise;
 import io.annot8.impl.processors.Email;
 import io.annot8.impl.processors.HashTag;
 import io.annot8.impl.processors.PrintMentions;
+import io.annot8.impl.sources.DirectorySourceSettings;
 import io.annot8.impl.sources.PipelineSource;
-import io.annot8.impl.sources.TxtDirectoryDataSource;
+import io.annot8.impl.sources.TxtDirectorySource;
 
 /**
  * Simple proof of concept pipeline that assumes that data sources produce a finite number of
@@ -27,32 +31,66 @@ import io.annot8.impl.sources.TxtDirectoryDataSource;
  */
 public class SimplePipeline {
 
-  private final Context context;
-  private Collection<Source> sources = new ArrayList<>();
-  private Collection<Processor> processors = new ArrayList<>();
+  private final Map<Source, Object> sourcesToConfiguration = new HashMap<>();
+  private final Map<Processor, Object> processorToConfiguration = new HashMap<>();
+  private final Map<Resource, Object> resourcesToConfiguration = new HashMap<>();
+
+  private final Map<String, Resource> resources = new HashMap<>();
+  private Collection<Source> sources;
+  private Collection<Processor> processors;
 
   private final PipelineSource pipelineSource = new PipelineSource();
 
-
-  public SimplePipeline(final Context context) {
-    this.context = context;
+  public void addResource(final String id, final Resource resource) {
+    addResource(id, resource, null);
   }
 
   public void addDataSource(final Source source) {
-    sources.add(source);
+    addDataSource(source, null);
   }
 
   public void addProcessor(final Processor processor) {
-    processors.add(processor);
+    addProcessor(processor, null);
+  }
+
+  public void addResource(final String id, final Resource resource, final Object configuration) {
+    resourcesToConfiguration.put(resource, configuration);
+    resources.put(id, resource);
+  }
+
+  public void addDataSource(final Source source, final Object configuration) {
+    sourcesToConfiguration.put(source, configuration);
+  }
+
+  public void addProcessor(final Processor processor, final Object configuration) {
+    processorToConfiguration.put(processor, configuration);
   }
 
   public void run() {
 
+
+    final SimpleGlobalContext globalContext = new SimpleGlobalContext();
+
+
+    // TODO: Resources need to be set up in order!
+    resourcesToConfiguration.entrySet().stream()
+        .filter(e -> configureComponent(globalContext, e.getKey(), e.getValue()));
+
+    // TODO: Failed resource are just included here anyway
+    resources.forEach(globalContext::addResource);
+
+
     // TODO: Really, each component should be initialised with it's own configuration (i.e. so we
     // could have multiple data sources with different paths)
-    sources = sources.stream().filter(s -> configureComponent(s)).collect(Collectors.toList());
-    processors =
-        processors.stream().filter(p -> configureComponent(p)).collect(Collectors.toList());
+    // TODO: Failed
+
+
+    sources = sourcesToConfiguration.entrySet().stream()
+        .filter(e -> configureComponent(globalContext, e.getKey(), e.getValue())).map(Entry::getKey)
+        .collect(Collectors.toList());
+    processors = processorToConfiguration.entrySet().stream()
+        .filter(e -> configureComponent(globalContext, e.getKey(), e.getValue())).map(Entry::getKey)
+        .collect(Collectors.toList());
 
     for (final Source source : sources) {
       process(source);
@@ -132,8 +170,13 @@ public class SimplePipeline {
     }
   }
 
-  private boolean configureComponent(final Annot8Component component) {
+  private boolean configureComponent(final SimpleGlobalContext globalContext,
+      final Annot8Component component, final Object configuration) {
+
+
     try {
+      final SimpleComponentContext context =
+          new SimpleComponentContext(globalContext, configuration);
       component.configure(context);
     } catch (final Annot8Exception e) {
       // TODO: Log this error
@@ -145,12 +188,10 @@ public class SimplePipeline {
   }
 
   public static void main(final String[] args) {
-    final SimpleContext context = new SimpleContext();
-    context.addConfiguration("path", args[0]);
 
-    final SimplePipeline pipeline = new SimplePipeline(context);
+    final SimplePipeline pipeline = new SimplePipeline();
 
-    pipeline.addDataSource(new TxtDirectoryDataSource());
+    pipeline.addDataSource(new TxtDirectorySource(), new DirectorySourceSettings(args[0]));
     pipeline.addProcessor(new Capitalise());
     pipeline.addProcessor(new Email());
     pipeline.addProcessor(new HashTag());

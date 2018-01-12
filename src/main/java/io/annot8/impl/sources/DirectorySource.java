@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
-import java.util.Optional;
 import io.annot8.core.components.Source;
 import io.annot8.core.components.java.ConfigurationParameter;
 import io.annot8.core.data.Context;
@@ -14,18 +13,15 @@ import io.annot8.core.data.SourceResponse;
 
 @ConfigurationParameter(key = "path", defaultValue = ".",
     description = "The folder to process (folder is processed recursively)")
-public abstract class DirectoryDataSource implements Source {
+public abstract class DirectorySource implements Source {
 
   private Path rootFolder;
 
   @Override
   public void configure(final Context context) {
-    final Optional<Object> root = context.getConfiguration("path");
-    if (root.isPresent()) {
-      rootFolder = Paths.get(root.get().toString());
-    } else {
-      rootFolder = Paths.get(".");
-    }
+    final DirectorySourceSettings settings =
+        context.getConfiguration(DirectorySourceSettings.class);
+    rootFolder = Paths.get(settings.getRootFolder());
   }
 
   @Override

@@ -10,17 +10,23 @@ import io.annot8.core.components.Resource;
  */
 public interface Context {
 
-  Optional<Object> getConfiguration(String key);
+  Optional<Object> getConfiguration();
 
-  default <T> Optional<T> getConfiguration(final String key, final Class<T> clazz) {
-    final Optional<Object> o = getConfiguration(key);
+  default <T> T getConfiguration(final Class<T> clazz) {
+    final Optional<Object> o = getConfiguration();
     if (o.isPresent()) {
       final Object v = o.get();
       if (clazz.isInstance(v)) {
-        return Optional.of(clazz.cast(v));
+        return clazz.cast(v);
       }
     }
-    return Optional.empty();
+
+    // Attempt to create an instance of the class (assuming it will have default set)
+    try {
+      return clazz.getConstructor().newInstance();
+    } catch (final Exception e) {
+      return null;
+    }
   }
 
   <T extends Resource> Optional<T> getResource(String key, Class<T> clazz);

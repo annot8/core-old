@@ -9,7 +9,7 @@ import io.annot8.core.data.Item;
 import io.annot8.impl.data.SimpleItem;
 import io.annot8.impl.data.SimpleText;
 
-public class TxtDirectoryDataSource extends DirectoryDataSource {
+public class TxtDirectorySource extends DirectorySource {
   @Override
   public boolean accept(final Path p) {
     return p.toString().toLowerCase().endsWith(".txt");
