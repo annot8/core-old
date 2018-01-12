@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 import io.annot8.content.text.TextBounds;
 import io.annot8.content.text.Text;
 import io.annot8.content.text.TextAnnotation;
-import io.annot8.content.text.TextAnnotationStore;
+import io.annot8.content.text.TextAnnotations;
 import io.annot8.core.components.Processor;
 import io.annot8.core.components.Response;
 import io.annot8.core.components.javaannotations.OutputAnnotation;
@@ -26,7 +26,7 @@ public class HashTag implements Processor {
 
   private void processText(final Text content) {
 
-    final TextAnnotationStore store = content.getAnnotationStore();
+    final TextAnnotations store = content.getAnnotations();
 
     final Matcher matcher = HASHTAG.matcher(content.getData());
     while (matcher.find()) {

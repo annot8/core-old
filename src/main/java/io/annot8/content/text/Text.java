@@ -11,7 +11,7 @@ import io.annot8.core.content.TypedContent;
  * use case.
  */
 public interface Text
-    extends TypedContent<TextBounds, TextAnnotation, TextAnnotationStore, String> {
+    extends TypedContent<TextBounds, TextAnnotation, TextAnnotations, String> {
 
   Optional<String> getLanguage();
 

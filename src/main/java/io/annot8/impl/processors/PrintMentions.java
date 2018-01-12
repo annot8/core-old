@@ -1,7 +1,7 @@
 package io.annot8.impl.processors;
 
 import io.annot8.content.text.Text;
-import io.annot8.content.text.TextAnnotationStore;
+import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.components.Processor;
@@ -18,7 +18,7 @@ public class PrintMentions implements Processor {
 
   private void processText(final Text content) {
 
-    final TextAnnotationStore store = content.getAnnotationStore();
+    final TextAnnotations store = content.getAnnotations();
 
     store.getAll().forEach(a -> {
       final Bounds bounds = a.getBounds();

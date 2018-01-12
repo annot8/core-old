@@ -8,7 +8,9 @@ public interface TypedContent<B extends Bounds, A extends Annotation<B>, S exten
     extends Content {
 
   // TODO: Do we want this here, vs having a more specific getText etc on Text interface?
+  @Override
   D getData();
 
-  S getAnnotationStore();
+  @Override
+  S getAnnotations();
 }
