@@ -3,7 +3,6 @@ package io.annot8.core.data;
 import java.util.Collection;
 import java.util.stream.Stream;
 
-// TODO: Name me better
 // TODO: For consistency with rest of core, should this be an interface? Not sure
 public class SourceResponse {
 
@@ -20,8 +19,6 @@ public class SourceResponse {
 
   private final Status status;
 
-  // TODO: If you add a new item, are we processing from this point on in the pipeline, or back at
-  // the start? NEed to do both??
   private final Stream<Item> items;
 
   private SourceResponse(final Status status) {

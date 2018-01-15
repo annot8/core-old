@@ -1,20 +1,19 @@
 package io.annot8.impl.data;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Stream;
 import io.annot8.content.text.Text;
 import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
+import io.annot8.core.data.Tags;
+
+import java.util.Objects;
+import java.util.Optional;
 
 public class SimpleText implements Text {
 
   private String language = null;
   private final String content;
 
-  private final Set<String> tags = new HashSet<>();
+  private Tags tags = new SimpleTags();
 
   public SimpleText(final String content) {
     this.content = content;
@@ -42,21 +41,6 @@ public class SimpleText implements Text {
   }
 
   @Override
-  public Stream<String> getTags() {
-    return tags.stream();
-  }
-
-  @Override
-  public boolean addTag(final String tag) {
-    return tags.add(tag);
-  }
-
-  @Override
-  public boolean removeTag(final String tag) {
-    return tags.remove(tag);
-  }
-
-  @Override
   public boolean equals(final Object obj) {
     if (!(obj instanceof SimpleText))
       return false;
@@ -80,5 +64,10 @@ public class SimpleText implements Text {
     } else {
       return "";
     }
+  }
+
+  @Override
+  public Tags getTags() {
+    return tags;
   }
 }

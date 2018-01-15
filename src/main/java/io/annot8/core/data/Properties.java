@@ -89,14 +89,14 @@ public interface Properties {
    * Set the current properties to be equal to the map
    */
   default void set(final Map<String, Object> properties) {
-    clear();
+    removeAll();
     add(properties);
   }
 
   /**
    * Return a map of all properties
    */
-  default void clear() {
+  default void removeAll() {
     keys().forEach(this::remove);
   }
 

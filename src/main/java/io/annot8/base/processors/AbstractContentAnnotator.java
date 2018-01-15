@@ -1,12 +1,13 @@
 package io.annot8.base.processors;
 
-import java.util.Optional;
-import java.util.stream.Stream;
 import io.annot8.core.data.Content;
 import io.annot8.core.data.Context;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.BadConfigurationException;
 import io.annot8.core.exceptions.MissingResourceException;
+
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public abstract class AbstractContentAnnotator extends AbstractAnnotator {
 
@@ -58,7 +59,7 @@ public abstract class AbstractContentAnnotator extends AbstractAnnotator {
     if (settings.getTags() == null || settings.getTags().isEmpty()) {
       return true;
     } else {
-      return content.getTags().allMatch(settings.getTags()::contains);
+      return content.getTags().get().allMatch(settings.getTags()::contains);
     }
   }
 
