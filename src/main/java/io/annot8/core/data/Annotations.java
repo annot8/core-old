@@ -28,7 +28,7 @@ public interface Annotations<B extends Bounds, A extends Annotation<B>> {
     annotations.forEach(this::delete);
   }
 
-  default void removeAll() {
+  default void deleteAll() {
     delete(getAll().collect(Collectors.toList()));
   }
 
