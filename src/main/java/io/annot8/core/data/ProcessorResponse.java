@@ -11,9 +11,6 @@ public class ProcessorResponse {
 
   private final Status status;
 
-  // TODO: If you add a new item, are we processing from this point on in the pipeline, or back at
-  // the start? Do we need both to avoid limitations/complexity in pipelines?
-
   private final Stream<Item> items;
 
   private ProcessorResponse(final Status status) {

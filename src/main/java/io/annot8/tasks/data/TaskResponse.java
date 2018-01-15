@@ -1,4 +1,4 @@
-package io.annot8.core.data;
+package io.annot8.tasks.data;
 
 public class TaskResponse {
 

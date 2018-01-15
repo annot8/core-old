@@ -60,7 +60,6 @@ public class SourceResponse {
   }
 
   public static SourceResponse empty() {
-    // TODO Auto-generated method stub
     return new SourceResponse(Status.EMPTY);
   }
 
