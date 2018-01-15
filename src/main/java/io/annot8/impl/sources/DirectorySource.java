@@ -1,18 +1,18 @@
 package io.annot8.impl.sources;
 
+import io.annot8.core.components.Source;
+import io.annot8.core.components.java.SettingsClass;
+import io.annot8.core.data.Context;
+import io.annot8.core.data.Item;
+import io.annot8.core.data.SourceResponse;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
-import io.annot8.core.components.Source;
-import io.annot8.core.components.java.ConfigurationParameter;
-import io.annot8.core.data.Context;
-import io.annot8.core.data.Item;
-import io.annot8.core.data.SourceResponse;
 
-@ConfigurationParameter(key = "path", defaultValue = ".",
-    description = "The folder to process (folder is processed recursively)")
+@SettingsClass(DirectorySourceSettings.class)
 public abstract class DirectorySource implements Source {
 
   private Path rootFolder;
