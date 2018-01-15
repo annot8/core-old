@@ -3,7 +3,7 @@ package io.annot8.core.components;
 import io.annot8.content.text.Text;
 import io.annot8.core.data.Annotations;
 import io.annot8.core.data.Item;
-import io.annot8.core.data.ProcessResponse;
+import io.annot8.core.data.ProcessorResponse;
 import io.annot8.core.exceptions.ProcessingException;
 
 /**
@@ -13,5 +13,5 @@ import io.annot8.core.exceptions.ProcessingException;
 @FunctionalInterface
 public interface Processor extends Annot8Component {
 
-  ProcessResponse process(Item item) throws ProcessingException;
+  ProcessorResponse process(Item item) throws ProcessingException;
 }

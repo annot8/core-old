@@ -1,16 +1,11 @@
 package io.annot8.pipeline;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
 import io.annot8.core.components.Annot8Component;
 import io.annot8.core.components.Processor;
 import io.annot8.core.components.Resource;
 import io.annot8.core.components.Source;
 import io.annot8.core.data.Item;
-import io.annot8.core.data.ProcessResponse;
+import io.annot8.core.data.ProcessorResponse;
 import io.annot8.core.data.SourceResponse;
 import io.annot8.core.exceptions.Annot8Exception;
 import io.annot8.core.exceptions.ProcessingException;
@@ -23,6 +18,13 @@ import io.annot8.impl.processors.PrintMentions;
 import io.annot8.impl.sources.DirectorySourceSettings;
 import io.annot8.impl.sources.PipelineSource;
 import io.annot8.impl.sources.TxtDirectorySource;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Simple proof of concept pipeline that assumes that data sources produce a finite number of
@@ -114,9 +116,6 @@ public class SimplePipeline {
 
     processItem(item);
 
-    // TODO: PipelineSource is not a dataSource so this is a bit of a hack
-    // it should probably be a DataSource which is the first to be cleared out each time
-
     SourceResponse response;
     while ((response = pipelineSource.read()).getStatus() == SourceResponse.Status.OK) {
       response.getItems().forEach(this::processItem);
@@ -126,38 +125,23 @@ public class SimplePipeline {
   private void processItem(final Item item) {
     for (final Processor processor : processors) {
       try {
-        final ProcessResponse response = processor.process(item);
+        final ProcessorResponse response = processor.process(item);
 
-        final ProcessResponse.Status status = response.getStatus();
-        if (status == ProcessResponse.Status.OK) {
-          final Collection<Item> items = response.getItems();
+        final ProcessorResponse.Status status = response.getStatus();
+        if (status == ProcessorResponse.Status.OK) {
+          final Stream<Item> items = response.getItems();
 
-          if (items == null || items.isEmpty()) {
-            // If we have nothing to continue processing, we stop
-            return;
-          } else {
+          items.filter(i -> i != item).forEach(pipelineSource::add);
 
-            // Add all the items (which aren't the one we are currently processing to our
-            // PipelineQueue)
-            for (final Item i : items) {
-              if (i != item) {
-                pipelineSource.add(i);
-              }
-            }
+          //TODO: JB: Personally, I think we should ignore the case where item is included in the output and use the status to control whether we continue or not
+          // If we decide otherwise, then that needs implementing here
 
-            // If we don't have this time in our list then we stop, and move to the next pipeline
-            if (!items.contains(item)) {
-              return;
-            }
-
-
-          }
-        } else if (status == ProcessResponse.Status.PIPELINE_ERROR) {
+        } else if (status == ProcessorResponse.Status.PIPELINE_ERROR) {
           // TODO: Would do something nicer here but
           System.err.println("Pipeline problem, exiting");
 
           System.exit(1);
-        } else if (status == ProcessResponse.Status.ITEM_ERROR) {
+        } else if (status == ProcessorResponse.Status.ITEM_ERROR) {
           System.err.println("Item problem, skipping rest of pipeline");
           return;
         }

@@ -3,13 +3,13 @@ package io.annot8.base.processors;
 import java.util.stream.Stream;
 import io.annot8.core.components.Processor;
 import io.annot8.core.data.Item;
-import io.annot8.core.data.ProcessResponse;
+import io.annot8.core.data.ProcessorResponse;
 import io.annot8.core.exceptions.ProcessingException;
 
 public abstract class AbstractSpiltter implements Processor {
 
   @Override
-  public final ProcessResponse process(final Item item) throws ProcessingException {
+  public final ProcessorResponse process(final Item item) throws ProcessingException {
     try {
       if (acceptsItem(item)) {
         Stream<Item> items = splitItem(item);
@@ -19,14 +19,14 @@ public abstract class AbstractSpiltter implements Processor {
           items = Stream.concat(Stream.of(item), items);
         }
 
-        return ProcessResponse.ok(items);
+        return ProcessorResponse.ok(items);
       } else {
         // If we don't accept the item assume we aren't discarding it...
-        return ProcessResponse.ok(item);
+        return ProcessorResponse.ok(item);
       }
 
     } catch (final Exception e) {
-      return ProcessResponse.itemError();
+      return ProcessorResponse.itemError();
     }
   }
 
