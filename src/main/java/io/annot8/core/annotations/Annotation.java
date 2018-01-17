@@ -18,4 +18,7 @@ public interface Annotation<B extends Bounds> extends WithId, WithType, WithProp
   // TODO: Should this be a setter? Perhaps you have to ask the annotationStore?
   // that would be safer...
   void setBounds(B bounds);
+
+  // The content against which this annotation was created
+  String getContentName();
 }

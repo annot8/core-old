@@ -9,14 +9,20 @@ import io.annot8.impl.bounds.SimpleTextBounds;
 public class TextAnnotationMemoryStore extends AbstractMemoryStore<TextBounds, TextAnnotation>
     implements TextAnnotations {
 
+  public TextAnnotationMemoryStore(final String contentName) {
+    super(contentName);
+  }
+
   @Override
   public TextAnnotation createNew(final TextBounds bounds) {
-    return new SimpleTextAnnotation(bounds);
+    return new SimpleTextAnnotation(getContentName(), bounds);
   }
 
   @Override
   public TextAnnotation create(final int begin, final int end) {
     return createNew(new SimpleTextBounds(begin, end));
   }
+
+
 
 }

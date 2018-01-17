@@ -1,12 +1,12 @@
 package io.annot8.core.data;
 
+import java.util.Collection;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import io.annot8.content.text.Text;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
-
-import java.util.Collection;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Stores {@link Annotation} objects against {@link Text}s, and allows retrieval of annotations
@@ -37,5 +37,7 @@ public interface Annotations<B extends Bounds, A extends Annotation<B>> {
   default Stream<A> getByType(final String type) {
     return getAll().filter(a -> type.equals(a.getType()));
   }
+
+  Optional<A> getById(String annotationId);
 
 }

@@ -1,28 +1,35 @@
 package io.annot8.impl.data;
 
+import java.util.Objects;
+import java.util.Optional;
 import io.annot8.content.text.Text;
 import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
 import io.annot8.core.data.Tags;
 
-import java.util.Objects;
-import java.util.Optional;
-
 public class SimpleText implements Text {
 
   private String language = null;
+  private final String name;
   private final String content;
 
-  private Tags tags = new SimpleTags();
+  private final Tags tags = new SimpleTags();
+  private final TextAnnotations annotations;
 
-  public SimpleText(final String content) {
+  public SimpleText(final String name, final String content, final TextAnnotations annotations) {
+    this.name = name;
     this.content = content;
+    this.annotations = annotations;
+  }
+
+  @Override
+  public String getName() {
+    return name;
   }
 
   @Override
   public TextAnnotations getAnnotations() {
-    // TODO Auto-generated method stub
-    return null;
+    return annotations;
   }
 
   @Override

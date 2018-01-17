@@ -2,19 +2,21 @@ package io.annot8.impl.annotations;
 
 
 import java.util.UUID;
+import io.annot8.content.text.TextAnnotation;
 import io.annot8.content.text.TextBounds;
 import io.annot8.core.data.Properties;
 import io.annot8.impl.data.SimpleProperties;
-import io.annot8.content.text.TextAnnotation;
 
 public class SimpleTextAnnotation implements TextAnnotation {
+  private final String contentName;
   private final String id;
   private String type;
 
   private TextBounds bounds;
   private final SimpleProperties properties;
 
-  public SimpleTextAnnotation(final TextBounds bounds) {
+  public SimpleTextAnnotation(final String contentName, final TextBounds bounds) {
+    this.contentName = contentName;
     this.id = UUID.randomUUID().toString();
     this.bounds = bounds;
     this.properties = new SimpleProperties();
@@ -23,6 +25,11 @@ public class SimpleTextAnnotation implements TextAnnotation {
   @Override
   public String getId() {
     return id;
+  }
+
+  @Override
+  public String getContentName() {
+    return contentName;
   }
 
   @Override
