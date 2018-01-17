@@ -5,9 +5,10 @@ import java.util.stream.Stream;
 import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.UnsupportedContentException;
 import io.annot8.core.helpers.WithAnnotationCollections;
-import io.annot8.core.helpers.WithProperties;
+import io.annot8.core.helpers.WithEditableProperties;
 
-public interface Item extends WithProperties, WithAnnotationCollections {
+// TODO: WithEditableProperties to make things work ... until we decide if this needs a save?
+public interface Item extends WithEditableProperties, WithAnnotationCollections {
 
   // Contents
   void setDefaultContent(String name);

@@ -1,4 +1,4 @@
-package io.annot8.core.data;
+package io.annot8.core.stores;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -6,21 +6,22 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import io.annot8.content.text.Text;
 import io.annot8.core.annotations.Annotation;
+import io.annot8.core.annotations.EditableAnnotation;
 import io.annot8.core.bounds.Bounds;
 
 /**
  * Stores {@link Annotation} objects against {@link Text}s, and allows retrieval of annotations
  * associated with a given document.
  */
-public interface Annotations<B extends Bounds, A extends Annotation<B>> {
+public interface Annotations<B extends Bounds, A extends Annotation<B>, E extends EditableAnnotation<B>> {
 
-  A createNew(B bounds);
+  E createNew(B bounds);
 
-  void save(A annotation);
+  A save(E annotation);
 
   void delete(A annotation);
 
-  default void save(final Collection<A> annotations) {
+  default void save(final Collection<E> annotations) {
     annotations.forEach(this::save);
   }
 

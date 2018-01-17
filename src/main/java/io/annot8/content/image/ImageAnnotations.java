@@ -1,7 +1,8 @@
 package io.annot8.content.image;
 
-import io.annot8.core.data.Annotations;
+import io.annot8.core.stores.Annotations;
 
-public interface ImageAnnotations extends Annotations<ImageBounds, ImageAnnotation> {
+public interface ImageAnnotations
+    extends Annotations<ImageBounds, ImageAnnotation, EditableImageAnnotation> {
 
 }

@@ -1,27 +1,12 @@
 package io.annot8.core.annotations;
 
-import java.util.Collection;
-import java.util.stream.Stream;
-import io.annot8.core.helpers.WithId;
-import io.annot8.core.helpers.WithProperties;
-import io.annot8.core.helpers.WithType;
+import io.annot8.core.helpers.Deletable;
+import io.annot8.core.helpers.Editable;
 
+// TODO: CF I think this should be called Annotations that's nicer with Annotation
 // TODO: This needs more thought. How does it get stored? Is it linked to a specific view, or does
 // it sit above them?
-public interface AnnotationCollection extends WithId, WithType, WithProperties {
-  Stream<Annotation<?>> getAnnotations();
+public interface AnnotationCollection extends AbstractAnnotationCollection,
+    Editable<AnnotationCollection, EditableAnnotationCollection>, Deletable {
 
-  void addAnnotation(Annotation<?> annotation);
-
-  default void addAllAnnotations(final Collection<Annotation<?>> annotations) {
-    annotations.forEach(this::addAnnotation);
-  }
-
-  void removeAnnotation(Annotation<?> annotation);
-
-  default void removeAllAnnotations(final Collection<Annotation<?>> annotations) {
-    annotations.forEach(this::removeAnnotation);
-  }
-
-  boolean containsAnnotation(Annotation<?> annotation);
 }

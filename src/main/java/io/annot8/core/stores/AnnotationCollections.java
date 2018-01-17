@@ -1,19 +1,20 @@
-package io.annot8.core.data;
+package io.annot8.core.stores;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import io.annot8.core.annotations.AnnotationCollection;
+import io.annot8.core.annotations.EditableAnnotationCollection;
 
 public interface AnnotationCollections {
 
-  AnnotationCollection create();
+  EditableAnnotationCollection create();
 
-  void save(AnnotationCollection annotation);
+  AnnotationCollection save(EditableAnnotationCollection annotation);
 
   void delete(AnnotationCollection annotation);
 
-  default void save(final Collection<AnnotationCollection> annotations) {
+  default void save(final Collection<EditableAnnotationCollection> annotations) {
     annotations.forEach(this::save);
   }
 
@@ -25,7 +26,6 @@ public interface AnnotationCollections {
     delete(getAll().collect(Collectors.toList()));
   }
 
-  // TODO: Call this stream?!?!
   Stream<AnnotationCollection> getAll();
 
   default Stream<AnnotationCollection> getByType(final String type) {

@@ -10,8 +10,8 @@ import io.annot8.core.data.TypedContent;
  * Documents can contain no content and just sub-content, although this is expected to be an unusual
  * use case.
  */
-public interface Text
-    extends TypedContent<TextBounds, TextAnnotation, TextAnnotations, String> {
+public interface Text extends
+    TypedContent<TextBounds, TextAnnotation, EditableTextAnnotation, TextAnnotations, String> {
 
   Optional<String> getLanguage();
 

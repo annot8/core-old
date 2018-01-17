@@ -1,9 +1,10 @@
 package io.annot8.content.text;
 
-import io.annot8.core.data.Annotations;
+import io.annot8.core.stores.Annotations;
 
-public interface TextAnnotations extends Annotations<TextBounds, TextAnnotation> {
+public interface TextAnnotations
+    extends Annotations<TextBounds, TextAnnotation, EditableTextAnnotation> {
 
-  TextAnnotation create(final int begin, final int end);
+  EditableTextAnnotation create(final int begin, final int end);
 
 }

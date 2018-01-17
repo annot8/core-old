@@ -5,6 +5,7 @@ import java.util.Optional;
 import io.annot8.content.text.Text;
 import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
+import io.annot8.core.data.Properties;
 import io.annot8.core.data.Tags;
 
 public class SimpleText implements Text {
@@ -14,6 +15,7 @@ public class SimpleText implements Text {
   private final String content;
 
   private final Tags tags = new SimpleTags();
+  private final Properties properties = new SimpleProperties();
   private final TextAnnotations annotations;
 
   public SimpleText(final String name, final String content, final TextAnnotations annotations) {
@@ -76,5 +78,10 @@ public class SimpleText implements Text {
   @Override
   public Tags getTags() {
     return tags;
+  }
+
+  @Override
+  public Properties getProperties() {
+    return properties;
   }
 }

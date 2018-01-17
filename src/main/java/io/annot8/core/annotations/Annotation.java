@@ -2,9 +2,8 @@ package io.annot8.core.annotations;
 
 
 import io.annot8.core.bounds.Bounds;
-import io.annot8.core.helpers.WithId;
-import io.annot8.core.helpers.WithProperties;
-import io.annot8.core.helpers.WithType;
+import io.annot8.core.helpers.Deletable;
+import io.annot8.core.helpers.Editable;
 
 /**
  * Base annotation interface from which all other annotations extend.
@@ -12,13 +11,7 @@ import io.annot8.core.helpers.WithType;
  * This class provides the common functionality required to track the history of an annotation (i.e.
  * which processor created it, which ones modified it, etc.)
  */
-public interface Annotation<B extends Bounds> extends WithId, WithType, WithProperties {
-  B getBounds();
+public interface Annotation<B extends Bounds>
+    extends AbstractAnnotation<B>, Deletable, Editable<Annotation<B>, EditableAnnotation<B>> {
 
-  // TODO: Should this be a setter? Perhaps you have to ask the annotationStore?
-  // that would be safer...
-  void setBounds(B bounds);
-
-  // The content against which this annotation was created
-  String getContentName();
 }

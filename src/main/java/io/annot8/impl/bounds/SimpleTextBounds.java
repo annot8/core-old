@@ -4,8 +4,8 @@ import io.annot8.content.text.TextBounds;
 
 public class SimpleTextBounds implements TextBounds {
 
-  private int begin;
-  private int end;
+  private final int begin;
+  private final int end;
 
   public SimpleTextBounds(final int begin, final int end) {
     this.begin = begin;
@@ -18,18 +18,9 @@ public class SimpleTextBounds implements TextBounds {
   }
 
   @Override
-  public void setBegin(final int begin) {
-    this.begin = begin;
-  }
-
-  @Override
   public int getEnd() {
     return end;
   }
 
-  @Override
-  public void setEnd(final int end) {
-    this.end = end;
-  }
 
 }

@@ -1,39 +1,30 @@
 package io.annot8.impl.data;
 
-import io.annot8.core.data.Tags;
-
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
+import io.annot8.core.data.Tags;
 
 public class SimpleTags implements Tags {
-    private Set<String> tags;
+  private final Set<String> tags;
 
-    public SimpleTags(){
-        this.tags = new HashSet<>();
-    }
+  public SimpleTags() {
+    this(Collections.emptySet());
+  }
 
-    public SimpleTags(String... tags){
-        this.tags = new HashSet<>(Arrays.asList(tags));
-    }
+  public SimpleTags(final String... tags) {
+    this(new HashSet<>(Arrays.asList(tags)));
+  }
 
-    public SimpleTags(Set<String> tags){
-        this.tags = tags;
-    }
+  public SimpleTags(final Set<String> tags) {
+    this.tags = Collections.unmodifiableSet(tags);
+  }
 
-    @Override
-    public Stream<String> get() {
-        return tags.stream();
-    }
+  @Override
+  public Stream<String> get() {
+    return tags.stream();
+  }
 
-    @Override
-    public boolean add(String tag) {
-        return tags.add(tag);
-    }
-
-    @Override
-    public boolean remove(String tag) {
-        return tags.remove(tag);
-    }
 }

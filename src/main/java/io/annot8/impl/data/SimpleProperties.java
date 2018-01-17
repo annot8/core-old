@@ -3,9 +3,11 @@ package io.annot8.impl.data;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import io.annot8.core.data.EditableProperties;
 import io.annot8.core.data.Properties;
 
-public class SimpleProperties implements Properties {
+// TODO: Different intefaces
+public class SimpleProperties implements Properties, EditableProperties {
   private final Map<String, Object> properties = new HashMap<>();
 
   @Override
@@ -22,5 +24,6 @@ public class SimpleProperties implements Properties {
   public Map<String, Object> getAll() {
     return properties;
   }
+
 
 }

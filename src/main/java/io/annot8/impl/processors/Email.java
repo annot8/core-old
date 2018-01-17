@@ -3,8 +3,8 @@ package io.annot8.impl.processors;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import io.annot8.base.processors.AbstractTextAnnotator;
+import io.annot8.content.text.EditableTextAnnotation;
 import io.annot8.content.text.Text;
-import io.annot8.content.text.TextAnnotation;
 import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
 import io.annot8.core.components.java.OutputAnnotation;
@@ -23,7 +23,7 @@ public class Email extends AbstractTextAnnotator {
     final Matcher matcher = EMAIL.matcher(content.getData());
     while (matcher.find()) {
       final TextBounds bounds = new SimpleTextBounds(matcher.start(), matcher.end());
-      final TextAnnotation annot = store.createNew(bounds);
+      final EditableTextAnnotation annot = store.createNew(bounds);
       annot.setType("EMAIL");
       store.save(annot);
     }

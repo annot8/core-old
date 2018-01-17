@@ -1,6 +1,6 @@
 package io.annot8.core.helpers;
 
-import io.annot8.core.data.AnnotationCollections;
+import io.annot8.core.stores.AnnotationCollections;
 
 public interface WithAnnotationCollections {
 

@@ -5,9 +5,11 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 import io.annot8.core.annotations.AnnotationCollection;
-import io.annot8.core.data.AnnotationCollections;
+import io.annot8.core.annotations.EditableAnnotationCollection;
 import io.annot8.core.data.Item;
+import io.annot8.core.stores.AnnotationCollections;
 import io.annot8.impl.annotations.SimpleAnnotationCollection;
+import io.annot8.impl.annotations.SimpleEditableAnnotationCollection;
 
 public class SimpleAnnotationCollections implements AnnotationCollections {
 
@@ -32,13 +34,16 @@ public class SimpleAnnotationCollections implements AnnotationCollections {
 
 
   @Override
-  public AnnotationCollection create() {
-    return new SimpleAnnotationCollection(item, Long.toString(idGenerator.incrementAndGet()));
+  public EditableAnnotationCollection create() {
+    return new SimpleEditableAnnotationCollection(item,
+        Long.toString(idGenerator.incrementAndGet()));
   }
 
   @Override
-  public void save(final AnnotationCollection annotation) {
-    collections.put(annotation.getId(), annotation);
+  public AnnotationCollection save(final EditableAnnotationCollection annotation) {
+    final AnnotationCollection collection = new SimpleAnnotationCollection(item, annotation);
+    collections.put(collection.getId(), collection);
+    return collection;
   }
 
   @Override

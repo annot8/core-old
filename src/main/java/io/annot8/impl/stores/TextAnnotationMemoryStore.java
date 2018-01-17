@@ -1,12 +1,15 @@
 package io.annot8.impl.stores;
 
+import io.annot8.content.text.EditableTextAnnotation;
 import io.annot8.content.text.TextAnnotation;
 import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
+import io.annot8.impl.annotations.SimpleEditableTextAnnotation;
 import io.annot8.impl.annotations.SimpleTextAnnotation;
 import io.annot8.impl.bounds.SimpleTextBounds;
 
-public class TextAnnotationMemoryStore extends AbstractMemoryStore<TextBounds, TextAnnotation>
+public class TextAnnotationMemoryStore
+    extends AbstractMemoryStore<TextBounds, TextAnnotation, EditableTextAnnotation>
     implements TextAnnotations {
 
   public TextAnnotationMemoryStore(final String contentName) {
@@ -14,15 +17,18 @@ public class TextAnnotationMemoryStore extends AbstractMemoryStore<TextBounds, T
   }
 
   @Override
-  public TextAnnotation createNew(final TextBounds bounds) {
-    return new SimpleTextAnnotation(getContentName(), bounds);
+  public EditableTextAnnotation createNew(final TextBounds bounds) {
+    return new SimpleEditableTextAnnotation(this, getContentName(), bounds);
   }
 
   @Override
-  public TextAnnotation create(final int begin, final int end) {
+  public EditableTextAnnotation create(final int begin, final int end) {
     return createNew(new SimpleTextBounds(begin, end));
   }
 
-
+  @Override
+  protected TextAnnotation fromEditable(final EditableTextAnnotation annotation) {
+    return new SimpleTextAnnotation(this, annotation);
+  }
 
 }

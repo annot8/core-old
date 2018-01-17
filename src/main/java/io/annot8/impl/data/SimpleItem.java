@@ -7,12 +7,12 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 import io.annot8.content.text.Text;
-import io.annot8.core.data.AnnotationCollections;
 import io.annot8.core.data.Content;
+import io.annot8.core.data.EditableProperties;
 import io.annot8.core.data.Item;
-import io.annot8.core.data.Properties;
 import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.UnsupportedContentException;
+import io.annot8.core.stores.AnnotationCollections;
 import io.annot8.impl.stores.TextAnnotationMemoryStore;
 
 public class SimpleItem implements Item {
@@ -103,7 +103,7 @@ public class SimpleItem implements Item {
   }
 
   @Override
-  public Properties getProperties() {
+  public EditableProperties getProperties() {
     return properties;
   }
 
