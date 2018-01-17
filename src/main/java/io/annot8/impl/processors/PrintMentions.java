@@ -6,12 +6,13 @@ import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.data.Item;
+import io.annot8.core.exceptions.Annot8Exception;
 
 public class PrintMentions extends AbstractTextAnnotator {
 
 
   @Override
-  protected void process(final Item item, final Text content) throws Exception {
+  protected void process(final Item item, final Text content) throws Annot8Exception {
     final TextAnnotations store = content.getAnnotations();
 
     store.getAll().forEach(a -> {

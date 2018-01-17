@@ -2,10 +2,12 @@ package io.annot8.core.data;
 
 import io.annot8.core.helpers.WithTags;
 
-public interface Content extends WithTags {
+public interface Content<D> extends WithTags {
 
   // TODO: Do we want this...
-  Object getData();
+  D getData();
 
   Annotations<?, ?> getAnnotations();
+
+  String getName();
 }

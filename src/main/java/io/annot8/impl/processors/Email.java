@@ -18,7 +18,7 @@ public class Email extends AbstractTextAnnotator {
 
 
   @Override
-  protected void process(final Item item, final Text content) throws Exception {
+  protected void process(final Item item, final Text content) {
     final TextAnnotations store = content.getAnnotations();
     final Matcher matcher = EMAIL.matcher(content.getData());
     while (matcher.find()) {

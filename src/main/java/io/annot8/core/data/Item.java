@@ -3,6 +3,7 @@ package io.annot8.core.data;
 import java.util.Optional;
 import java.util.stream.Stream;
 import io.annot8.core.exceptions.AlreadyExistsException;
+import io.annot8.core.exceptions.UnsupportedContentException;
 import io.annot8.core.helpers.WithProperties;
 
 public interface Item extends WithProperties {
@@ -10,7 +11,7 @@ public interface Item extends WithProperties {
   // Contents
   void setDefaultContent(String name);
 
-  Content getDefaultContent();
+  Content<?> getDefaultContent();
 
   default boolean hasContent(final String name) {
     return listContents().anyMatch(name::equals);
@@ -18,13 +19,14 @@ public interface Item extends WithProperties {
 
   Stream<String> listContents();
 
-  Optional<Content> getContent(String name);
+  Optional<Content<?>> getContent(String name);
 
-  Stream<Content> getContents();
+  Stream<Content<?>> getContents();
 
-  <T extends Content> Stream<T> getContents(Class<T> clazz);
+  <T extends Content<?>> Stream<T> getContents(Class<T> clazz);
 
-  void addContent(String name, Content content) throws AlreadyExistsException;
+  <D, C extends Content<D>> C create(String name, Class<C> contentClass, D data)
+      throws AlreadyExistsException, UnsupportedContentException;
 
   void removeContent(String name);
 

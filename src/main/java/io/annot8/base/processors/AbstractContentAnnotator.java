@@ -1,13 +1,12 @@
 package io.annot8.base.processors;
 
+import java.util.Optional;
+import java.util.stream.Stream;
 import io.annot8.core.data.Content;
 import io.annot8.core.data.Context;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.BadConfigurationException;
 import io.annot8.core.exceptions.MissingResourceException;
-
-import java.util.Optional;
-import java.util.stream.Stream;
 
 public abstract class AbstractContentAnnotator extends AbstractAnnotator {
 
@@ -30,7 +29,7 @@ public abstract class AbstractContentAnnotator extends AbstractAnnotator {
     } else {
       // Otherwise get the views the config wanted
 
-      Stream<Content> requestedViews;
+      Stream<Content<?>> requestedViews;
       // Did we limit the views?
       if (settings.getViews() == null || settings.getViews().isEmpty()) {
         requestedViews = item.getContents();
@@ -49,11 +48,11 @@ public abstract class AbstractContentAnnotator extends AbstractAnnotator {
   }
 
 
-  private void checkTagsAndProcessContent(final Content content) {
-
+  private void checkTagsAndProcessContent(final Content<?> content) {
+    // TODO implement me
   }
 
-  protected boolean acceptsContent(final Content content) {
+  protected boolean acceptsContent(final Content<?> content) {
     // TODO: One match / all match?
 
     if (settings.getTags() == null || settings.getTags().isEmpty()) {

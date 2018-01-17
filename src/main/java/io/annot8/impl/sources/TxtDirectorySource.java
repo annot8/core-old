@@ -6,8 +6,9 @@ import java.nio.file.Path;
 import java.time.Instant;
 import io.annot8.content.text.Text;
 import io.annot8.core.data.Item;
+import io.annot8.core.exceptions.AlreadyExistsException;
+import io.annot8.core.exceptions.UnsupportedContentException;
 import io.annot8.impl.data.SimpleItem;
-import io.annot8.impl.data.SimpleText;
 
 public class TxtDirectorySource extends DirectorySource {
   @Override
@@ -16,23 +17,24 @@ public class TxtDirectorySource extends DirectorySource {
   }
 
   @Override
-  public Item createDataItem(final Path p) {
+  public Item createDataItem(final Path p)
+      throws AlreadyExistsException, UnsupportedContentException {
     // TODO: Really we perhaps want a bespoke FileDataItem here?
 
-    Text content;
+    final Item item = new SimpleItem();
+    item.getProperties().set("source", p);
+    item.getProperties().set("accessedAt", Instant.now().getEpochSecond());
+
 
     try {
-      content = new SimpleText(new String(Files.readAllBytes(p)));
+      final String data = new String(Files.readAllBytes(p));
+      final Text content = item.create("raw", Text.class, data);
+      content.setLanguage("x-unknown");
     } catch (final IOException e) {
       // TODO: Log error
       return null;
     }
-    content.setLanguage("x-unknown");
 
-    final Item dataItem = new SimpleItem(content);
-    dataItem.getProperties().set("source", p);
-    dataItem.getProperties().set("accessedAt", Instant.now().getEpochSecond());
-
-    return dataItem;
+    return item;
   }
 }
