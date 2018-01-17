@@ -33,7 +33,10 @@ public class SimpleComponentContext implements Context {
 
   @Override
   public Item createItem() {
-    return new SimpleItem();
+    final SimpleAnnotationCollections annotationCollections = new SimpleAnnotationCollections();
+    final SimpleItem item = new SimpleItem(annotationCollections);
+    annotationCollections.setItem(item);
+    return item;
   }
 
 }

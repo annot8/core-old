@@ -4,9 +4,10 @@ import java.util.Optional;
 import java.util.stream.Stream;
 import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.UnsupportedContentException;
+import io.annot8.core.helpers.WithAnnotationCollections;
 import io.annot8.core.helpers.WithProperties;
 
-public interface Item extends WithProperties {
+public interface Item extends WithProperties, WithAnnotationCollections {
 
   // Contents
   void setDefaultContent(String name);

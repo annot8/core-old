@@ -8,7 +8,6 @@ import io.annot8.content.text.Text;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.UnsupportedContentException;
-import io.annot8.impl.data.SimpleItem;
 
 public class TxtDirectorySource extends DirectorySource {
   @Override
@@ -21,7 +20,7 @@ public class TxtDirectorySource extends DirectorySource {
       throws AlreadyExistsException, UnsupportedContentException {
     // TODO: Really we perhaps want a bespoke FileDataItem here?
 
-    final Item item = new SimpleItem();
+    final Item item = createItem();
     item.getProperties().set("source", p);
     item.getProperties().set("accessedAt", Instant.now().getEpochSecond());
 
@@ -37,4 +36,6 @@ public class TxtDirectorySource extends DirectorySource {
 
     return item;
   }
+
+
 }

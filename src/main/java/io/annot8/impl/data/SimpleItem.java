@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 import io.annot8.content.text.Text;
+import io.annot8.core.data.AnnotationCollections;
 import io.annot8.core.data.Content;
 import io.annot8.core.data.Item;
 import io.annot8.core.data.Properties;
@@ -20,19 +21,22 @@ public class SimpleItem implements Item {
   private String defaultContentName = DEFAULT_CONTENT;
 
   private final SimpleProperties properties = new SimpleProperties();
+  private final AnnotationCollections annotationCollections;
 
   private static final String DEFAULT_CONTENT = "__default";
 
-
-  public SimpleItem() {
-    this(null);
+  public SimpleItem(final AnnotationCollections collections) {
+    this.annotationCollections = collections;
   }
 
-  public SimpleItem(final Content<?> defaultContent) {
+  public SimpleItem(final AnnotationCollections collections, final Content<?> defaultContent) {
+    this(collections);
     contents.put(DEFAULT_CONTENT, defaultContent);
   }
 
-  public SimpleItem(final Content defaultContent, final String defaultContentName) {
+  public SimpleItem(final AnnotationCollections collections, final Content defaultContent,
+      final String defaultContentName) {
+    this(collections);
     contents.put(defaultContentName, defaultContent);
     this.defaultContentName = defaultContentName;
   }
@@ -101,6 +105,11 @@ public class SimpleItem implements Item {
   @Override
   public Properties getProperties() {
     return properties;
+  }
+
+  @Override
+  public AnnotationCollections getAnnotationCollections() {
+    return annotationCollections;
   }
 
 
