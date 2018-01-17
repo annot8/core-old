@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 import io.annot8.core.components.Resource;
 import io.annot8.core.data.Context;
+import io.annot8.core.data.Item;
 
 public class SimpleComponentContext implements Context {
 
@@ -28,6 +29,11 @@ public class SimpleComponentContext implements Context {
   @Override
   public <T extends Resource> Stream<T> getResources(final Class<T> clazz) {
     return context.getResources(clazz);
+  }
+
+  @Override
+  public Item createItem() {
+    return new SimpleItem();
   }
 
 }

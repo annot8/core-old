@@ -18,12 +18,18 @@ import io.annot8.core.exceptions.UnsupportedContentException;
 public abstract class DirectorySource implements Source {
 
   private Path rootFolder;
+  private Context context;
 
   @Override
   public void configure(final Context context) {
     final DirectorySourceSettings settings =
         context.getConfiguration(DirectorySourceSettings.class);
     rootFolder = Paths.get(settings.getRootFolder());
+    this.context = context;
+  }
+
+  protected Item createItem() {
+    return context.createItem();
   }
 
   @Override

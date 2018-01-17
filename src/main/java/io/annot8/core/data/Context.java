@@ -10,6 +10,8 @@ import io.annot8.core.components.Resource;
  */
 public interface Context {
 
+  Item createItem();
+
   Optional<Object> getConfiguration();
 
   default <T> T getConfiguration(final Class<T> clazz) {
