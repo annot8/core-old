@@ -1,5 +1,11 @@
 package io.annot8.pipeline;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import io.annot8.core.components.Annot8Component;
 import io.annot8.core.components.Processor;
 import io.annot8.core.components.Resource;
@@ -18,13 +24,6 @@ import io.annot8.impl.processors.PrintMentions;
 import io.annot8.impl.sources.DirectorySourceSettings;
 import io.annot8.impl.sources.PipelineSource;
 import io.annot8.impl.sources.TxtDirectorySource;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * Simple proof of concept pipeline that assumes that data sources produce a finite number of
@@ -133,7 +132,8 @@ public class SimplePipeline {
 
           items.filter(i -> i != item).forEach(pipelineSource::add);
 
-          //TODO: JB: Personally, I think we should ignore the case where item is included in the output and use the status to control whether we continue or not
+          // TODO: JB: Personally, I think we should ignore the case where item is included in the
+          // output and use the status to control whether we continue or not
           // If we decide otherwise, then that needs implementing here
 
         } else if (status == ProcessorResponse.Status.PIPELINE_ERROR) {

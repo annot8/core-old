@@ -12,7 +12,8 @@ import io.annot8.core.exceptions.Annot8Exception;
 
 @OutputAnnotation("HASHTAG")
 public class HashTag extends AbstractTextAnnotator {
-  private static final Pattern HASHTAG_PATTERN = Pattern.compile("#[a-z0-9]+", Pattern.CASE_INSENSITIVE);
+  private static final Pattern HASHTAG_PATTERN =
+      Pattern.compile("#[a-z0-9]+", Pattern.CASE_INSENSITIVE);
 
   @Override
   protected void process(final Item item, final Text content) throws Annot8Exception {
