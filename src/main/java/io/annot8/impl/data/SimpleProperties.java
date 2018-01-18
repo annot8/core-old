@@ -1,24 +1,20 @@
 package io.annot8.impl.data;
 
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
-import java.util.Optional;
-import io.annot8.core.data.EditableProperties;
 import io.annot8.core.data.Properties;
 
-// TODO: Different intefaces
-public class SimpleProperties implements Properties, EditableProperties {
-  private final Map<String, Object> properties = new HashMap<>();
+public class SimpleProperties implements Properties {
+  private final Map<String, Object> properties;
 
-  @Override
-  public void set(final String key, final Object value) {
-    properties.put(key, value);
+  public SimpleProperties() {
+    this.properties = Collections.emptyMap();
   }
 
-  @Override
-  public Optional<Object> remove(final String key) {
-    return Optional.ofNullable(properties.remove(key));
+  public SimpleProperties(final Properties properties) {
+    this.properties = Collections.unmodifiableMap(properties.getAll());
   }
+
 
   @Override
   public Map<String, Object> getAll() {

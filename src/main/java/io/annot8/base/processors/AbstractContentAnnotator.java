@@ -26,16 +26,16 @@ public abstract class AbstractContentAnnotator extends AbstractAnnotator {
 
     if (settings.isDefaultView()) {
       // If processing default view then jump to that
-      checkTagsAndProcessContent(item.getDefaultContent());
+      checkTagsAndProcessContent(item.getContents().getDefaultContent());
     } else {
       // Otherwise get the views the config wanted
 
       Stream<Content<?>> requestedViews;
       // Did we limit the views?
       if (settings.getViews() == null || settings.getViews().isEmpty()) {
-        requestedViews = item.getContents();
+        requestedViews = item.getContents().getContents();
       } else {
-        requestedViews = settings.getViews().stream().map(item::getContent)
+        requestedViews = settings.getViews().stream().map(item.getContents()::getContent)
             .filter(Optional::isPresent).map(Optional::get);
       }
 

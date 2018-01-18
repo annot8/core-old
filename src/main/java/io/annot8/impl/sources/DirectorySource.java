@@ -8,6 +8,7 @@ import java.util.Objects;
 import io.annot8.core.components.Source;
 import io.annot8.core.components.java.SettingsClass;
 import io.annot8.core.data.Context;
+import io.annot8.core.data.EditableItem;
 import io.annot8.core.data.Item;
 import io.annot8.core.data.SourceResponse;
 import io.annot8.core.exceptions.AlreadyExistsException;
@@ -28,7 +29,7 @@ public abstract class DirectorySource implements Source {
     this.context = context;
   }
 
-  protected Item createItem() {
+  protected EditableItem createItem() {
     return context.createItem();
   }
 

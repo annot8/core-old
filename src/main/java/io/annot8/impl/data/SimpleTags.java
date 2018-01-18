@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import io.annot8.core.data.Tags;
 
 public class SimpleTags implements Tags {
@@ -28,8 +27,8 @@ public class SimpleTags implements Tags {
   }
 
   @Override
-  public Stream<String> stream() {
-    return tags.stream();
+  public Set<String> asSet() {
+    return tags;
   }
 
 }

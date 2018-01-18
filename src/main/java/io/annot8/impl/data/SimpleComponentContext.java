@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.stream.Stream;
 import io.annot8.core.components.Resource;
 import io.annot8.core.data.Context;
-import io.annot8.core.data.Item;
+import io.annot8.core.data.EditableItem;
 
 public class SimpleComponentContext implements Context {
 
@@ -32,9 +32,9 @@ public class SimpleComponentContext implements Context {
   }
 
   @Override
-  public Item createItem() {
+  public EditableItem createItem() {
     final SimpleAnnotationCollections annotationCollections = new SimpleAnnotationCollections();
-    final SimpleItem item = new SimpleItem(annotationCollections);
+    final EditableItem item = new SimpleEditableItem(annotationCollections, new SimpleContents());
     annotationCollections.setItem(item);
     return item;
   }

@@ -41,10 +41,12 @@ public class SimpleAnnotationReference implements AnnotationReference {
     this.annotationId = annotationId;
   }
 
-  // TODO: These are really the only implementation...
+  // TODO: These are really the only implementation... so wonder if they should be on the interface as
+  // defaults? Or if the interface isnt good! ie should just be an annotationId managed internally. no
+  // reference to content
   public static Optional<? extends Annotation<?>> toAnnotation(final Item item,
       final AnnotationReference reference) {
-    return item.getContent(reference.getContentId())
+    return item.getContents().getContent(reference.getContentId())
         .flatMap(c -> c.getAnnotations().getById(reference.getAnnotationId()));
   }
 

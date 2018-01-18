@@ -2,7 +2,6 @@ package io.annot8.impl.annotations;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.annotations.AnnotationCollection;
@@ -26,7 +25,7 @@ public class SimpleEditableAnnotationCollection implements EditableAnnotationCol
     this.item = item;
     this.id = id;
     this.properties = new SimpleProperties();
-    this.references = new HashSet<>();;
+    this.references = new HashSet<>();
   }
 
   public SimpleEditableAnnotationCollection(final Item item,
@@ -36,10 +35,8 @@ public class SimpleEditableAnnotationCollection implements EditableAnnotationCol
     this.type = collection.getType();
     // TODO: I think getting the references is valid on the AnnotationCollection interface as it
     // saves this silliness
-    this.references = new HashSet<>(collection.streamReferences().collect(Collectors.toList()));
-    // TODO: Mutable
-    this.properties = new SimpleProperties();
-    this.properties.set(collection.getProperties().getAll());
+    this.references = collection.asSet();
+    this.properties = new SimpleProperties(collection.getProperties());
   }
 
   @Override
@@ -68,11 +65,6 @@ public class SimpleEditableAnnotationCollection implements EditableAnnotationCol
   }
 
   @Override
-  public Stream<AnnotationReference> streamReferences() {
-    return references.stream();
-  }
-
-  @Override
   public void add(final Annotation<?> annotation) {
     references.add(new SimpleAnnotationReference(annotation));
 
@@ -85,12 +77,22 @@ public class SimpleEditableAnnotationCollection implements EditableAnnotationCol
 
   @Override
   public boolean contains(final Annotation<?> annotation) {
-    return references.contains(new SimpleAnnotationReference(annotation));
+    return contains(new SimpleAnnotationReference(annotation));
   }
 
   @Override
   public AnnotationCollection save() {
     return item.getAnnotationCollections().save(this);
+  }
+
+  @Override
+  public void delete() {
+    item.getAnnotationCollections().save(this);
+  }
+
+  @Override
+  public Set<AnnotationReference> asSet() {
+    return references;
   }
 
 

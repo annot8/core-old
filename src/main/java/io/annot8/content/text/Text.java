@@ -19,4 +19,6 @@ public interface Text extends
   // TODO: Should this be on Content generically
   String getText(TextBounds lb);
 
+  @Override
+  EditableText edit();
 }

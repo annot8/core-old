@@ -10,7 +10,7 @@ import io.annot8.core.components.Resource;
  */
 public interface Context {
 
-  Item createItem();
+  EditableItem createItem();
 
   Optional<Object> getConfiguration();
 
@@ -40,8 +40,5 @@ public interface Context {
   <T extends Resource> Stream<T> getResources(Class<T> clazz);
 
   Stream<String> listResourceKeys();
-
-  // TODO: JB - I think this needs to be better defined to match other classes. For instance, how do
-  // you get a list of keys?
 
 }

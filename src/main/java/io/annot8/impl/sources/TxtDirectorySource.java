@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.time.Instant;
 import io.annot8.content.text.EditableText;
 import io.annot8.content.text.Text;
+import io.annot8.core.data.EditableItem;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.UnsupportedContentException;
@@ -21,19 +22,22 @@ public class TxtDirectorySource extends DirectorySource {
       throws AlreadyExistsException, UnsupportedContentException {
     // TODO: Really we perhaps want a bespoke FileDataItem here?
 
-    final Item item = createItem();
+    final EditableItem item = createItem();
     item.getProperties().set("source", p);
     item.getProperties().set("accessedAt", Instant.now().getEpochSecond());
+    item.save();
 
 
     try {
       final String data = new String(Files.readAllBytes(p));
-      final EditableText content = item.create("raw", Text.class, data);
+      final EditableText content = item.getContents().create("raw", Text.class, data);
       content.setLanguage("x-unknown");
+      content.save();
     } catch (final IOException e) {
       // TODO: Log error
       return null;
     }
+
 
     return item;
   }

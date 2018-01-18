@@ -5,7 +5,7 @@ import io.annot8.core.helpers.Saveable;
 
 
 public interface EditableAnnotationCollection
-    extends AbstractAnnotationCollection, Saveable<AnnotationCollection> {
+    extends AnnotationCollection, Saveable<AnnotationCollection> {
 
   void setType(String type);
 
@@ -19,6 +19,11 @@ public interface EditableAnnotationCollection
 
   default void remove(final Collection<Annotation<?>> annotations) {
     annotations.forEach(this::remove);
+  }
+
+  @Override
+  default EditableAnnotationCollection edit() {
+    return this;
   }
 
 }

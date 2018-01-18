@@ -6,7 +6,6 @@ import io.annot8.content.text.EditableText;
 import io.annot8.content.text.Text;
 import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
-import io.annot8.core.data.EditableContent;
 import io.annot8.core.data.Properties;
 import io.annot8.core.data.Tags;
 
@@ -99,8 +98,14 @@ public class SimpleText implements Text {
   }
 
   @Override
-  public EditableContent<String> edit() {
+  public EditableText edit() {
     return new SimpleEditableText(annotations, content, this);
+  }
+
+  @Override
+  public void delete() {
+    // TODO Auto-generated method stub
+
   }
 
 

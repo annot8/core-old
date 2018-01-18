@@ -2,7 +2,6 @@ package io.annot8.impl.annotations;
 
 import java.util.Collections;
 import java.util.Set;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.annotations.AnnotationCollection;
@@ -25,7 +24,6 @@ public class SimpleAnnotationCollection implements AnnotationCollection {
     this.id = id;
     this.type = type;
     this.references = Collections.emptySet();
-    // TODO: immutable
     this.properties = new SimpleProperties();
   }
 
@@ -34,9 +32,8 @@ public class SimpleAnnotationCollection implements AnnotationCollection {
     this.item = item;
     this.id = annotation.getId();
     this.type = annotation.getType();
-    this.references = annotation.streamReferences().collect(Collectors.toSet());
-    // TODO: immutable
-    this.properties = annotation.getProperties();
+    this.references = Collections.unmodifiableSet(annotation.asSet());
+    this.properties = new SimpleProperties(annotation.getProperties());
   }
 
   @Override
@@ -60,13 +57,8 @@ public class SimpleAnnotationCollection implements AnnotationCollection {
   }
 
   @Override
-  public Stream<AnnotationReference> streamReferences() {
-    return references.stream();
-  }
-
-  @Override
   public boolean contains(final Annotation<?> annotation) {
-    return references.contains(new SimpleAnnotationReference(annotation));
+    return contains(new SimpleAnnotationReference(annotation));
   }
 
   @Override
@@ -79,6 +71,9 @@ public class SimpleAnnotationCollection implements AnnotationCollection {
     item.getAnnotationCollections().delete(this);
   }
 
-
+  @Override
+  public Set<AnnotationReference> asSet() {
+    return references;
+  }
 
 }

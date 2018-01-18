@@ -6,10 +6,7 @@ import io.annot8.core.bounds.Bounds;
 import io.annot8.core.stores.Annotations;
 
 public interface EditableTypedContent<B extends Bounds, A extends Annotation<B>, E extends EditableAnnotation<B>, S extends Annotations<B, A, E>, D>
-    extends EditableContent<D> {
+    extends TypedContent<B, A, E, S, D>, EditableContent<D> {
 
-
-  @Override
-  S getAnnotations();
 
 }

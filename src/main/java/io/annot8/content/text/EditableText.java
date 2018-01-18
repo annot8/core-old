@@ -1,6 +1,5 @@
 package io.annot8.content.text;
 
-import java.util.Optional;
 import io.annot8.core.data.EditableTypedContent;
 
 /**
@@ -10,14 +9,17 @@ import io.annot8.core.data.EditableTypedContent;
  * Documents can contain no content and just sub-content, although this is expected to be an unusual
  * use case.
  */
-public interface EditableText extends
+public interface EditableText extends Text,
     EditableTypedContent<TextBounds, TextAnnotation, EditableTextAnnotation, TextAnnotations, String> {
-
-  Optional<String> getLanguage();
 
   void setLanguage(String language);
 
-  // TODO: Should this be on Content generically
-  String getText(TextBounds lb);
+  @Override
+  Text save();
+
+  @Override
+  default EditableText edit() {
+    return this;
+  }
 
 }

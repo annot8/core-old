@@ -7,7 +7,7 @@ import io.annot8.content.text.TextAnnotation;
 import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
 import io.annot8.core.data.EditableProperties;
-import io.annot8.impl.data.SimpleProperties;
+import io.annot8.impl.data.SimpleEditableProperties;
 
 public class SimpleEditableTextAnnotation implements EditableTextAnnotation {
   private final String contentName;
@@ -25,7 +25,7 @@ public class SimpleEditableTextAnnotation implements EditableTextAnnotation {
     this.contentName = contentName;
     this.id = UUID.randomUUID().toString();
     this.bounds = bounds;
-    this.properties = new SimpleProperties();
+    this.properties = new SimpleEditableProperties();
   }
 
   public SimpleEditableTextAnnotation(final TextAnnotations annotations,
@@ -34,9 +34,7 @@ public class SimpleEditableTextAnnotation implements EditableTextAnnotation {
     this.contentName = annotation.getContentName();
     this.id = annotation.getId();
     this.bounds = annotation.getBounds();
-    // TODO: Mutable
-    this.properties = new SimpleProperties();
-    this.properties.set(annotation.getProperties().getAll());
+    this.properties = new SimpleEditableProperties(annotation.getProperties());
   }
 
   @Override
@@ -77,6 +75,11 @@ public class SimpleEditableTextAnnotation implements EditableTextAnnotation {
   @Override
   public TextAnnotation save() {
     return annotations.save(this);
+  }
+
+  @Override
+  public void delete() {
+    annotations.delete(this);
   }
 
 }

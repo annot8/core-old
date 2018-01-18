@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import io.annot8.core.data.EditableTags;
 import io.annot8.core.data.Tags;
 
@@ -23,14 +22,8 @@ public class SimpleEditableTags implements EditableTags {
     this.tags = new HashSet<>(tags);
   }
 
-
   public SimpleEditableTags(final Tags tags) {
     this(tags.stream().collect(Collectors.toSet()));
-  }
-
-  @Override
-  public Stream<String> stream() {
-    return tags.stream();
   }
 
   @Override
@@ -41,5 +34,10 @@ public class SimpleEditableTags implements EditableTags {
   @Override
   public boolean remove(final String tag) {
     return tags.remove(tag);
+  }
+
+  @Override
+  public Set<String> asSet() {
+    return tags;
   }
 }

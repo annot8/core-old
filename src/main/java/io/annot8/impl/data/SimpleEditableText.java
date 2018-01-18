@@ -6,7 +6,6 @@ import io.annot8.content.text.EditableText;
 import io.annot8.content.text.Text;
 import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
-import io.annot8.core.data.Content;
 import io.annot8.core.data.EditableProperties;
 import io.annot8.core.data.EditableTags;
 
@@ -25,7 +24,7 @@ public class SimpleEditableText implements EditableText {
     this.content = content;
     this.annotations = annotations;
     this.tags = new SimpleEditableTags();
-    this.properties = new SimpleProperties();
+    this.properties = new SimpleEditableProperties();
   }
 
 
@@ -35,9 +34,7 @@ public class SimpleEditableText implements EditableText {
     this.annotations = simpleText.getAnnotations();
     this.language = simpleText.getLanguage().orElse(null);
     this.tags = new SimpleEditableTags(simpleText.getTags());
-    // TODO: Editable properties
-    this.properties = new SimpleProperties();
-    this.properties.add(simpleText.getProperties().getAll());
+    this.properties = new SimpleEditableProperties(simpleText.getProperties());
   }
 
   @Override
@@ -97,7 +94,12 @@ public class SimpleEditableText implements EditableText {
   }
 
   @Override
-  public Content<String> save() {
+  public void delete() {
+    // TODO Auto-generated method stub
+  }
+
+  @Override
+  public Text save() {
     // TODO implement me... we might need the item
     return new SimpleText(content, annotations, this);
   }
@@ -107,4 +109,7 @@ public class SimpleEditableText implements EditableText {
   public EditableTags getTags() {
     return tags;
   }
+
+
+
 }

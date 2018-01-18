@@ -13,6 +13,6 @@ public class Capitalise extends AbstractTextAnnotator {
   @Override
   protected void process(final Item item, final Text content)
       throws AlreadyExistsException, UnsupportedContentException {
-    item.create("CAPITALISED", Text.class, content.getData().toUpperCase());
+    item.getContents().create("CAPITALISED", Text.class, content.getData().toUpperCase()).save();
   }
 }
