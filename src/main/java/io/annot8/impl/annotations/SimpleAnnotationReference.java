@@ -46,7 +46,7 @@ public class SimpleAnnotationReference implements AnnotationReference {
   // reference to content
   public static Optional<? extends Annotation<?>> toAnnotation(final Item item,
       final AnnotationReference reference) {
-    return item.getContents().getContent(reference.getContentId())
+    return item.getContents().get(reference.getContentId())
         .flatMap(c -> c.getAnnotations().getById(reference.getAnnotationId()));
   }
 

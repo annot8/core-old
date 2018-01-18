@@ -21,12 +21,12 @@ public class SimpleContents implements Contents {
   private static final String DEFAULT_CONTENT = "__default";
 
   @Override
-  public void setDefaultContent(final String name) {
+  public void setDefault(final String name) {
     defaultContentName = name;
   }
 
   @Override
-  public Content<?> getDefaultContent() {
+  public Content<?> getDefault() {
     return contents.get(defaultContentName);
   }
 
@@ -36,17 +36,17 @@ public class SimpleContents implements Contents {
   }
 
   @Override
-  public Optional<Content<?>> getContent(final String name) {
+  public Optional<Content<?>> get(final String name) {
     return Optional.ofNullable(contents.get(name));
   }
 
   @Override
-  public Stream<Content<?>> getContents() {
+  public Stream<Content<?>> stream() {
     return contents.values().stream();
   }
 
   @Override
-  public <T extends Content<?>> Stream<T> getContents(final Class<T> clazz) {
+  public <T extends Content<?>> Stream<T> stream(final Class<T> clazz) {
     final List<T> ret = new ArrayList<>();
 
     contents.values().stream().filter(c -> clazz.isAssignableFrom(c.getClass()))

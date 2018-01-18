@@ -10,21 +10,24 @@ import io.annot8.core.exceptions.UnsupportedContentException;
 public interface Contents {
   // Contents
   // TODO: Assume this is on the COntentsStore not on the item?
-  void setDefaultContent(String name);
 
-  Content<?> getDefaultContent();
+  // TODO: should this be setDefault(Content)? otherwise getter and setter are different.
+  // it should check that the arg provided is actually part of our content...
+  void setDefault(String name);
 
-  default boolean hasContent(final String name) {
+  Content<?> getDefault();
+
+  default boolean has(final String name) {
     return listContents().anyMatch(name::equals);
   }
 
   Stream<String> listContents();
 
-  Optional<Content<?>> getContent(String name);
+  Optional<Content<?>> get(String name);
 
-  Stream<Content<?>> getContents();
+  Stream<Content<?>> stream();
 
-  <T extends Content<?>> Stream<T> getContents(Class<T> clazz);
+  <T extends Content<?>> Stream<T> stream(Class<T> clazz);
 
   // TODO: note this isn't as safe as it looks, we want to allow for a return of EditableText from
   // Text.class
