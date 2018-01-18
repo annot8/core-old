@@ -1,12 +1,12 @@
 package io.annot8.impl.annotations;
 
 import java.util.Collections;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.annotations.AnnotationCollection;
+import io.annot8.core.annotations.AnnotationReference;
 import io.annot8.core.annotations.EditableAnnotationCollection;
 import io.annot8.core.data.Item;
 import io.annot8.core.data.Properties;
@@ -16,7 +16,7 @@ public class SimpleAnnotationCollection implements AnnotationCollection {
   private final String id;
   private final String type;
   private final Properties properties;
-  private final Set<SimpleAnnotationReference> references;
+  private final Set<AnnotationReference> references;
   private final Item item;
 
 
@@ -34,8 +34,7 @@ public class SimpleAnnotationCollection implements AnnotationCollection {
     this.item = item;
     this.id = annotation.getId();
     this.type = annotation.getType();
-    this.references =
-        annotation.getAnnotations().map(SimpleAnnotationReference::new).collect(Collectors.toSet());
+    this.references = annotation.streamReferences().collect(Collectors.toSet());
     // TODO: immutable
     this.properties = annotation.getProperties();
   }
@@ -56,13 +55,17 @@ public class SimpleAnnotationCollection implements AnnotationCollection {
   }
 
   @Override
-  public Stream<Annotation<?>> getAnnotations() {
-    return references.stream().map(r -> r.toAnnotation(item)).filter(Optional::isPresent)
-        .map(Optional::get);
+  public Stream<Annotation<?>> stream() {
+    return SimpleAnnotationReference.toAnnotations(item, streamReferences());
   }
 
   @Override
-  public boolean containsAnnotation(final Annotation<?> annotation) {
+  public Stream<AnnotationReference> streamReferences() {
+    return references.stream();
+  }
+
+  @Override
+  public boolean contains(final Annotation<?> annotation) {
     return references.contains(new SimpleAnnotationReference(annotation));
   }
 
@@ -75,6 +78,7 @@ public class SimpleAnnotationCollection implements AnnotationCollection {
   public void delete() {
     item.getAnnotationCollections().delete(this);
   }
+
 
 
 }

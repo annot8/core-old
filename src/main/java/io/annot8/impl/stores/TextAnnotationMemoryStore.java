@@ -17,13 +17,13 @@ public class TextAnnotationMemoryStore
   }
 
   @Override
-  public EditableTextAnnotation createNew(final TextBounds bounds) {
+  public EditableTextAnnotation create(final TextBounds bounds) {
     return new SimpleEditableTextAnnotation(this, getContentName(), bounds);
   }
 
   @Override
   public EditableTextAnnotation create(final int begin, final int end) {
-    return createNew(new SimpleTextBounds(begin, end));
+    return create(new SimpleTextBounds(begin, end));
   }
 
   @Override

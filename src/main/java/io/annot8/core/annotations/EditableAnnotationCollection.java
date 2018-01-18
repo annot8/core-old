@@ -9,16 +9,16 @@ public interface EditableAnnotationCollection
 
   void setType(String type);
 
-  void addAnnotation(Annotation<?> annotation);
+  void add(Annotation<?> annotation);
 
-  default void addAllAnnotations(final Collection<Annotation<?>> annotations) {
-    annotations.forEach(this::addAnnotation);
+  default void add(final Collection<Annotation<?>> annotations) {
+    annotations.forEach(this::add);
   }
 
-  void removeAnnotation(Annotation<?> annotation);
+  void remove(Annotation<?> annotation);
 
-  default void removeAllAnnotations(final Collection<Annotation<?>> annotations) {
-    annotations.forEach(this::removeAnnotation);
+  default void remove(final Collection<Annotation<?>> annotations) {
+    annotations.forEach(this::remove);
   }
 
 }

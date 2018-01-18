@@ -15,5 +15,5 @@ import io.annot8.core.data.Content;
 @Inherited
 public @interface CreatesContent {
 
-  Class<? extends Content>[] value();
+  Class<? extends Content<?>>[] value();
 }

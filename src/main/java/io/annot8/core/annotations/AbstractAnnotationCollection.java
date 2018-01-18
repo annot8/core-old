@@ -9,7 +9,10 @@ import io.annot8.core.helpers.WithType;
 // TODO: This needs more thought. How does it get stored? Is it linked to a specific view, or does
 // it sit above them?
 public interface AbstractAnnotationCollection extends WithId, WithType, WithProperties {
-  Stream<Annotation<?>> getAnnotations();
+  Stream<Annotation<?>> stream();
 
-  boolean containsAnnotation(Annotation<?> annotation);
+  Stream<AnnotationReference> streamReferences();
+
+
+  boolean contains(Annotation<?> annotation);
 }

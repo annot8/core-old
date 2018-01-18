@@ -1,12 +1,12 @@
 package io.annot8.impl.annotations;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.annotations.AnnotationCollection;
+import io.annot8.core.annotations.AnnotationReference;
 import io.annot8.core.annotations.EditableAnnotationCollection;
 import io.annot8.core.data.Item;
 import io.annot8.core.data.Properties;
@@ -16,7 +16,7 @@ public class SimpleEditableAnnotationCollection implements EditableAnnotationCol
   private final String id;
   private final SimpleProperties properties;
 
-  private final Set<SimpleAnnotationReference> references;
+  private final Set<AnnotationReference> references;
   private final Item item;
 
   private String type;
@@ -36,8 +36,7 @@ public class SimpleEditableAnnotationCollection implements EditableAnnotationCol
     this.type = collection.getType();
     // TODO: I think getting the references is valid on the AnnotationCollection interface as it
     // saves this silliness
-    this.references = new HashSet<>(collection.getAnnotations().map(SimpleAnnotationReference::new)
-        .collect(Collectors.toList()));
+    this.references = new HashSet<>(collection.streamReferences().collect(Collectors.toList()));
     // TODO: Mutable
     this.properties = new SimpleProperties();
     this.properties.set(collection.getProperties().getAll());
@@ -64,24 +63,28 @@ public class SimpleEditableAnnotationCollection implements EditableAnnotationCol
   }
 
   @Override
-  public Stream<Annotation<?>> getAnnotations() {
-    return references.stream().map(r -> r.toAnnotation(item)).filter(Optional::isPresent)
-        .map(Optional::get);
+  public Stream<Annotation<?>> stream() {
+    return SimpleAnnotationReference.toAnnotations(item, streamReferences());
   }
 
   @Override
-  public void addAnnotation(final Annotation<?> annotation) {
+  public Stream<AnnotationReference> streamReferences() {
+    return references.stream();
+  }
+
+  @Override
+  public void add(final Annotation<?> annotation) {
     references.add(new SimpleAnnotationReference(annotation));
 
   }
 
   @Override
-  public void removeAnnotation(final Annotation<?> annotation) {
+  public void remove(final Annotation<?> annotation) {
     references.remove(new SimpleAnnotationReference(annotation));
   }
 
   @Override
-  public boolean containsAnnotation(final Annotation<?> annotation) {
+  public boolean contains(final Annotation<?> annotation) {
     return references.contains(new SimpleAnnotationReference(annotation));
   }
 

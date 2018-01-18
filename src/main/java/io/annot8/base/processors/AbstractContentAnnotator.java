@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 import io.annot8.core.data.Content;
 import io.annot8.core.data.Context;
 import io.annot8.core.data.Item;
+import io.annot8.core.exceptions.Annot8Exception;
 import io.annot8.core.exceptions.BadConfigurationException;
 import io.annot8.core.exceptions.MissingResourceException;
 
@@ -49,7 +50,11 @@ public abstract class AbstractContentAnnotator extends AbstractAnnotator {
 
 
   private void checkTagsAndProcessContent(final Content<?> content) {
-    // TODO implement me
+    // TODO implement me! currently this doesn't actuall call processContent
+
+    // have a tags configuration item which has a list of tags
+    // then have a enum which is stuff ANY = any of the tags are the them ok, ALL = the content need
+    // to have all our tags (default), ONLY = the content needs to have only the tags we say
   }
 
   protected boolean acceptsContent(final Content<?> content) {
@@ -58,10 +63,11 @@ public abstract class AbstractContentAnnotator extends AbstractAnnotator {
     if (settings.getTags() == null || settings.getTags().isEmpty()) {
       return true;
     } else {
-      return content.getTags().get().allMatch(settings.getTags()::contains);
+      return content.getTags().stream().allMatch(settings.getTags()::contains);
     }
   }
 
-  protected abstract void processContent(final Item item, final Content content) throws Exception;
+  protected abstract void processContent(final Item item, final Content<?> content)
+      throws Annot8Exception;
 
 }

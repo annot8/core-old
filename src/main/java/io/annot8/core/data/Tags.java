@@ -4,8 +4,8 @@ import java.util.stream.Stream;
 
 public interface Tags {
   default boolean has(final String tag) {
-    return get().anyMatch(tag::equals);
+    return stream().anyMatch(tag::equals);
   }
 
-  Stream<String> get();
+  Stream<String> stream();
 }

@@ -19,4 +19,8 @@ public class TaskResponse {
   public static TaskResponse itemError() {
     return new TaskResponse(Status.TASK_ERROR);
   }
+
+  public Status getStatus() {
+    return status;
+  }
 }

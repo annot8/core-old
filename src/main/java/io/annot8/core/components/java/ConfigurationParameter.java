@@ -5,7 +5,9 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-//TODO: Is this still needed? Or can we get all the information we need directly from the Settings class?
+// TODO: JB Is this still needed? Or can we get all the information we need directly from the
+// Settings class?
+// CF- I think it can go... and we can use the javadoc approach.
 
 /**
  * Declares a configuration parameter that a component will accept/requires
@@ -13,6 +15,7 @@ import java.lang.annotation.RetentionPolicy;
 @Documented
 @Repeatable(ConfigurationParameters.class)
 @Retention(RetentionPolicy.RUNTIME)
+@Deprecated
 public @interface ConfigurationParameter {
 
   String key();

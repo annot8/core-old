@@ -33,4 +33,8 @@ public class SimpleGlobalContext {
 
     return ret.stream();
   }
+
+  public Stream<String> listResourceKeys() {
+    return resources.values().stream().flatMap(m -> m.keySet().stream()).distinct();
+  }
 }

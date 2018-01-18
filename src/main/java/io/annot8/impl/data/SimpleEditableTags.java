@@ -23,7 +23,7 @@ public class SimpleEditableTags implements EditableTags {
   }
 
   @Override
-  public Stream<String> get() {
+  public Stream<String> stream() {
     return tags.stream();
   }
 

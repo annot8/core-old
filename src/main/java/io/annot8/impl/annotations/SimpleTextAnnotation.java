@@ -19,7 +19,7 @@ public class SimpleTextAnnotation implements TextAnnotation {
   private final TextAnnotations annotations;
 
   public SimpleTextAnnotation(final TextAnnotations annotations, final String contentName,
-      final String id, final TextBounds bounds, final String type) {
+      final TextBounds bounds, final String type) {
     this.annotations = annotations;
     this.contentName = contentName;
     this.bounds = bounds;

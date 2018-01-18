@@ -6,26 +6,23 @@ import io.annot8.base.processors.AbstractTextAnnotator;
 import io.annot8.content.text.EditableTextAnnotation;
 import io.annot8.content.text.Text;
 import io.annot8.content.text.TextAnnotations;
-import io.annot8.content.text.TextBounds;
 import io.annot8.core.components.java.OutputAnnotation;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.Annot8Exception;
-import io.annot8.impl.bounds.SimpleTextBounds;
 
 @OutputAnnotation("HASHTAG")
 public class HashTag extends AbstractTextAnnotator {
-  private static final Pattern HASHTAG = Pattern.compile("#[a-z0-9]+", Pattern.CASE_INSENSITIVE);
+  private static final Pattern HASHTAG_PATTERN = Pattern.compile("#[a-z0-9]+", Pattern.CASE_INSENSITIVE);
 
   @Override
   protected void process(final Item item, final Text content) throws Annot8Exception {
     final TextAnnotations store = content.getAnnotations();
 
-    final Matcher matcher = HASHTAG.matcher(content.getData());
+    final Matcher matcher = HASHTAG_PATTERN.matcher(content.getData());
     while (matcher.find()) {
-      final TextBounds bounds = new SimpleTextBounds(matcher.start(), matcher.end());
-      final EditableTextAnnotation annot = store.createNew(bounds);
+      final EditableTextAnnotation annot = store.create(matcher.start(), matcher.end());
       annot.setType("HASHTAG");
-      store.save(annot);
+      annot.save();
     }
   }
 }

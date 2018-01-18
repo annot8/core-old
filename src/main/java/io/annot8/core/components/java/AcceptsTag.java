@@ -11,7 +11,10 @@ import java.lang.annotation.RetentionPolicy;
 @Documented
 @Repeatable(AcceptsTags.class)
 @Retention(RetentionPolicy.RUNTIME)
+// TODO: CF I think this has to be a configurable thing... so I don't think its an annotation
+@Deprecated
 public @interface AcceptsTag {
 
   String value();
 }
+

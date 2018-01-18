@@ -9,6 +9,8 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
+// See ConfigurationParameter
+@Deprecated
 public @interface ConfigurationParameters {
 
   ConfigurationParameter[] value();

@@ -1,6 +1,7 @@
 package io.annot8.core.stores;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import io.annot8.core.annotations.AnnotationCollection;
@@ -23,12 +24,15 @@ public interface AnnotationCollections {
   }
 
   default void deleteAll() {
-    delete(getAll().collect(Collectors.toList()));
+    delete(stream().collect(Collectors.toList()));
   }
 
-  Stream<AnnotationCollection> getAll();
+  Stream<AnnotationCollection> stream();
 
   default Stream<AnnotationCollection> getByType(final String type) {
-    return getAll().filter(a -> type.equals(a.getType()));
+    return stream().filter(a -> type.equals(a.getType()));
   }
+
+  Optional<AnnotationCollection> getById(String id);
+
 }

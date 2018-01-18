@@ -5,12 +5,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Container for repeated {@link OutputAnnotation} annotations
+ * Container for repeated {@link AcceptsContent} annotations
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Deprecated
-public @interface OutputAnnotations {
+// TODO: Terrible name
+public @interface AcceptsContents {
 
-  OutputAnnotation[] value();
+  AcceptsContent[] value();
 }

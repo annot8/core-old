@@ -39,4 +39,9 @@ public class SimpleComponentContext implements Context {
     return item;
   }
 
+  @Override
+  public Stream<String> listResourceKeys() {
+    return context.listResourceKeys();
+  }
+
 }

@@ -2,6 +2,7 @@ package io.annot8.impl.data;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Stream;
 import io.annot8.core.annotations.AnnotationCollection;
@@ -32,6 +33,10 @@ public class SimpleAnnotationCollections implements AnnotationCollections {
     this.item = item;
   }
 
+  @Override
+  public Optional<AnnotationCollection> getById(final String id) {
+    return Optional.ofNullable(collections.get(id));
+  }
 
   @Override
   public EditableAnnotationCollection create() {
@@ -52,7 +57,7 @@ public class SimpleAnnotationCollections implements AnnotationCollections {
   }
 
   @Override
-  public Stream<AnnotationCollection> getAll() {
+  public Stream<AnnotationCollection> stream() {
     return collections.values().stream();
   }
 

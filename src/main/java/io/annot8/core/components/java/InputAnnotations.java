@@ -9,6 +9,8 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
+// TODO: CF I think this has to be configuration time thing, not a annotation at compile time
+
 public @interface InputAnnotations {
 
   InputAnnotation[] value();

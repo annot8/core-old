@@ -6,7 +6,6 @@ import io.annot8.core.stores.Annotations;
 
 public interface Content<D> extends WithTags, WithProperties {
 
-  // TODO: Do we want this...
   D getData();
 
   Annotations<?, ?, ?> getAnnotations();

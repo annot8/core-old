@@ -34,7 +34,7 @@ public class SimpleItem implements Item {
     contents.put(DEFAULT_CONTENT, defaultContent);
   }
 
-  public SimpleItem(final AnnotationCollections collections, final Content defaultContent,
+  public SimpleItem(final AnnotationCollections collections, final Content<?> defaultContent,
       final String defaultContentName) {
     this(collections);
     contents.put(defaultContentName, defaultContent);
@@ -98,7 +98,7 @@ public class SimpleItem implements Item {
   }
 
   @Override
-  public void removeContent(final String name) {
+  public void deleteContent(final String name) {
     contents.remove(name);
   }
 

@@ -23,7 +23,7 @@ public class SimpleTags implements Tags {
   }
 
   @Override
-  public Stream<String> get() {
+  public Stream<String> stream() {
     return tags.stream();
   }
 

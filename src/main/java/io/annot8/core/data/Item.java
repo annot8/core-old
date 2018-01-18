@@ -30,6 +30,6 @@ public interface Item extends WithEditableProperties, WithAnnotationCollections 
   <D, C extends Content<D>> C create(String name, Class<C> contentClass, D data)
       throws AlreadyExistsException, UnsupportedContentException;
 
-  void removeContent(String name);
+  void deleteContent(String name);
 
 }

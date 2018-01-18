@@ -10,5 +10,8 @@ import java.lang.annotation.RetentionPolicy;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SettingsClass {
-    Class<?> value();
+  Class<?> value();
+
+  boolean required() default false;
+
 }

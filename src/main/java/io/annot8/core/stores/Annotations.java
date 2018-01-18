@@ -15,7 +15,7 @@ import io.annot8.core.bounds.Bounds;
  */
 public interface Annotations<B extends Bounds, A extends Annotation<B>, E extends EditableAnnotation<B>> {
 
-  E createNew(B bounds);
+  E create(B bounds);
 
   A save(E annotation);
 

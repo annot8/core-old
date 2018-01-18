@@ -1,10 +1,12 @@
 package io.annot8.impl.annotations;
 
 import java.util.Optional;
+import java.util.stream.Stream;
 import io.annot8.core.annotations.Annotation;
+import io.annot8.core.annotations.AnnotationReference;
 import io.annot8.core.data.Item;
 
-public class SimpleAnnotationReference {
+public class SimpleAnnotationReference implements AnnotationReference {
 
   private String contentId;
 
@@ -21,6 +23,7 @@ public class SimpleAnnotationReference {
   }
 
 
+  @Override
   public String getContentId() {
     return contentId;
   }
@@ -29,6 +32,7 @@ public class SimpleAnnotationReference {
     this.contentId = contentId;
   }
 
+  @Override
   public String getAnnotationId() {
     return annotationId;
   }
@@ -37,8 +41,17 @@ public class SimpleAnnotationReference {
     this.annotationId = annotationId;
   }
 
-  public Optional<? extends Annotation<?>> toAnnotation(final Item item) {
-    return item.getContent(contentId).flatMap(c -> c.getAnnotations().getById(annotationId));
+  // TODO: These are really the only implementation...
+  public static Optional<? extends Annotation<?>> toAnnotation(final Item item,
+      final AnnotationReference reference) {
+    return item.getContent(reference.getContentId())
+        .flatMap(c -> c.getAnnotations().getById(reference.getAnnotationId()));
+  }
+
+  public static Stream<Annotation<?>> toAnnotations(final Item item,
+      final Stream<AnnotationReference> streamReferences) {
+    return streamReferences.map(r -> SimpleAnnotationReference.toAnnotation(item, r))
+        .filter(Optional::isPresent).map(Optional::get);
   }
 
 }

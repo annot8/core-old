@@ -6,14 +6,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Declares annotations that a processor will produce
+ * Declares the content that a processor requires
  */
 @Documented
-@Repeatable(OutputAnnotations.class)
+@Repeatable(AcceptsContents.class)
 @Retention(RetentionPolicy.RUNTIME)
-// TODO: CF I think this has to be configuration time thing, not a annotation at compile time
-@Deprecated
-public @interface OutputAnnotation {
+public @interface AcceptsContent {
 
   String value();
 }
