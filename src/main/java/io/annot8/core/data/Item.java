@@ -27,9 +27,12 @@ public interface Item extends WithEditableProperties, WithAnnotationCollections 
 
   <T extends Content<?>> Stream<T> getContents(Class<T> clazz);
 
-  <D, C extends Content<D>> C create(String name, Class<C> contentClass, D data)
+  // TODO: note this isn't as safe as it looks we want to return for EditableText from Text.class
+  <D, C extends Content<D>, E extends C> E create(String name, Class<C> contentClass, D data)
       throws AlreadyExistsException, UnsupportedContentException;
 
   void deleteContent(String name);
+
+  public <D, C extends Content<D>, E extends C> C saveContent(final E content);
 
 }

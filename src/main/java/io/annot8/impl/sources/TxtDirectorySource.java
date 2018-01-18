@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
+import io.annot8.content.text.EditableText;
 import io.annot8.content.text.Text;
 import io.annot8.core.data.Item;
 import io.annot8.core.exceptions.AlreadyExistsException;
@@ -27,7 +28,7 @@ public class TxtDirectorySource extends DirectorySource {
 
     try {
       final String data = new String(Files.readAllBytes(p));
-      final Text content = item.create("raw", Text.class, data);
+      final EditableText content = item.create("raw", Text.class, data);
       content.setLanguage("x-unknown");
     } catch (final IOException e) {
       // TODO: Log error

@@ -77,23 +77,30 @@ public class SimpleItem implements Item {
   }
 
   @Override
-  public <D, C extends Content<D>> C create(final String name, final Class<C> contentClass,
+  public <D, C extends Content<D>, E extends C> E create(final String name, final Class<C> contentClass,
       final D data) throws AlreadyExistsException, UnsupportedContentException {
     if (contents.containsKey(name))
       throw new AlreadyExistsException("Content with that name already exists");
 
     // TODO: This should occur via an abstract method so it can be replaced...
-    C content = null;
+    E content = null;
     if (Text.class.equals(contentClass)) {
       // This is actually checked by thes Text.class... as is the String cast
-      content = (C) new SimpleText(name, (String) data, new TextAnnotationMemoryStore(name));
+      content = (E) new SimpleEditableText(name, (String) data, new TextAnnotationMemoryStore(name));
     } else {
       throw new UnsupportedContentException(String.format("%s is not supported by this item",
           contentClass.getClass().getSimpleName()));
     }
 
-    contents.put(name, content);
+    return content;
+  }
 
+
+  @Override
+  public <D, C extends Content<D>, E extends C> C saveContent(final E content) {
+    contents.put(content.getName(), content);
+    // TODO: Not correct... how to convert E to C...
+    // will be responsibility of the content soon, not this item
     return content;
   }
 
@@ -111,6 +118,7 @@ public class SimpleItem implements Item {
   public AnnotationCollections getAnnotationCollections() {
     return annotationCollections;
   }
+
 
 
 }

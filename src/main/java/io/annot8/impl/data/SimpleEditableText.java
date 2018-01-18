@@ -6,39 +6,38 @@ import io.annot8.content.text.EditableText;
 import io.annot8.content.text.Text;
 import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
-import io.annot8.core.data.EditableContent;
-import io.annot8.core.data.Properties;
-import io.annot8.core.data.Tags;
+import io.annot8.core.data.Content;
+import io.annot8.core.data.EditableProperties;
+import io.annot8.core.data.EditableTags;
 
-public class SimpleText implements Text {
+public class SimpleEditableText implements EditableText {
 
-  private final String language;
+  private String language = null;
   private final String name;
   private final String content;
 
-  private final Tags tags;
-  private final Properties properties;
+  private final EditableTags tags;
+  private final EditableProperties properties;
   private final TextAnnotations annotations;
 
-  public SimpleText(final String name, final String content, final TextAnnotations annotations) {
+  public SimpleEditableText(final String name, final String content, final TextAnnotations annotations) {
     this.name = name;
     this.content = content;
     this.annotations = annotations;
-    this.language = null;
-    this.tags = new SimpleTags();
+    this.tags = new SimpleEditableTags();
     this.properties = new SimpleProperties();
   }
 
-  public SimpleText(final String content, final TextAnnotations annotations,
-      final EditableText editableText) {
-    this.content = content;
-    this.annotations = annotations;
-    this.name = editableText.getName();
-    this.language = editableText.getLanguage().orElse(null);
-    this.tags = new SimpleTags(editableText.getTags());
 
-    // TODO: Immutable
-    this.properties = editableText.getProperties();
+  public SimpleEditableText(final TextAnnotations annotations, final String content, final Text simpleText) {
+    this.content = content;
+    this.name = simpleText.getName();
+    this.annotations = simpleText.getAnnotations();
+    this.language = simpleText.getLanguage().orElse(null);
+    this.tags = new SimpleEditableTags(simpleText.getTags());
+    // TODO: Editable properties
+    this.properties = new SimpleProperties();
+    this.properties.add(simpleText.getProperties().getAll());
   }
 
   @Override
@@ -56,6 +55,10 @@ public class SimpleText implements Text {
     return Optional.ofNullable(language);
   }
 
+  @Override
+  public void setLanguage(final String language) {
+    this.language = language;
+  }
 
   @Override
   public String getData() {
@@ -64,10 +67,10 @@ public class SimpleText implements Text {
 
   @Override
   public boolean equals(final Object obj) {
-    if (!(obj instanceof SimpleText))
+    if (!(obj instanceof SimpleEditableText))
       return false;
 
-    final SimpleText st = (SimpleText) obj;
+    final SimpleEditableText st = (SimpleEditableText) obj;
 
     return Objects.equals(getData(), st.getData())
         && Objects.equals(getLanguage(), st.getLanguage())
@@ -89,19 +92,19 @@ public class SimpleText implements Text {
   }
 
   @Override
-  public Tags getTags() {
-    return tags;
-  }
-
-  @Override
-  public Properties getProperties() {
+  public EditableProperties getProperties() {
     return properties;
   }
 
   @Override
-  public EditableContent<String> edit() {
-    return new SimpleEditableText(annotations, content, this);
+  public Content<String> save() {
+    // TODO implement me... we might need the item
+    return new SimpleText(content, annotations, this);
   }
 
 
+  @Override
+  public EditableTags getTags() {
+    return tags;
+  }
 }

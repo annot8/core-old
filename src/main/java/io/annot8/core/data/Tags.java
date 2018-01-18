@@ -8,4 +8,6 @@ public interface Tags {
   }
 
   Stream<String> stream();
+
+  // TODO: Should this have a asSet() interface...?
 }

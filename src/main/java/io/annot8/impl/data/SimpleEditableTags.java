@@ -1,11 +1,12 @@
 package io.annot8.impl.data;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import io.annot8.core.data.EditableTags;
+import io.annot8.core.data.Tags;
 
 public class SimpleEditableTags implements EditableTags {
   private final Set<String> tags;
@@ -19,7 +20,12 @@ public class SimpleEditableTags implements EditableTags {
   }
 
   public SimpleEditableTags(final Set<String> tags) {
-    this.tags = Collections.unmodifiableSet(tags);
+    this.tags = new HashSet<>(tags);
+  }
+
+
+  public SimpleEditableTags(final Tags tags) {
+    this(tags.stream().collect(Collectors.toSet()));
   }
 
   @Override

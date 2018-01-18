@@ -1,7 +1,7 @@
 package io.annot8.content.text;
 
 import java.util.Optional;
-import io.annot8.core.data.TypedContent;
+import io.annot8.core.data.EditableTypedContent;
 
 /**
  * Documents store the text to be processed, and may also contain links to sub-content (known as
@@ -10,11 +10,12 @@ import io.annot8.core.data.TypedContent;
  * Documents can contain no content and just sub-content, although this is expected to be an unusual
  * use case.
  */
-public interface Text extends
-    TypedContent<TextBounds, TextAnnotation, EditableTextAnnotation, TextAnnotations, String> {
+public interface EditableText extends
+    EditableTypedContent<TextBounds, TextAnnotation, EditableTextAnnotation, TextAnnotations, String> {
 
-  // TODO: I think this should be 'UNKNOWN" rather than null...
   Optional<String> getLanguage();
+
+  void setLanguage(String language);
 
   // TODO: Should this be on Content generically
   String getText(TextBounds lb);
