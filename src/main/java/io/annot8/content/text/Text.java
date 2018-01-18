@@ -13,6 +13,11 @@ import io.annot8.core.data.TypedContent;
 public interface Text extends
     TypedContent<TextBounds, TextAnnotation, EditableTextAnnotation, TextAnnotations, String> {
 
+  // TODO: Is this helpful for dev ? I like the fact its easier but thats just a single use case...
+  default TextAnnotation createAnnotation(final int begin, final int end) {
+    return getAnnotations().create(begin, end);
+  }
+
   // TODO: I think this should be 'UNKNOWN" rather than null...
   Optional<String> getLanguage();
 
