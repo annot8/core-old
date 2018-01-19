@@ -8,13 +8,14 @@ import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
 
-// TODO: CF I think this should be called Annotations that's nicer with Annotation
-// TODO: This needs more thought. How does it get stored? Is it linked to a specific view, or does
-// it sit above them?
+// TODO: CF I think this should be called Annotations, Associations, Groups, something - that's
+// nicer with Annotation. ANnotationCollection is a handful
+// and might be a bit confusing in Java terminoloy since we have Collection<Annotation> collection /
+// AnnotationCollection collection in places!
 public interface AnnotationCollection
     extends WithId, WithType, WithProperties, Editable<EditableAnnotationCollection>, Deletable {
 
-  boolean contains(Annotation<?> annotation);
+  boolean contains(final Annotation<?> annotation);
 
   Stream<Annotation<?>> stream();
 
@@ -27,6 +28,5 @@ public interface AnnotationCollection
   }
 
   Set<AnnotationReference> asSet();
-
 
 }

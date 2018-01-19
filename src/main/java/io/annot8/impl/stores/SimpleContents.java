@@ -1,4 +1,4 @@
-package io.annot8.impl.data;
+package io.annot8.impl.stores;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,9 +10,10 @@ import io.annot8.content.text.Text;
 import io.annot8.core.data.Content;
 import io.annot8.core.data.EditableContent;
 import io.annot8.core.exceptions.AlreadyExistsException;
+import io.annot8.core.exceptions.Annot8MissingContentException;
 import io.annot8.core.exceptions.UnsupportedContentException;
 import io.annot8.core.stores.Contents;
-import io.annot8.impl.stores.TextAnnotationMemoryStore;
+import io.annot8.impl.data.SimpleEditableText;
 
 public class SimpleContents implements Contents {
 
@@ -21,9 +22,14 @@ public class SimpleContents implements Contents {
   private static final String DEFAULT_CONTENT = "__default";
 
   @Override
-  public void setDefault(final String name) {
-    defaultContentName = name;
+  public void setDefaultByName(final String name) throws Annot8MissingContentException {
+    if (!has(name)) {
+      throw new Annot8MissingContentException(String.format("No content named %s found", name));
+    }
+
+    this.defaultContentName = name;
   }
+
 
   @Override
   public Content<?> getDefault() {
@@ -63,13 +69,13 @@ public class SimpleContents implements Contents {
     if (contents.containsKey(name))
       throw new AlreadyExistsException("Content with that name already exists");
 
-    // TODO: This should occur via an abstract method so it can be replaced...
+    // TODO: This should occur via an abstract method or factory so it can be replaced...
     E content = null;
     if (Text.class.equals(contentClass)) {
       // THis is correct in claiming unchecked.. we don't know the class of E...we hope its actually the
       // interface EditableText
       // so whatever impleemntation doesn't matter.
-      content = (E) new SimpleEditableText(name, (String) data, new TextAnnotationMemoryStore(name));
+      content = (E) new SimpleEditableText(name, (String) data, new SimpleTextAnnotations(name));
     } else {
       throw new UnsupportedContentException(String.format("%s is not supported by this item",
           contentClass.getClass().getSimpleName()));

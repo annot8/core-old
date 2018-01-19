@@ -5,6 +5,8 @@ import java.util.stream.Stream;
 import io.annot8.core.components.Resource;
 import io.annot8.core.data.Context;
 import io.annot8.core.data.EditableItem;
+import io.annot8.impl.stores.SimpleAnnotationCollections;
+import io.annot8.impl.stores.SimpleContents;
 
 public class SimpleComponentContext implements Context {
 

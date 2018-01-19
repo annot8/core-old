@@ -3,6 +3,7 @@ package io.annot8.base.processors;
 import io.annot8.core.components.Processor;
 import io.annot8.core.data.Item;
 import io.annot8.core.data.ProcessorResponse;
+import io.annot8.core.exceptions.Annot8Exception;
 import io.annot8.core.exceptions.ProcessingException;
 
 public abstract class AbstractAnnotator implements Processor {
@@ -27,7 +28,7 @@ public abstract class AbstractAnnotator implements Processor {
     return true;
   }
 
-  protected abstract boolean processItem(final Item item);
+  protected abstract boolean processItem(final Item item) throws Annot8Exception;
 
 
 }

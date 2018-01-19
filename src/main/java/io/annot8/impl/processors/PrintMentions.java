@@ -15,7 +15,7 @@ public class PrintMentions extends AbstractTextAnnotator {
   protected void process(final Item item, final Text content) throws Annot8Exception {
     final TextAnnotations store = content.getAnnotations();
 
-    store.getAll().forEach(a -> {
+    store.stream().forEach(a -> {
       final Bounds bounds = a.getBounds();
 
       final TextBounds lb = (TextBounds) bounds;

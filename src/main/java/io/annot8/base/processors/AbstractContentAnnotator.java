@@ -9,6 +9,7 @@ import io.annot8.core.exceptions.Annot8Exception;
 import io.annot8.core.exceptions.BadConfigurationException;
 import io.annot8.core.exceptions.MissingResourceException;
 
+// TODO: This is a mess... ie checkTagsAndProcess === filter(checkTags).forEach(processContent)
 public abstract class AbstractContentAnnotator extends AbstractAnnotator {
 
   private ContentAnnotatorSettings settings;
@@ -22,11 +23,11 @@ public abstract class AbstractContentAnnotator extends AbstractAnnotator {
   }
 
   @Override
-  protected boolean processItem(final Item item) {
+  protected boolean processItem(final Item item) throws Annot8Exception {
 
     if (settings.isDefaultView()) {
       // If processing default view then jump to that
-      checkTagsAndProcessContent(item.getContents().getDefault());
+      checkTagsAndProcessContent(item, item.getContents().getDefault());
     } else {
       // Otherwise get the views the config wanted
 
@@ -39,22 +40,29 @@ public abstract class AbstractContentAnnotator extends AbstractAnnotator {
             .filter(Optional::isPresent).map(Optional::get);
       }
 
-      requestedViews.forEach(this::checkTagsAndProcessContent);
+      requestedViews.forEach(c -> {
+        try {
+          checkTagsAndProcessContent(item, c);
+        } catch (final Annot8Exception e) {
+          e.printStackTrace();
+        }
+      });
     }
-
-
 
     // Always pass on...
     return true;
   }
 
 
-  private void checkTagsAndProcessContent(final Content<?> content) {
+  private void checkTagsAndProcessContent(final Item item, final Content<?> content) throws Annot8Exception {
     // TODO implement me! currently this doesn't actuall call processContent
-
+    // See comments on Tags about hasAny, etc
     // have a tags configuration item which has a list of tags
     // then have a enum which is stuff ANY = any of the tags are the them ok, ALL = the content need
     // to have all our tags (default), ONLY = the content needs to have only the tags we say
+
+    processContent(item, content);
+
   }
 
   protected boolean acceptsContent(final Content<?> content) {

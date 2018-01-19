@@ -1,4 +1,4 @@
-package io.annot8.impl.stores;
+package io.annot8.base.stores;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,20 +19,18 @@ public abstract class AbstractMemoryStore<B extends Bounds, A extends Annotation
     this.contentName = contentName;
   }
 
-  @Override
   public A save(final E annotation) {
     final A a = fromEditable(annotation);
     annotations.put(a.getId(), a);
     return a;
   }
 
-  @Override
   public void delete(final A annotation) {
     annotations.remove(annotation.getId());
   }
 
   @Override
-  public Stream<A> getAll() {
+  public Stream<A> stream() {
     return annotations.values().stream();
   }
 

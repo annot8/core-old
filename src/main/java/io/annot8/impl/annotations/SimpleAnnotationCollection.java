@@ -7,29 +7,21 @@ import io.annot8.core.annotations.Annotation;
 import io.annot8.core.annotations.AnnotationCollection;
 import io.annot8.core.annotations.AnnotationReference;
 import io.annot8.core.annotations.EditableAnnotationCollection;
-import io.annot8.core.data.Item;
 import io.annot8.core.data.Properties;
 import io.annot8.impl.data.SimpleProperties;
+import io.annot8.impl.stores.SimpleAnnotationCollections;
 
 public class SimpleAnnotationCollection implements AnnotationCollection {
   private final String id;
   private final String type;
   private final Properties properties;
   private final Set<AnnotationReference> references;
-  private final Item item;
+  private final SimpleAnnotationCollections annotationCollections;
 
 
-  public SimpleAnnotationCollection(final Item item, final String id, final String type) {
-    this.item = item;
-    this.id = id;
-    this.type = type;
-    this.references = Collections.emptySet();
-    this.properties = new SimpleProperties();
-  }
-
-  public SimpleAnnotationCollection(final Item item,
-      final EditableAnnotationCollection annotation) {
-    this.item = item;
+  public SimpleAnnotationCollection(final SimpleAnnotationCollections annotationCollections,
+      final SimpleEditableAnnotationCollection annotation) {
+    this.annotationCollections = annotationCollections;
     this.id = annotation.getId();
     this.type = annotation.getType();
     this.references = Collections.unmodifiableSet(annotation.asSet());
@@ -51,29 +43,30 @@ public class SimpleAnnotationCollection implements AnnotationCollection {
     return properties;
   }
 
-  @Override
-  public Stream<Annotation<?>> stream() {
-    return SimpleAnnotationReference.toAnnotations(item, streamReferences());
-  }
-
-  @Override
-  public boolean contains(final Annotation<?> annotation) {
-    return contains(new SimpleAnnotationReference(annotation));
-  }
 
   @Override
   public EditableAnnotationCollection edit() {
-    return new SimpleEditableAnnotationCollection(item, this);
+    return new SimpleEditableAnnotationCollection(annotationCollections, this);
   }
 
   @Override
   public void delete() {
-    item.getAnnotationCollections().delete(this);
+    annotationCollections.delete(this);
   }
 
   @Override
   public Set<AnnotationReference> asSet() {
     return references;
+  }
+
+  @Override
+  public boolean contains(final Annotation<?> annotation) {
+    return contains(annotationCollections.toReference(annotation));
+  }
+
+  @Override
+  public Stream<Annotation<?>> stream() {
+    return annotationCollections.toAnnotations(streamReferences());
   }
 
 }

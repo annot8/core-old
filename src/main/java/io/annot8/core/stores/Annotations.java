@@ -1,8 +1,6 @@
 package io.annot8.core.stores;
 
-import java.util.Collection;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import io.annot8.content.text.Text;
 import io.annot8.core.annotations.Annotation;
@@ -17,26 +15,10 @@ public interface Annotations<B extends Bounds, A extends Annotation<B>, E extend
 
   E create(B bounds);
 
-  A save(E annotation);
-
-  void delete(A annotation);
-
-  default void save(final Collection<E> annotations) {
-    annotations.forEach(this::save);
-  }
-
-  default void delete(final Collection<A> annotations) {
-    annotations.forEach(this::delete);
-  }
-
-  default void deleteAll() {
-    delete(getAll().collect(Collectors.toList()));
-  }
-
-  Stream<A> getAll();
+  Stream<A> stream();
 
   default Stream<A> getByType(final String type) {
-    return getAll().filter(a -> type.equals(a.getType()));
+    return stream().filter(a -> type.equals(a.getType()));
   }
 
   Optional<A> getById(String annotationId);

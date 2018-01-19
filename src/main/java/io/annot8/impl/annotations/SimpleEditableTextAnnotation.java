@@ -4,22 +4,22 @@ package io.annot8.impl.annotations;
 import java.util.UUID;
 import io.annot8.content.text.EditableTextAnnotation;
 import io.annot8.content.text.TextAnnotation;
-import io.annot8.content.text.TextAnnotations;
 import io.annot8.content.text.TextBounds;
 import io.annot8.core.data.EditableProperties;
 import io.annot8.impl.data.SimpleEditableProperties;
+import io.annot8.impl.stores.SimpleTextAnnotations;
 
 public class SimpleEditableTextAnnotation implements EditableTextAnnotation {
   private final String contentName;
   private final String id;
-  private final TextAnnotations annotations;
+  private final SimpleTextAnnotations annotations;
 
   private String type;
 
   private TextBounds bounds;
   private final EditableProperties properties;
 
-  public SimpleEditableTextAnnotation(final TextAnnotations annotations, final String contentName,
+  public SimpleEditableTextAnnotation(final SimpleTextAnnotations annotations, final String contentName,
       final TextBounds bounds) {
     this.annotations = annotations;
     this.contentName = contentName;
@@ -28,7 +28,7 @@ public class SimpleEditableTextAnnotation implements EditableTextAnnotation {
     this.properties = new SimpleEditableProperties();
   }
 
-  public SimpleEditableTextAnnotation(final TextAnnotations annotations,
+  public SimpleEditableTextAnnotation(final SimpleTextAnnotations annotations,
       final TextAnnotation annotation) {
     this.annotations = annotations;
     this.contentName = annotation.getContentName();

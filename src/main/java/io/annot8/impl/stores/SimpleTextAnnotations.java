@@ -1,5 +1,6 @@
 package io.annot8.impl.stores;
 
+import io.annot8.base.stores.AbstractMemoryStore;
 import io.annot8.content.text.EditableTextAnnotation;
 import io.annot8.content.text.TextAnnotation;
 import io.annot8.content.text.TextAnnotations;
@@ -8,11 +9,11 @@ import io.annot8.impl.annotations.SimpleEditableTextAnnotation;
 import io.annot8.impl.annotations.SimpleTextAnnotation;
 import io.annot8.impl.bounds.SimpleTextBounds;
 
-public class TextAnnotationMemoryStore
+public class SimpleTextAnnotations
     extends AbstractMemoryStore<TextBounds, TextAnnotation, EditableTextAnnotation>
     implements TextAnnotations {
 
-  public TextAnnotationMemoryStore(final String contentName) {
+  public SimpleTextAnnotations(final String contentName) {
     super(contentName);
   }
 

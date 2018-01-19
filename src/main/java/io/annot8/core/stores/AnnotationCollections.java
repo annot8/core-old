@@ -1,31 +1,15 @@
 package io.annot8.core.stores;
 
-import java.util.Collection;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import io.annot8.core.annotations.Annotation;
 import io.annot8.core.annotations.AnnotationCollection;
+import io.annot8.core.annotations.AnnotationReference;
 import io.annot8.core.annotations.EditableAnnotationCollection;
 
 public interface AnnotationCollections {
 
   EditableAnnotationCollection create();
-
-  AnnotationCollection save(EditableAnnotationCollection annotation);
-
-  void delete(AnnotationCollection annotation);
-
-  default void save(final Collection<EditableAnnotationCollection> annotations) {
-    annotations.forEach(this::save);
-  }
-
-  default void delete(final Collection<AnnotationCollection> annotations) {
-    annotations.forEach(this::delete);
-  }
-
-  default void deleteAll() {
-    delete(stream().collect(Collectors.toList()));
-  }
 
   Stream<AnnotationCollection> stream();
 
@@ -34,5 +18,19 @@ public interface AnnotationCollections {
   }
 
   Optional<AnnotationCollection> getById(String id);
+
+  // TODO: Getting a reference should never fail??? (ie no need for optional
+  AnnotationReference toReference(Annotation<?> annotation);
+
+  Optional<Annotation<?>> toAnnotation(AnnotationReference reference);
+
+  default Stream<AnnotationReference> toReferences(final Stream<Annotation<?>> annotations) {
+    return annotations.map(this::toReference);
+  }
+
+  default Stream<Annotation<?>> toAnnotations(final Stream<AnnotationReference> references) {
+    return references.map(this::toAnnotation).filter(Optional::isPresent).map(Optional::get);
+
+  }
 
 }
