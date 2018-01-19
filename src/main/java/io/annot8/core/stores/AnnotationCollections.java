@@ -19,7 +19,7 @@ public interface AnnotationCollections {
 
   Optional<AnnotationCollection> getById(String id);
 
-  // TODO: Getting a reference should never fail??? (ie no need for optional
+  // TODO: Getting a reference should never fail??? (ie no need for optional)
   AnnotationReference toReference(Annotation<?> annotation);
 
   Optional<Annotation<?>> toAnnotation(AnnotationReference reference);
