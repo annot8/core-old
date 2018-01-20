@@ -35,11 +35,6 @@ public class SimpleAnnotationCollection implements AnnotationCollection {
   }
 
   @Override
-  public void setType(final String type) {
-    this.type = type;
-  }
-
-  @Override
   public Properties getProperties() {
     return properties;
   }

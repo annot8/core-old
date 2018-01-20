@@ -1,10 +1,10 @@
 package io.annot8.core.components;
 
 import io.annot8.content.text.Text;
-import io.annot8.core.data.Annotations;
 import io.annot8.core.data.Item;
 import io.annot8.core.data.ProcessorResponse;
 import io.annot8.core.exceptions.ProcessingException;
+import io.annot8.core.stores.Annotations;
 
 /**
  * Processes a {@link Text}, which may include adding annotations (via the {@link Annotations})

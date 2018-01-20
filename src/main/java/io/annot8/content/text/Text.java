@@ -2,6 +2,7 @@ package io.annot8.content.text;
 
 import java.util.Optional;
 import io.annot8.core.data.TypedContent;
+import io.annot8.core.stores.Annotations;
 
 /**
  * Documents store the text to be processed, and may also contain links to sub-content (known as
@@ -11,7 +12,7 @@ import io.annot8.core.data.TypedContent;
  * use case.
  */
 public interface Text
-    extends TypedContent<TextBounds, TextAnnotation, TextAnnotations, String> {
+    extends TypedContent<TextBounds, TextAnnotation, Annotations<TextBounds, TextAnnotation>, String> {
 
   Optional<String> getLanguage();
 

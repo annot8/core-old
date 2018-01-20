@@ -1,4 +1,4 @@
-package io.annot8.core.data;
+package io.annot8.core.stores;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -14,15 +14,10 @@ import io.annot8.core.bounds.Bounds;
  */
 public interface Annotations<B extends Bounds, A extends Annotation<B>> {
 
-  A createNew(B bounds);
-
-  void save(A annotation);
+	A.Builder<A, B> getBuilder();
+  A save(A.Builder<A, B> annotationBuilder);
 
   void delete(A annotation);
-
-  default void save(final Collection<A> annotations) {
-    annotations.forEach(this::save);
-  }
 
   default void delete(final Collection<A> annotations) {
     annotations.forEach(this::delete);
