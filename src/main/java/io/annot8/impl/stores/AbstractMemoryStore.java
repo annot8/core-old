@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.annotations.Annotation.Builder;
 import io.annot8.core.bounds.Bounds;
+import io.annot8.core.exceptions.IncompleteAnnotationException;
 import io.annot8.core.stores.Annotations;
 
 public abstract class AbstractMemoryStore<B extends Bounds, A extends Annotation<B>>
@@ -20,7 +21,7 @@ implements Annotations<B, A> {
 	}
 
 	@Override
-	public A save(Builder<A, B> annotationBuilder) {
+	public A save(Builder<A, B> annotationBuilder) throws IncompleteAnnotationException {
 		A annotation = annotationBuilder.build();
 		annotations.put(annotation.getId(), annotation);
 		return annotation;

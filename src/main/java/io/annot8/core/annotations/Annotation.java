@@ -2,6 +2,7 @@ package io.annot8.core.annotations;
 
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.data.Properties;
+import io.annot8.core.exceptions.IncompleteAnnotationException;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
@@ -31,6 +32,6 @@ public interface Annotation<B extends Bounds> extends WithId, WithType, WithProp
 		Builder<A, B> setProperty(String key, Object value);
 		Builder<A, B> setProperties(Properties properties);
 		
-		A build();
+		A build() throws IncompleteAnnotationException;
 	}
 }

@@ -8,6 +8,7 @@ import io.annot8.content.text.TextAnnotation;
 import io.annot8.content.text.TextBounds;
 import io.annot8.core.components.java.OutputAnnotation;
 import io.annot8.core.data.Item;
+import io.annot8.core.exceptions.IncompleteAnnotationException;
 import io.annot8.core.stores.Annotations;
 import io.annot8.impl.bounds.SimpleTextBounds;
 
@@ -24,7 +25,11 @@ public class Email extends AbstractTextAnnotator {
     while (matcher.find()) {
       final TextBounds bounds = new SimpleTextBounds(matcher.start(), matcher.end());
       
-      store.save(store.getBuilder().onContent(content.getName()).setBounds(bounds).setType("EMAIL"));
+      try {
+    	  	store.save(store.getBuilder().onContent(content.getName()).setBounds(bounds).setType("EMAIL"));
+      }catch(IncompleteAnnotationException e) {
+    	    System.err.println("Annotation was not valid");
+      }
     }
   }
 }

@@ -3,9 +3,10 @@ package io.annot8.impl.data;
 import java.util.Objects;
 import java.util.Optional;
 import io.annot8.content.text.Text;
-import io.annot8.content.text.TextAnnotations;
+import io.annot8.content.text.TextAnnotation;
 import io.annot8.content.text.TextBounds;
 import io.annot8.core.data.Tags;
+import io.annot8.core.stores.Annotations;
 
 public class SimpleText implements Text {
 
@@ -14,9 +15,9 @@ public class SimpleText implements Text {
   private final String content;
 
   private final Tags tags = new SimpleTags();
-  private final TextAnnotations annotations;
+  private final Annotations<TextBounds, TextAnnotation> annotations;
 
-  public SimpleText(final String name, final String content, final TextAnnotations annotations) {
+  public SimpleText(final String name, final String content, final Annotations<TextBounds, TextAnnotation> annotations) {
     this.name = name;
     this.content = content;
     this.annotations = annotations;
@@ -28,7 +29,7 @@ public class SimpleText implements Text {
   }
 
   @Override
-  public TextAnnotations getAnnotations() {
+  public Annotations<TextBounds, TextAnnotation> getAnnotations() {
     return annotations;
   }
 
