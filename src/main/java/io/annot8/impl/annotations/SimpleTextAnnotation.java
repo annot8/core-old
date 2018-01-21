@@ -4,6 +4,7 @@ import java.util.UUID;
 import io.annot8.content.text.TextAnnotation;
 import io.annot8.content.text.TextBounds;
 import io.annot8.core.data.Properties;
+import io.annot8.core.exceptions.IncompleteAnnotationException;
 import io.annot8.impl.data.SimpleProperties;
 
 public class SimpleTextAnnotation implements TextAnnotation {
@@ -59,7 +60,7 @@ public class SimpleTextAnnotation implements TextAnnotation {
 		private String id = UUID.randomUUID().toString();
 		private String type;
 
-		private TextBounds bounds;	//FIXME: Potential for NPE here?
+		private TextBounds bounds;
 		private Properties properties = new SimpleProperties();
 
 		@Override
@@ -109,7 +110,16 @@ public class SimpleTextAnnotation implements TextAnnotation {
 		}
 
 		@Override
-		public SimpleTextAnnotation build() {
+		public SimpleTextAnnotation build() throws IncompleteAnnotationException {
+			if(bounds == null)
+				throw new IncompleteAnnotationException("Bounds are required on all annotations");
+			
+			if(id == null || id.isEmpty())
+				throw new IncompleteAnnotationException("An ID is required on all annotations");
+			
+			if(contentName == null || contentName.isEmpty())
+				throw new IncompleteAnnotationException("A content name is required on all annotations");
+			
 			return new SimpleTextAnnotation(this);
 		}
 	}
