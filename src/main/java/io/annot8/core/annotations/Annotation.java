@@ -1,11 +1,10 @@
 package io.annot8.core.annotations;
 
 import io.annot8.core.bounds.Bounds;
-import io.annot8.core.data.Properties;
-import io.annot8.core.exceptions.IncompleteException;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
+import io.annot8.core.helpers.builders.*;
 
 /**
  * Base annotation interface from which all other annotations extend.
@@ -19,19 +18,14 @@ public interface Annotation<B extends Bounds> extends WithId, WithType, WithProp
 	// The content against which this annotation was created
 	String getContentName();
 
-	interface Builder<A extends Annotation<B>, B extends Bounds> {
-		Builder<A, B> fromAnnotation(A annotation);
-		Builder<A, B> newId();
-		
-		Builder<A, B> onContent(String contentName);
-
-		Builder<A, B> setBounds(B bounds);
-
-		Builder<A, B> setType(String type);
-
-		Builder<A, B> setProperty(String key, Object value);
-		Builder<A, B> setProperties(Properties properties);
-		
-		A build() throws IncompleteException;
+	interface Builder<A extends Annotation<B>, B extends Bounds> extends
+            WithTypeBuilder<Builder<A, B>>,
+            WithPropertiesBuilder<Builder<A, B>>,
+            WithNewIdBuilder<Builder<A, B>>,
+            WithFrom<Builder<A, B>, A>,
+            WithBuild<A>
+    {
+		Builder<A, B> withContent(String contentName);
+		Builder<A, B> withBounds(B bounds);
 	}
 }

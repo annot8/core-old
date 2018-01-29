@@ -1,10 +1,9 @@
 package io.annot8.core.annotations;
 
-import io.annot8.core.data.Properties;
-import io.annot8.core.exceptions.IncompleteException;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
+import io.annot8.core.helpers.builders.*;
 
 import java.util.Map;
 import java.util.Optional;
@@ -31,17 +30,13 @@ public interface Group extends WithId, WithType, WithProperties {
     return getRoles().anyMatch(role::equals);
   }
 
-    interface Builder<A extends Group> {
-        Group.Builder<A> fromGroup(A group);
-        Group.Builder<A> newId();
-
-        Group.Builder<A> addAnnotation(String role, Annotation<?> annotation);
-
-        Group.Builder<A> setType(String type);
-
-        Group.Builder<A> setProperty(String key, Object value);
-        Group.Builder<A> setProperties(Properties properties);
-
-        A build() throws IncompleteException;
+    interface Builder<A extends Group> extends
+            WithTypeBuilder<Builder<A>>,
+            WithPropertiesBuilder<Builder<A>>,
+            WithNewIdBuilder<Builder<A>>,
+            WithFrom<Builder<A>, A>,
+            WithBuild<A>
+    {
+        Group.Builder<A> withAnnotation(String role, Annotation<?> annotation);
     }
 }

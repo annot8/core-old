@@ -1,8 +1,8 @@
 package io.annot8.core.data;
 
-import io.annot8.core.exceptions.IncompleteException;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithTags;
+import io.annot8.core.helpers.builders.*;
 import io.annot8.core.stores.Annotations;
 
 public interface Content<D> extends WithTags, WithProperties {
@@ -13,20 +13,14 @@ public interface Content<D> extends WithTags, WithProperties {
 
   String getName();
 
-  interface Builder<A extends Content<D>, D> {
-    Content.Builder<A, D> fromContent(Content content);
-
-    Content.Builder<A, D> setName(String name);
-    Content.Builder<A, D> setData(D content);
-
-    Content.Builder<A, D> setTag(String tag);
-    Content.Builder<A, D> setTags(Tags tags);
-
-    Content.Builder<A, D> setProperty(String key, Object value);
-    Content.Builder<A, D> setProperties(Properties properties);
-
-    Content.Builder<A, D> setAnnotations(Annotations<?, ?> annotations);
-
-    A build() throws IncompleteException;
+  interface Builder<A extends Content<D>, D> extends
+          WithPropertiesBuilder<Builder<A, D>>,
+          WithTagsBuilder<Builder<A, D>>,
+          WithFrom<Builder<A, D>, A>,
+          WithBuild<A>
+  {
+    Content.Builder<A, D> withName(String name);
+    Content.Builder<A, D> withData(D content);
+    Content.Builder<A, D> withAnnotations(Annotations<?, ?> annotations);
   }
 }
