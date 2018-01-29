@@ -1,10 +1,11 @@
 package io.annot8.core.annotations;
 
+import io.annot8.core.data.Properties;
+import io.annot8.core.exceptions.IncompleteException;
 import io.annot8.core.helpers.WithId;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithType;
 
-import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -24,17 +25,23 @@ public interface Group extends WithId, WithType, WithProperties {
 
   Optional<String> getRole(Annotation<?> annotation);
 
-  void addAnnotation(String role, Annotation<?> annotation);
-
-  void removeAnnotation(Annotation<?> annotation);
-
-  default void removeAllAnnotations(final Collection<Annotation<?>> annotations) {
-    annotations.forEach(this::removeAnnotation);
-  }
-
   boolean containsAnnotation(Annotation<?> annotation);
 
   default boolean containsRole(String role) {
     return getRoles().anyMatch(role::equals);
   }
+
+    interface Builder<A extends Group> {
+        Group.Builder<A> fromGroup(A group);
+        Group.Builder<A> newId();
+
+        Group.Builder<A> addAnnotation(String role, Annotation<?> annotation);
+
+        Group.Builder<A> setType(String type);
+
+        Group.Builder<A> setProperty(String key, Object value);
+        Group.Builder<A> setProperties(Properties properties);
+
+        A build() throws IncompleteException;
+    }
 }

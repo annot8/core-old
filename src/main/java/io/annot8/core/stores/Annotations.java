@@ -3,7 +3,7 @@ package io.annot8.core.stores;
 import io.annot8.content.text.Text;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
-import io.annot8.core.exceptions.IncompleteAnnotationException;
+import io.annot8.core.exceptions.IncompleteException;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 public interface Annotations<B extends Bounds, A extends Annotation<B>> {
 
   A.Builder<A, B> getBuilder();
-  A save(A.Builder<A, B> annotationBuilder) throws IncompleteAnnotationException;
+  A save(A.Builder<A, B> annotationBuilder) throws IncompleteException;
 
   void delete(A annotation);
 
