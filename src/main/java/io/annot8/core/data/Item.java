@@ -1,13 +1,14 @@
 package io.annot8.core.data;
 
-import java.util.Optional;
-import java.util.stream.Stream;
 import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.UnsupportedContentException;
 import io.annot8.core.helpers.WithGroups;
-import io.annot8.core.helpers.WithProperties;
+import io.annot8.core.helpers.WithMutableProperties;
 
-public interface Item extends WithProperties, WithGroups {
+import java.util.Optional;
+import java.util.stream.Stream;
+
+public interface Item extends WithMutableProperties, WithGroups {
 
   // Contents
   void setDefaultContent(String name);
