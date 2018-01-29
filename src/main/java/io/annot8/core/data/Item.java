@@ -27,9 +27,7 @@ public interface Item extends WithMutableProperties, WithGroups {
 
   <T extends Content<?>> Stream<T> getContents(Class<T> clazz);
 
-  <D, C extends Content<D>> C create(String name, Class<C> contentClass, D data)
-      throws AlreadyExistsException, UnsupportedContentException;
+  <C extends Content<?>> C create(String name, C.Builder builder) throws AlreadyExistsException, UnsupportedContentException;
 
   void removeContent(String name);
-
 }
