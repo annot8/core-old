@@ -1,8 +1,9 @@
 package io.annot8.core.data;
 
+import io.annot8.core.components.Resource;
+
 import java.util.Optional;
 import java.util.stream.Stream;
-import io.annot8.core.components.Resource;
 
 /**
  * Context interface to hold configuration and resources to be passed to a component, usually at
@@ -33,13 +34,15 @@ public interface Context {
 
   <T extends Resource> Optional<T> getResource(String key, Class<T> clazz);
 
+  Stream<String> getKeys();
+  default Stream<String> getKeys(Class<? extends Resource> clazz){
+    return getKeys().filter(s -> getResource(s, clazz).isPresent());
+  }
+
   default <T extends Resource> Optional<T> getResource(final Class<T> clazz) {
     return getResources(clazz).findFirst();
   }
 
   <T extends Resource> Stream<T> getResources(Class<T> clazz);
-
-  // TODO: JB - I think this needs to be better defined to match other classes. For instance, how do
-  // you get a list of keys?
 
 }

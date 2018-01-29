@@ -30,4 +30,5 @@ public interface Item extends WithMutableProperties, WithGroups {
   <C extends Content<?>> C create(String name, C.Builder builder) throws AlreadyExistsException, UnsupportedContentException;
 
   void removeContent(String name);
+
 }

@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-// TODO: This needs more thought. How does it get stored? Is it linked to a specific view, or does
-// it sit above them?
 public interface Group extends WithId, WithType, WithProperties {
   Map<String, Stream<Annotation<?>>> getAnnotations();
 
