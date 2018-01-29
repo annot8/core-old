@@ -1,13 +1,14 @@
 package io.annot8.core.stores;
 
-import java.util.Collection;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import io.annot8.content.text.Text;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.exceptions.IncompleteAnnotationException;
+
+import java.util.Collection;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Stores {@link Annotation} objects against {@link Text}s, and allows retrieval of annotations
@@ -15,7 +16,7 @@ import io.annot8.core.exceptions.IncompleteAnnotationException;
  */
 public interface Annotations<B extends Bounds, A extends Annotation<B>> {
 
-	A.Builder<A, B> getBuilder();
+  A.Builder<A, B> getBuilder();
   A save(A.Builder<A, B> annotationBuilder) throws IncompleteAnnotationException;
 
   void delete(A annotation);
