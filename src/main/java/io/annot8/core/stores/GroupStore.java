@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  * @param <A>
  * 		The group supported by this store
  */
-public interface Groups<A extends Group> {
+public interface GroupStore<A extends Group> {
 
 	/**
 	 * Return a builder object for the supported group

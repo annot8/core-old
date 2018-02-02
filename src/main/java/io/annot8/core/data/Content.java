@@ -3,7 +3,7 @@ package io.annot8.core.data;
 import io.annot8.core.helpers.WithProperties;
 import io.annot8.core.helpers.WithTags;
 import io.annot8.core.helpers.builders.*;
-import io.annot8.core.stores.Annotations;
+import io.annot8.core.stores.AnnotationStore;
 
 /**
  * Base content interface from which all content implementations extend.
@@ -18,7 +18,7 @@ public interface Content<D> extends WithTags, WithProperties {
   /**
    * Return the annotation store for this content
    */
-  Annotations<?, ?> getAnnotations();
+  AnnotationStore<?, ?> getAnnotations();
 
   /**
    * Return the name of this content
@@ -47,6 +47,6 @@ public interface Content<D> extends WithTags, WithProperties {
     /**
 	 * Set the annotation store for this content object
 	 */
-    Content.Builder<A, D> withAnnotations(Annotations<?, ?> annotations);
+    Content.Builder<A, D> withAnnotations(AnnotationStore<?, ?> annotations);
   }
 }

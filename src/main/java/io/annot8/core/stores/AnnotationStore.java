@@ -17,7 +17,7 @@ import java.util.stream.Stream;
  * @param <A>
  * 		The annotation supported by this store, which must use the given bounds
  */
-public interface Annotations<B extends Bounds, A extends Annotation<B>> {
+public interface AnnotationStore<B extends Bounds, A extends Annotation<B>> {
 
 	/**
 	 * Return a builder object for the supported annotations
