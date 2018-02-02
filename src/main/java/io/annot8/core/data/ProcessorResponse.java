@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 public class ProcessorResponse {
 
   public enum Status {
-    OK, ITEM_ERROR, PIPELINE_ERROR
+    OK, ITEM_STOP, ITEM_ERROR, PIPELINE_ERROR
   }
 
   private final Status status;
@@ -45,6 +45,22 @@ public class ProcessorResponse {
 
   public static ProcessorResponse ok(final Stream<Item> items) {
     return new ProcessorResponse(Status.OK, items);
+  }
+
+  public static ProcessorResponse itemStop() {
+    return new ProcessorResponse(Status.ITEM_STOP, Stream.empty());
+  }
+
+  public static ProcessorResponse itemStop(final Item... item) {
+    return new ProcessorResponse(Status.ITEM_STOP, Stream.of(item));
+  }
+
+  public static ProcessorResponse itemStop(final Collection<Item> items) {
+    return new ProcessorResponse(Status.ITEM_STOP, items.stream());
+  }
+
+  public static ProcessorResponse itemStop(final Stream<Item> items) {
+    return new ProcessorResponse(Status.ITEM_STOP, items);
   }
 
   public static ProcessorResponse itemError() {
