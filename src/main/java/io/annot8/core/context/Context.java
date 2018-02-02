@@ -7,13 +7,19 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
- * Context interface to hold configuration and resources to be passed to a component, usually at
- * creation time.
+ * Base context interface from which all context implementations extend.
  */
 public interface Context {
 
+	/**
+	 * Return the settings object for the component that this context is being passed to.
+	 */
   Optional<Settings> getSettings();
 
+  /**
+   * Return a settings object as the given class, attempting to create a new settings
+   * object of that class if the currently given settings are not of this class.
+   */
   default <T extends Settings> T getSettings(final Class<T> clazz) {
     final Optional<Settings> o = getSettings();
     if (o.isPresent()) {
@@ -23,7 +29,6 @@ public interface Context {
       }
     }
 
-    // Attempt to create an instance of the class (assuming it will have default set)
     try {
       return clazz.getConstructor().newInstance();
     } catch (final Exception e) {
@@ -31,17 +36,35 @@ public interface Context {
     }
   }
 
+  /**
+   * Return the resource of the given type associated with the given key
+   */
   <T extends Resource> Optional<T> getResource(String key, Class<T> clazz);
 
+  /**
+   * List all the resource keys contained within this context
+   */
   Stream<String> getResourceKeys();
+  
+  /**
+   * List all the resource keys contained within this context that are of the specified type
+   */
   default Stream<String> getResourceKeys(Class<? extends Resource> clazz){
     return getResourceKeys().filter(s -> getResource(s, clazz).isPresent());
   }
 
+  /**
+   * Return any resource (if there is one) of the specified type
+   */
   default <T extends Resource> Optional<T> getResource(final Class<T> clazz) {
     return getResources(clazz).findFirst();
   }
 
+  /**
+   * Return all resources of the specified type
+   */
   <T extends Resource> Stream<T> getResources(Class<T> clazz);
+  
+  //TODO: We need to implement a builder interface here
 
 }
