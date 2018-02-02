@@ -1,6 +1,5 @@
 package io.annot8.core.stores;
 
-import io.annot8.content.text.Text;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.bounds.Bounds;
 import io.annot8.core.exceptions.IncompleteException;
@@ -10,10 +9,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * Stores {@link Annotation} objects against {@link Text}s, and allows retrieval of annotations
- * associated with a given document.
- */
 public interface Annotations<B extends Bounds, A extends Annotation<B>> {
 
   A.Builder<A, B> getBuilder();
