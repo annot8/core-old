@@ -4,6 +4,9 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Base mutable properties interface from which all other mutable properties extend.
+ */
 public interface MutableProperties extends Properties {
 
    /**
