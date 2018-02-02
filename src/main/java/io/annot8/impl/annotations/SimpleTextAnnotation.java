@@ -3,7 +3,7 @@ package io.annot8.impl.annotations;
 import java.util.UUID;
 import io.annot8.content.text.TextAnnotation;
 import io.annot8.content.text.TextBounds;
-import io.annot8.core.data.Properties;
+import io.annot8.core.properties.Properties;
 import io.annot8.core.exceptions.IncompleteAnnotationException;
 import io.annot8.impl.data.SimpleProperties;
 

@@ -1,7 +1,7 @@
 package io.annot8.core.components;
 
 import io.annot8.content.text.Text;
-import io.annot8.core.data.SourceResponse;
+import io.annot8.core.components.responses.SourceResponse;
 import io.annot8.core.stores.Annotations;
 
 /**

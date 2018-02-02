@@ -1,6 +1,6 @@
 package io.annot8.core.helpers;
 
-import io.annot8.core.data.ImmutableProperties;
+import io.annot8.core.properties.ImmutableProperties;
 
 /**
  * Indicates that an object stores a collection of properties (key-value pairs)

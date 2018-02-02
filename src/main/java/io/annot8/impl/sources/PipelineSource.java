@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import io.annot8.core.components.Source;
 import io.annot8.core.data.Item;
-import io.annot8.core.data.SourceResponse;
+import io.annot8.core.components.responses.SourceResponse;
 
 public class PipelineSource implements Source {
 

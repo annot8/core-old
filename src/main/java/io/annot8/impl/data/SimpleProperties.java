@@ -3,7 +3,7 @@ package io.annot8.impl.data;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import io.annot8.core.data.Properties;
+import io.annot8.core.properties.Properties;
 
 public class SimpleProperties implements Properties {
   private final Map<String, Object> properties = new HashMap<>();

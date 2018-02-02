@@ -1,6 +1,7 @@
-package io.annot8.core.data;
+package io.annot8.core.context;
 
 import io.annot8.core.components.Resource;
+import io.annot8.core.settings.Settings;
 
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -11,12 +12,10 @@ import java.util.stream.Stream;
  */
 public interface Context {
 
-  Item createItem();
+  Optional<Settings> getSettings();
 
-  Optional<Object> getConfiguration();
-
-  default <T> T getConfiguration(final Class<T> clazz) {
-    final Optional<Object> o = getConfiguration();
+  default <T extends Settings> T getSettings(final Class<T> clazz) {
+    final Optional<Settings> o = getSettings();
     if (o.isPresent()) {
       final Object v = o.get();
       if (clazz.isInstance(v)) {
@@ -34,9 +33,9 @@ public interface Context {
 
   <T extends Resource> Optional<T> getResource(String key, Class<T> clazz);
 
-  Stream<String> getKeys();
-  default Stream<String> getKeys(Class<? extends Resource> clazz){
-    return getKeys().filter(s -> getResource(s, clazz).isPresent());
+  Stream<String> getResourceKeys();
+  default Stream<String> getResourceKeys(Class<? extends Resource> clazz){
+    return getResourceKeys().filter(s -> getResource(s, clazz).isPresent());
   }
 
   default <T extends Resource> Optional<T> getResource(final Class<T> clazz) {

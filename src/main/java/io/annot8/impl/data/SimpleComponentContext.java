@@ -3,7 +3,7 @@ package io.annot8.impl.data;
 import java.util.Optional;
 import java.util.stream.Stream;
 import io.annot8.core.components.Resource;
-import io.annot8.core.data.Context;
+import io.annot8.core.context.Context;
 import io.annot8.core.data.Item;
 
 public class SimpleComponentContext implements Context {

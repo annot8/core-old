@@ -10,7 +10,7 @@ import io.annot8.content.text.Text;
 import io.annot8.core.data.AnnotationCollections;
 import io.annot8.core.data.Content;
 import io.annot8.core.data.Item;
-import io.annot8.core.data.Properties;
+import io.annot8.core.properties.Properties;
 import io.annot8.core.exceptions.AlreadyExistsException;
 import io.annot8.core.exceptions.UnsupportedContentException;
 import io.annot8.impl.stores.TextAnnotationMemoryStore;

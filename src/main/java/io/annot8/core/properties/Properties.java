@@ -1,4 +1,4 @@
-package io.annot8.core.data;
+package io.annot8.core.properties;
 
 import java.util.Map;
 import java.util.Map.Entry;

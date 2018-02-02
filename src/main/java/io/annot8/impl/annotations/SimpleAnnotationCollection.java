@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import io.annot8.core.annotations.Annotation;
 import io.annot8.core.annotations.AnnotationCollection;
 import io.annot8.core.data.Item;
-import io.annot8.core.data.Properties;
+import io.annot8.core.properties.Properties;
 import io.annot8.impl.data.SimpleProperties;
 
 public class SimpleAnnotationCollection implements AnnotationCollection {
