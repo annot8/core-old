@@ -5,8 +5,7 @@ import io.annot8.core.data.Item;
 import java.util.Collection;
 import java.util.stream.Stream;
 
-// TODO: For consistency with rest of core, should this be an interface? Not sure
-public class SourceResponse {
+public final class SourceResponse {
 
   public enum Status {
     // Ok, ask again asap

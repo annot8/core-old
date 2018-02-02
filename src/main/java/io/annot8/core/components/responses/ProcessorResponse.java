@@ -5,7 +5,7 @@ import io.annot8.core.data.Item;
 import java.util.Collection;
 import java.util.stream.Stream;
 
-public class ProcessorResponse {
+public final class ProcessorResponse {
 
   public enum Status {
     OK, ITEM_STOP, ITEM_ERROR, PIPELINE_ERROR
