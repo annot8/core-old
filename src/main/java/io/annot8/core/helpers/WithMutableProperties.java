@@ -3,11 +3,12 @@ package io.annot8.core.helpers;
 import io.annot8.core.properties.MutableProperties;
 
 /**
- * Indicates that an object stores a collection of properties (key-value pairs)
- *
- * Helper interface to reduce duplicate code.
+ * Helper interface to indicate that a class supports MutableProperties
  */
 public interface WithMutableProperties {
 
+	/**
+	 * Return the mutable properties associated with this object
+	 */
   MutableProperties getProperties();
 }
