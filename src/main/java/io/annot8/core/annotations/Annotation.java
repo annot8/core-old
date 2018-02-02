@@ -8,16 +8,21 @@ import io.annot8.core.helpers.builders.*;
 
 /**
  * Base annotation interface from which all other annotations extend.
- *
- * This class provides the common functionality required to track the history of an annotation (i.e.
- * which processor created it, which ones modified it, etc.)
  */
 public interface Annotation<B extends Bounds> extends WithId, WithType, WithProperties {
+	/**
+	 * Get the {@link Bounds} associated with this annotation
+	 */
 	B getBounds();
 
-	// The content against which this annotation was created
+	/**
+	 * Get the name of the Content to which this annotation refers
+	 */
 	String getContentName();
 
+	/**
+	 * Builder interface to create (immutable) Annotation classes
+	 */
 	interface Builder<A extends Annotation<B>, B extends Bounds> extends
             WithTypeBuilder<Builder<A, B>>,
             WithPropertiesBuilder<Builder<A, B>>,
@@ -25,7 +30,14 @@ public interface Annotation<B extends Bounds> extends WithId, WithType, WithProp
             WithFrom<Builder<A, B>, A>,
             WithBuild<A>
     {
+		/**
+		 * Set the name of the Content to which this annotation refers
+		 */
 		Builder<A, B> withContent(String contentName);
+		
+		/**
+		 * Set the {@link Bounds} associated with this annotation
+		 */
 		Builder<A, B> withBounds(B bounds);
 	}
 }
