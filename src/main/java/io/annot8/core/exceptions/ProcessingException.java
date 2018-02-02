@@ -7,10 +7,16 @@ public class ProcessingException extends Annot8Exception {
 
   private static final long serialVersionUID = 1L;
 
+  /**
+   * Create an exception with the given message
+   */
   public ProcessingException(final String message) {
     super(message);
   }
 
+  /**
+   * Create an exception with the given message and a root cause
+   */
   public ProcessingException(final String message, final Throwable t) {
     super(message, t);
   }
