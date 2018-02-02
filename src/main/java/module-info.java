@@ -2,6 +2,7 @@ module io.annot8.core {
     exports io.annot8.core.annotations;
     exports io.annot8.core.bounds;
     exports io.annot8.core.components;
+    exports io.annot8.core.components.responses;
     exports io.annot8.core.context;
     exports io.annot8.core.data;
     exports io.annot8.core.exceptions;
