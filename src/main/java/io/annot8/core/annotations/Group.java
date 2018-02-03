@@ -19,12 +19,12 @@ public interface Group extends WithId, WithType, WithProperties {
   /**
    * Return a map of all roles with the associated annotations in this group
    */
-  Map<String, Stream<Annotation<?>>> getAnnotations();
+  Map<String, Stream<Annotation>> getAnnotations();
 
   /**
    * Return all the annotations in this group with the specified role
    */
-  default Stream<Annotation<?>> getAnnotations(final String role){
+  default Stream<Annotation> getAnnotations(final String role){
     return getAnnotations().get(role);
   }
 
@@ -38,12 +38,12 @@ public interface Group extends WithId, WithType, WithProperties {
   /**
    * Get the role of a specific annotation in this group
    */
-  Optional<String> getRole(final Annotation<?> annotation);
+  Optional<String> getRole(final Annotation annotation);
 
   /**
    * Returns true if this group contains the specified annotation
    */
-  boolean containsAnnotation(final Annotation<?> annotation);
+  boolean containsAnnotation(final Annotation annotation);
 
   /**
    * Returns true if this group contains at least one annotation with the specified role
@@ -65,6 +65,6 @@ public interface Group extends WithId, WithType, WithProperties {
     /**
      * Add an annotation to this group with the specified role
      */
-    Builder<A> withAnnotation(final String role, final Annotation<?> annotation);
+    Builder<A> withAnnotation(final String role, final Annotation annotation);
   }
 }

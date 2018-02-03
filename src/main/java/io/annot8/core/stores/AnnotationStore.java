@@ -17,12 +17,12 @@ public interface AnnotationStore {
   /**
    * Return a builder object for the specified annotation class
    */
-  <A extends Annotation> A.Builder getBuilder(final Class<A> annotationClass) throws UnsupportedException;
+  <A extends Annotation> A.Builder<A> getBuilder(final Class<A> annotationClass) throws UnsupportedException;
 
   /**
    * Save an annotation to the store from an annotation builder
    */
-  <A extends Annotation> A save(final A.Builder annotationBuilder) throws IncompleteException, UnsupportedException;
+  <A extends Annotation> A save(final A.Builder<A> annotationBuilder) throws IncompleteException, UnsupportedException;
 
   /**
    * Return true if this store supports creating and saving the specified annotation class
@@ -61,7 +61,7 @@ public interface AnnotationStore {
   /**
    * Get all annotations of a given bounds held in this store
    */
-  <B extends Bounds> Stream<Annotation<B>> getAllByBounds(final Class<B> boundsClass);
+  <B extends Bounds> Stream<Annotation> getAllByBounds(final Class<B> boundsClass);
   
   /**
    * Get all annotations of a given type currently held in this store
@@ -80,7 +80,7 @@ public interface AnnotationStore {
   /**
    * Get all annotations of a given type and bounds currently held in this store
    */
-  default <B extends Bounds> Stream<Annotation<B>> getByTypeAndBounds(final String type, final Class<B> boundsClass) {
+  default <B extends Bounds> Stream<Annotation> getByTypeAndBounds(final String type, final Class<B> boundsClass) {
     return getAllByBounds(boundsClass).filter(a -> type.equals(a.getType()));
   }
 
