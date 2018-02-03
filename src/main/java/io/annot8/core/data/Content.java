@@ -21,7 +21,7 @@ public interface Content<D> extends WithTags, WithProperties {
   /**
    * Return the annotation store for this content
    */
-  AnnotationStore<?, ?> getAnnotations();
+  AnnotationStore getAnnotationStore();
 
   /**
    * Return the name of this content
@@ -49,7 +49,10 @@ public interface Content<D> extends WithTags, WithProperties {
 
     /**
      * Set the annotation store for this content object
+     * 
+     * This will generally be set by the Item or Pipeline, and should not be set by the
+     * developer unless there is a specific reason to do so
      */
-    Content.Builder<A, D> withAnnotations(final AnnotationStore<?, ?> annotations);
+    Content.Builder<A, D> withAnnotationStore(final AnnotationStore annotationStore);
   }
 }

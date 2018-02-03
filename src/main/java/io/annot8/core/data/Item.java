@@ -1,7 +1,7 @@
 package io.annot8.core.data;
 
 import io.annot8.core.exceptions.AlreadyExistsException;
-import io.annot8.core.exceptions.UnsupportedContentException;
+import io.annot8.core.exceptions.UnsupportedException;
 import io.annot8.core.helpers.WithGroups;
 import io.annot8.core.helpers.WithMutableProperties;
 
@@ -53,7 +53,7 @@ public interface Item extends WithMutableProperties, WithGroups {
   /**
    * Create a new content object from the given content builder (the name should be taken from the builder object)
    */
-  <C extends Content<?>> C create(final C.Builder builder) throws AlreadyExistsException, UnsupportedContentException;
+  <C extends Content<?>> C create(final C.Builder builder) throws AlreadyExistsException, UnsupportedException;
 
   /**
    * Remove the specified content object from this item

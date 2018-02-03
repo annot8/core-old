@@ -5,7 +5,44 @@
 	<groupId>io.annot8</groupId>
 	<artifactId>core</artifactId>
 	<version>0.1-SNAPSHOT</version>
+
 	<name>Annot8 Core</name>
+	<description>Core interfaces for the Annot8 project</description>
+	<inceptionYear>2017</inceptionYear>
+	<url>http://annot8.io</url>
+
+	<developers>
+		<developer>
+			<name>James Baker</name>
+			<url>https://github.com/jamesdbaker</url>
+		</developer>
+		<developer>
+			<name>Chris Flatley</name>
+			<url>https://github.com/chrisflatley</url>
+		</developer>
+		<developer>
+			<name>Stuart Hendren</name>
+			<url>https://github.com/stuarthendren</url>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>Apache Software License 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<issueManagement>
+		<url>https://github.com/annot8/core/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+
+	<scm>
+		<url>https://github.com/annot8/core/</url>
+		<connection>scm:git:git://github.com/annot8/core.git</connection>
+		<developerConnection>scm:git:git@github.com/annot8/core.git</developerConnection>
+	</scm>
 
 	<properties>
 		<maven.compiler.source>9</maven.compiler.source>

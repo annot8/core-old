@@ -19,7 +19,7 @@ public class ExceptionsTest {
         testException(IncompleteException.class);
         testException(MissingResourceException.class);
         testException(ProcessingException.class);
-        testException(UnsupportedContentException.class);
+        testException(UnsupportedException.class);
     }
 
     private void testException(Class<? extends Exception> exceptionClass) throws Exception{
