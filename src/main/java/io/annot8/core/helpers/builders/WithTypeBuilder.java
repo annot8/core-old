@@ -11,5 +11,5 @@ public interface WithTypeBuilder<A> {
 	/**
 	 * Return a builder with the type set to the specified value
 	 */
-    A withType(String type);
+    A withType(final String type);
 }

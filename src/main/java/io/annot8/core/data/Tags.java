@@ -33,12 +33,12 @@ public interface Tags {
         /**
          * Add a tag to this tags object
          */
-        Builder addTag(String tag);
+        Builder addTag(final String tag);
         
         /**
          * Add a collection of tags to this tags object
          */
-        Builder addTags(Collection<String> tags);
+        Builder addTags(final Collection<String> tags);
 
     }
 }

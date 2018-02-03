@@ -10,6 +10,9 @@ import io.annot8.core.components.responses.SourceResponse;
  */
 public interface Source extends Annot8Component {
 
+	/**
+	 * Read from the data source and return new items if found
+	 */
   SourceResponse read();
 
 }

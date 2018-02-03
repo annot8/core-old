@@ -27,12 +27,12 @@ public interface AnnotationStore<B extends Bounds, A extends Annotation<B>> {
   /**
    * Save an annotation to the store from an annotation builder
    */
-  A save(A.Builder<A, B> annotationBuilder) throws IncompleteException;
+  A save(final A.Builder<A, B> annotationBuilder) throws IncompleteException;
 
   /**
    * Delete an annotation from the store
    */
-  void delete(A annotation);
+  void delete(final A annotation);
 
   /**
    * Delete a collection of annotations from the store
@@ -63,6 +63,6 @@ public interface AnnotationStore<B extends Bounds, A extends Annotation<B>> {
   /**
    * Get the annotation with the given ID, if it is currently held in this store
    */
-  Optional<A> getById(String annotationId);
+  Optional<A> getById(final String annotationId);
 
 }

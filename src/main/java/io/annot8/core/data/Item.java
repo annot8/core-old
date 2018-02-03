@@ -16,7 +16,7 @@ public interface Item extends WithMutableProperties, WithGroups {
   /**
    * Set the default content object for this item
    */
-  void setDefaultContent(String name);
+  void setDefaultContent(final String name);
 
   /**
    * Return the default content object for this item
@@ -38,7 +38,7 @@ public interface Item extends WithMutableProperties, WithGroups {
   /**
    * Return the content object for the specified name
    */
-  Optional<Content<?>> getContent(String name);
+  Optional<Content<?>> getContent(final String name);
 
   /**
    * Return all content objects contained within this item
@@ -48,16 +48,16 @@ public interface Item extends WithMutableProperties, WithGroups {
   /**
    * Return all content objects of the specified class contained within this item
    */
-  <T extends Content<?>> Stream<T> getContents(Class<T> clazz);
+  <T extends Content<?>> Stream<T> getContents(final Class<T> clazz);
 
   /**
    * Create a new content object from the given content builder (the name should be taken from the builder object)
    */
-  <C extends Content<?>> C create(C.Builder builder) throws AlreadyExistsException, UnsupportedContentException;
+  <C extends Content<?>> C create(final C.Builder builder) throws AlreadyExistsException, UnsupportedContentException;
 
   /**
    * Remove the specified content object from this item
    */
-  void removeContent(String name);
+  void removeContent(final String name);
 
 }

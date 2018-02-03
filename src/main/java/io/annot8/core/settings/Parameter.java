@@ -5,12 +5,16 @@ import java.lang.annotation.*;
 /**
  * Declares a parameter within a settings class.
  * 
+ * This should be set on the get method for a parameter, and it
+ * may generally be assumed that there is a corresponding set
+ * method.
+ * 
  * All parameters must have a default value of some description,
  * and therefore no parameters are required.
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.LOCAL_VARIABLE) //TODO: Is this what we want the target to be?
+@Target(ElementType.METHOD)
 public @interface Parameter {
 
 	/**

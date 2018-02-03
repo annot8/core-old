@@ -14,5 +14,5 @@ public interface WithFrom<A, B> {
 	/**
 	 * Return a builder based on an existing object
 	 */
-    A from(B from);
+    A from(final B from);
 }

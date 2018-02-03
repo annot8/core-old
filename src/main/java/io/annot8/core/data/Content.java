@@ -37,16 +37,16 @@ public interface Content<D> extends WithTags, WithProperties {
 	/**
 	 * Set the name of this content object
 	 */
-	  Content.Builder<A, D> withName(String name);
+	  Content.Builder<A, D> withName(final String name);
 	  
 	/**
 	 * Set the data for this content object
 	 */
-    Content.Builder<A, D> withData(D content);
+    Content.Builder<A, D> withData(final D content);
     
     /**
 	 * Set the annotation store for this content object
 	 */
-    Content.Builder<A, D> withAnnotations(AnnotationStore<?, ?> annotations);
+    Content.Builder<A, D> withAnnotations(final AnnotationStore<?, ?> annotations);
   }
 }

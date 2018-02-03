@@ -24,12 +24,12 @@ public interface GroupStore<A extends Group> {
     /**
      * Save a group to the store from a group builder
      */
-    A save(A.Builder<A> groupBuilder) throws IncompleteException;
+    A save(final A.Builder<A> groupBuilder) throws IncompleteException;
 
     /**
      * Delete a group from the store
      */
-  void delete(Group annotation);
+  void delete(final Group annotation);
 
   /**
    * Delete a collection of groups from the store
@@ -60,6 +60,6 @@ public interface GroupStore<A extends Group> {
   /**
    * Get the group with the given ID, if it is currently held in this store
    */
-    Optional<A> getById(String groupId);
+    Optional<A> getById(final String groupId);
 
 }

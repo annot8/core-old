@@ -12,12 +12,12 @@ public interface MutableProperties extends Properties {
    /**
    * Set the property value for the specified key
    */
-  void set(String key, Object value);
+  void set(final String key, final Object value);
 
   /**
    * Remove the property for the specified key, and return it's object (if it exists)
    */
-  Optional<Object> remove(String key);
+  Optional<Object> remove(final String key);
 
 
   /**

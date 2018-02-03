@@ -33,11 +33,11 @@ public interface Annotation<B extends Bounds> extends WithId, WithType, WithProp
 		/**
 		 * Set the name of the Content to which this annotation refers
 		 */
-		Builder<A, B> withContent(String contentName);
+		Builder<A, B> withContent(final String contentName);
 		
 		/**
 		 * Set the {@link Bounds} associated with this annotation
 		 */
-		Builder<A, B> withBounds(B bounds);
+		Builder<A, B> withBounds(final B bounds);
 	}
 }

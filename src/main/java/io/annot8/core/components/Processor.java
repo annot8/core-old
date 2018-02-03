@@ -15,5 +15,5 @@ public interface Processor extends Annot8Component {
 	/**
 	 * Process the given item
 	 */
-  ProcessorResponse process(Item item) throws ProcessingException;
+  ProcessorResponse process(final Item item) throws ProcessingException;
 }

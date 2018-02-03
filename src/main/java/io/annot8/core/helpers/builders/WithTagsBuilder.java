@@ -13,10 +13,10 @@ public interface WithTagsBuilder<A> {
 	/**
 	 * Return a builder with the tag added to it
 	 */
-    A withTag(String tag);
+    A withTag(final String tag);
     
     /**
      * Return a builder with the specified tags
      */
-    A withTags(Tags tags);
+    A withTags(final Tags tags);
 }

@@ -30,5 +30,5 @@ public interface Annot8Component extends AutoCloseable {
    * Return the capabilities of this component when configured with
    * the specified settings.
    */
-  Capabilities getCapabilities(Settings settings);
+  Capabilities getCapabilities(final Settings settings);
 }

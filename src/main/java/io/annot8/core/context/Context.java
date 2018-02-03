@@ -39,7 +39,7 @@ public interface Context {
   /**
    * Return the resource of the given type associated with the given key
    */
-  <T extends Resource> Optional<T> getResource(String key, Class<T> clazz);
+  <T extends Resource> Optional<T> getResource(final String key, final Class<T> clazz);
 
   /**
    * List all the resource keys contained within this context
@@ -49,7 +49,7 @@ public interface Context {
   /**
    * List all the resource keys contained within this context that are of the specified type
    */
-  default Stream<String> getResourceKeys(Class<? extends Resource> clazz){
+  default Stream<String> getResourceKeys(final Class<? extends Resource> clazz){
     return getResourceKeys().filter(s -> getResource(s, clazz).isPresent());
   }
 
@@ -63,8 +63,6 @@ public interface Context {
   /**
    * Return all resources of the specified type
    */
-  <T extends Resource> Stream<T> getResources(Class<T> clazz);
-  
-  //TODO: We need to implement a builder interface here
+  <T extends Resource> Stream<T> getResources(final Class<T> clazz);
 
 }
