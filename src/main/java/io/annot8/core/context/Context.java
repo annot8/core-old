@@ -1,19 +1,18 @@
 package io.annot8.core.context;
 
-import io.annot8.core.components.Resource;
-import io.annot8.core.settings.Settings;
-
 import java.util.Optional;
 import java.util.stream.Stream;
+import io.annot8.core.components.Resource;
+import io.annot8.core.settings.Settings;
 
 /**
  * Base context interface from which all context implementations extend.
  */
 public interface Context {
 
-	/**
-	 * Return the settings object for the component that this context is being passed to.
-	 */
+  /**
+   * Return the settings object for the component that this context is being passed to.
+   */
   Optional<Settings> getSettings();
 
   /**
@@ -45,7 +44,7 @@ public interface Context {
    * List all the resource keys contained within this context
    */
   Stream<String> getResourceKeys();
-  
+
   /**
    * List all the resource keys contained within this context that are of the specified type
    */

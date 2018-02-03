@@ -1,9 +1,8 @@
 package io.annot8.core.components.responses;
 
-import io.annot8.core.data.Item;
-
 import java.util.Collection;
 import java.util.stream.Stream;
+import io.annot8.core.data.Item;
 
 /**
  * Class to hold the response from a source.
@@ -13,36 +12,36 @@ import java.util.stream.Stream;
  */
 public final class SourceResponse {
 
-	/**
-	 * Response status returned by the source
-	 */
+  /**
+   * Response status returned by the source
+   */
   public enum Status {
-	  /**
-	   * Indicates that the source found new items,
-	   * and that the pipeline may ask the source for
-	   * new items again as soon as it is ready.
-	   */
-	  OK,
-	   
-	   /**
-	    * Indicates that an error occurred with the source.
-	    * It is up to the pipeline to decide whether to try
-	    * again or not.
-	    */
-	  SOURCE_ERROR,
+    /**
+     * Indicates that the source found new items,
+     * and that the pipeline may ask the source for
+     * new items again as soon as it is ready.
+     */
+    OK,
 
-	  /**
-	   * Indicates that the source has been exhausted, and
-	   * will never return any new items. The pipeline
-	   * should stop asking for new items and terminate.
-	   */
-	  DONE,
+    /**
+     * Indicates that an error occurred with the source.
+     * It is up to the pipeline to decide whether to try
+     * again or not.
+     */
+    SOURCE_ERROR,
 
-	  /**
-	   * Indicates that the source is temporarily empty,
-	   * but that it may have new items in the future.
-	   */
-	  EMPTY
+    /**
+     * Indicates that the source has been exhausted, and
+     * will never return any new items. The pipeline
+     * should stop asking for new items and terminate.
+     */
+    DONE,
+
+    /**
+     * Indicates that the source is temporarily empty,
+     * but that it may have new items in the future.
+     */
+    EMPTY
   }
 
   private final Status status;

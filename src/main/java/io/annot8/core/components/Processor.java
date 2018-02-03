@@ -12,8 +12,8 @@ import io.annot8.core.exceptions.ProcessingException;
  */
 public interface Processor extends Annot8Component {
 
-	/**
-	 * Process the given item
-	 */
+  /**
+   * Process the given item
+   */
   ProcessorResponse process(final Item item) throws ProcessingException;
 }

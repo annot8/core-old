@@ -10,9 +10,9 @@ package io.annot8.core.helpers.builders;
  * 		The object class from which an object should be based
  */
 public interface WithFrom<A, B> {
-	
-	/**
-	 * Return a builder based on an existing object
-	 */
-    A from(final B from);
+
+  /**
+   * Return a builder based on an existing object
+   */
+  A from(final B from);
 }

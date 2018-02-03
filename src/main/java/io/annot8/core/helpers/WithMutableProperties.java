@@ -7,8 +7,8 @@ import io.annot8.core.properties.MutableProperties;
  */
 public interface WithMutableProperties {
 
-	/**
-	 * Return the mutable properties associated with this object
-	 */
+  /**
+   * Return the mutable properties associated with this object
+   */
   MutableProperties getProperties();
 }

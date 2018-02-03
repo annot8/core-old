@@ -1,13 +1,12 @@
 package io.annot8.core.stores;
 
-import io.annot8.core.annotations.Annotation;
-import io.annot8.core.bounds.Bounds;
-import io.annot8.core.exceptions.IncompleteException;
-
 import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import io.annot8.core.annotations.Annotation;
+import io.annot8.core.bounds.Bounds;
+import io.annot8.core.exceptions.IncompleteException;
 
 /**
  * Base annotations interface from which all other annotation stores extend.
@@ -19,11 +18,11 @@ import java.util.stream.Stream;
  */
 public interface AnnotationStore<B extends Bounds, A extends Annotation<B>> {
 
-	/**
-	 * Return a builder object for the supported annotations
-	 */
+  /**
+   * Return a builder object for the supported annotations
+   */
   A.Builder<A, B> getBuilder();
-  
+
   /**
    * Save an annotation to the store from an annotation builder
    */

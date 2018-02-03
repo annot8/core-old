@@ -14,7 +14,7 @@ public class IncompleteException extends Annot8Exception {
   public IncompleteException(final String message) {
     super(message);
   }
-  
+
   /**
    * Create an exception with the given message and a root cause
    */

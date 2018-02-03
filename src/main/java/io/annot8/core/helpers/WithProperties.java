@@ -7,8 +7,8 @@ import io.annot8.core.properties.ImmutableProperties;
  */
 public interface WithProperties {
 
-	/**
-	 * Return the immutable properties associated with this object
-	 */
+  /**
+   * Return the immutable properties associated with this object
+   */
   ImmutableProperties getProperties();
 }

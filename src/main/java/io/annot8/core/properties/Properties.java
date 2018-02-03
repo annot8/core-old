@@ -50,7 +50,7 @@ public interface Properties {
    * Return the property value for the specified key, or a default value if the key doesn't exist
    */
   @SuppressWarnings("unchecked")
-default <T> T getOrDefault(final String key, final T defaultValue) {
+  default <T> T getOrDefault(final String key, final T defaultValue) {
     final Class<? extends Object> clazz = defaultValue.getClass();
     final Object o = getObjectOrDefault(key, defaultValue.getClass());
     if (o != null && clazz.isInstance(o)) {

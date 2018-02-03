@@ -8,8 +8,8 @@ package io.annot8.core.helpers.builders;
  * 		The builder class
  */
 public interface WithTypeBuilder<A> {
-	/**
-	 * Return a builder with the type set to the specified value
-	 */
-    A withType(final String type);
+  /**
+   * Return a builder with the type set to the specified value
+   */
+  A withType(final String type);
 }

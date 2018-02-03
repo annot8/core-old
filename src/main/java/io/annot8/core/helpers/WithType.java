@@ -8,5 +8,5 @@ public interface WithType {
   /**
    * Return the type assigned to this object
    */
-	String getType();
+  String getType();
 }

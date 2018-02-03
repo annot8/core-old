@@ -9,7 +9,7 @@ import java.util.Optional;
  */
 public interface MutableProperties extends Properties {
 
-   /**
+  /**
    * Set the property value for the specified key
    */
   void set(final String key, final Object value);

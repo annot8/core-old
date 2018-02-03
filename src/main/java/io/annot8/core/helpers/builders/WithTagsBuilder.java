@@ -10,13 +10,13 @@ import io.annot8.core.data.Tags;
  * 		The builder class
  */
 public interface WithTagsBuilder<A> {
-	/**
-	 * Return a builder with the tag added to it
-	 */
-    A withTag(final String tag);
-    
-    /**
-     * Return a builder with the specified tags
-     */
-    A withTags(final Tags tags);
+  /**
+   * Return a builder with the tag added to it
+   */
+  A withTag(final String tag);
+
+  /**
+   * Return a builder with the specified tags
+   */
+  A withTags(final Tags tags);
 }

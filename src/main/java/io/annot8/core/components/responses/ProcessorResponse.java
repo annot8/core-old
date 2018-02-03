@@ -1,9 +1,8 @@
 package io.annot8.core.components.responses;
 
-import io.annot8.core.data.Item;
-
 import java.util.Collection;
 import java.util.stream.Stream;
+import io.annot8.core.data.Item;
 
 /**
  * Class to hold the response from a processor.
@@ -13,32 +12,32 @@ import java.util.stream.Stream;
  */
 public final class ProcessorResponse {
 
-	/**
-	 * Response status returned by the processor
-	 */
+  /**
+   * Response status returned by the processor
+   */
   public enum Status {
-	  /**
-	   * Indicates that the processor has worked successfully
-	   */
-	  OK,
-	  
-	  /**
-	   * Indicates that the processor has worked successfully,
-	   * but that the current item should not be processed further
-	   */
-	  ITEM_STOP,
-	  
-	  /**
-	   * Indicates that an error happened whilst processing this
-	   * item, but that it should be possible to process other items.
-	   */
-	  ITEM_ERROR,
-	  
-	  /**
-	   * Indicates that an error happened whilst processing this
-	   * item, and that it will prevent other items from being processed.
-	   */
-	  PIPELINE_ERROR
+    /**
+     * Indicates that the processor has worked successfully
+     */
+    OK,
+
+    /**
+     * Indicates that the processor has worked successfully,
+     * but that the current item should not be processed further
+     */
+    ITEM_STOP,
+
+    /**
+     * Indicates that an error happened whilst processing this
+     * item, but that it should be possible to process other items.
+     */
+    ITEM_ERROR,
+
+    /**
+     * Indicates that an error happened whilst processing this
+     * item, and that it will prevent other items from being processed.
+     */
+    PIPELINE_ERROR
   }
 
   private final Status status;

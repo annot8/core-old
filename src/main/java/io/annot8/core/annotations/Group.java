@@ -1,21 +1,24 @@
 package io.annot8.core.annotations;
 
-import io.annot8.core.helpers.WithId;
-import io.annot8.core.helpers.WithProperties;
-import io.annot8.core.helpers.WithType;
-import io.annot8.core.helpers.builders.*;
-
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
+import io.annot8.core.helpers.WithId;
+import io.annot8.core.helpers.WithProperties;
+import io.annot8.core.helpers.WithType;
+import io.annot8.core.helpers.builders.WithBuild;
+import io.annot8.core.helpers.builders.WithFrom;
+import io.annot8.core.helpers.builders.WithNewIdBuilder;
+import io.annot8.core.helpers.builders.WithPropertiesBuilder;
+import io.annot8.core.helpers.builders.WithTypeBuilder;
 
 /**
  * Base annotation interface from which all other annotations extend.
  */
 public interface Group extends WithId, WithType, WithProperties {
-	/**
-	 * Return a map of all roles with the associated annotations in this group
-	 */
+  /**
+   * Return a map of all roles with the associated annotations in this group
+   */
   Map<String, Stream<Annotation<?>>> getAnnotations();
 
   /**
@@ -49,19 +52,19 @@ public interface Group extends WithId, WithType, WithProperties {
     return getRoles().anyMatch(role::equals);
   }
 
-  	/**
-	 * Builder interface to create (immutable) Group classes
-  	 */
-    interface Builder<A extends Group> extends
-            WithTypeBuilder<Builder<A>>,
-            WithPropertiesBuilder<Builder<A>>,
-            WithNewIdBuilder<Builder<A>>,
-            WithFrom<Builder<A>, A>,
-            WithBuild<A>
-    {
-    		/**
-    		 * Add an annotation to this group with the specified role
-    		 */
-        Builder<A> withAnnotation(final String role, final Annotation<?> annotation);
-    }
+  /**
+   * Builder interface to create (immutable) Group classes
+   */
+  interface Builder<A extends Group> extends
+  WithTypeBuilder<Builder<A>>,
+  WithPropertiesBuilder<Builder<A>>,
+  WithNewIdBuilder<Builder<A>>,
+  WithFrom<Builder<A>, A>,
+  WithBuild<A>
+  {
+    /**
+     * Add an annotation to this group with the specified role
+     */
+    Builder<A> withAnnotation(final String role, final Annotation<?> annotation);
+  }
 }

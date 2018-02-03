@@ -10,12 +10,12 @@ import io.annot8.core.settings.Settings;
  */
 public interface Annot8Component extends AutoCloseable {
 
-	/**
-	 * Configure this component using information from the given context.
-	 * 
-	 * This may be called at any time, and the component should re-configure
-	 * as required.
-	 */
+  /**
+   * Configure this component using information from the given context.
+   * 
+   * This may be called at any time, and the component should re-configure
+   * as required.
+   */
   default void configure(final Context context)
       throws BadConfigurationException, MissingResourceException {
     // Do nothing

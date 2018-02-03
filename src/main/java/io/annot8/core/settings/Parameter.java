@@ -1,6 +1,10 @@
 package io.annot8.core.settings;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * Declares a parameter within a settings class.
@@ -17,9 +21,9 @@ import java.lang.annotation.*;
 @Target(ElementType.METHOD)
 public @interface Parameter {
 
-	/**
-	 * The configuration key associated with this parameter 
-	 */
+  /**
+   * The configuration key associated with this parameter 
+   */
   String key();
 
   /**

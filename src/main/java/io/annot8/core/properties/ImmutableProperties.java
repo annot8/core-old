@@ -9,15 +9,15 @@ import io.annot8.core.helpers.builders.WithPropertiesBuilder;
  */
 public interface ImmutableProperties extends Properties {
 
-	/**
-	 * Builder interface to create (immutable) properties classes
-	 */
-    interface Builder extends
-            WithFrom<Builder, Properties>,
-            WithPropertiesBuilder<Builder>,
-            WithBuild<ImmutableProperties>
-    {
+  /**
+   * Builder interface to create (immutable) properties classes
+   */
+  interface Builder extends
+  WithFrom<Builder, Properties>,
+  WithPropertiesBuilder<Builder>,
+  WithBuild<ImmutableProperties>
+  {
 
-    }
+  }
 
 }

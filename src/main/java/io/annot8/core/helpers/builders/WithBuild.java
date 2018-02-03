@@ -9,8 +9,8 @@ import io.annot8.core.exceptions.IncompleteException;
  * 		The object being built by this builder
  */
 public interface WithBuild<A> {
-	/**
-	 * Return the object being built by this builder
-	 */
-    A build() throws IncompleteException;
+  /**
+   * Return the object being built by this builder
+   */
+  A build() throws IncompleteException;
 }
